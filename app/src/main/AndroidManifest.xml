@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mredrock.cyxbs">
 
-    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
@@ -44,7 +44,7 @@
         <!-- School car search's Gaode developer API key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c83f64e3960155eef1ba31cb231863c8"></meta-data>
+            android:value="c83f64e3960155eef1ba31cb231863c8" />
         <!-- 魅族 3D TOUCH 适配 -->
         <meta-data
             android:name="android.3dtouch.launcher_menu"
@@ -326,9 +326,11 @@
         <activity
             android:name=".PushActivity"
             android:exported="true" />
-        <!--<activity android:name=".ui.activity.explore.SchoolCarSearch" />-->
+        <!-- <activity android:name=".ui.activity.explore.SchoolCarSearch" /> -->
         <activity android:name=".ui.activity.explore.ExploreSchoolCarActivity" />
-        <activity android:name=".ui.activity.explore.SchoolCarLearnMoreActivity"/>
+        <activity android:name=".ui.activity.explore.SchoolCarLearnMoreActivity" />
+        <activity android:name=".ui.activity.qa.AnswerListActivity" />
+        <activity android:name=".ui.activity.qa.AnswerQuestionActivity"></activity>
     </application>
 
 </manifest>

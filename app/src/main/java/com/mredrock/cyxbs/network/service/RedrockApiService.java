@@ -20,7 +20,7 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
-import com.mredrock.cyxbs.model.VolunteerTime;
+import com.mredrock.cyxbs.model.qa.AnswerList;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -37,6 +37,8 @@ import com.mredrock.cyxbs.network.setting.annotation.XmlApi;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import kotlin.Unit;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -48,7 +50,6 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
-import io.reactivex.Observable;
 
 /**
  * Created by cc on 16/1/20.
@@ -300,11 +301,11 @@ public interface RedrockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_BIND_DORMITORY)
-    Observable<RedrockApiWrapper<Object>> bindDormitory(@Field("stuNum")String stuNum,@Field("idNum") String idNum,@Field("room") String room);
+    Observable<RedrockApiWrapper<Object>> bindDormitory(@Field("stuNum") String stuNum, @Field("idNum") String idNum, @Field("room") String room);
 
     @FormUrlEncoded
     @POST(Const.API_ELECTRIC_QUERY_STUNUM)
-    Observable<RedrockApiWrapper<PastElectric.PastElectricResultWrapper>> getPastElectricCharge(@Field("stuNum")String stuNum, @Field("idNum") String idNum);
+    Observable<RedrockApiWrapper<PastElectric.PastElectricResultWrapper>> getPastElectricCharge(@Field("stuNum") String stuNum, @Field("idNum") String idNum);
 
     @FormUrlEncoded
     @POST(Const.API_ALL_TOPIC_LIST)
@@ -346,7 +347,34 @@ public interface RedrockApiService {
                                                  @Field("stuNum") String stuNum,
                                                  @Field("idNum") String idNum,
                                                  @Field("official") boolean official);
+
     @FormUrlEncoded
     @POST(Const.API_ROLLER_VIEW)
     Observable<RedrockApiWrapper<List<RollerViewInfo>>> getRollerViewInfo(@Field("pic_num") String pic_num);
+
+
+    //Q&A
+    @FormUrlEncoded
+    @POST(Const.ANSWER_LIST)
+    Observable<RedrockApiWrapper<AnswerList>> getAnswerList(@Field("stuNum") String stuNum,
+                                                            @Field("idNum") String idNum,
+                                                            @Field("question_id") String qid);
+    @FormUrlEncoded
+    @POST(Const.PRAISE_ANSWER)
+    Observable<RedrockApiWrapper<Unit>> praiseAnswer(@Field("stuNum") String stuNum,
+                                                     @Field("idNum") String idNum,
+                                                     @Field("answer_id") String aid);
+
+    @FormUrlEncoded
+    @POST(Const.CANCEL_PRAISE_ANSWER)
+    Observable<RedrockApiWrapper<Unit>> cancelPraiseAnswer(@Field("stuNum") String stuNum,
+                                                     @Field("idNum") String idNum,
+                                                     @Field("answer_id") String aid);
+
+    @FormUrlEncoded
+    @POST(Const.ANSWER_QUESTION)
+    Observable<RedrockApiWrapper<Unit>> answerQuestion(@Field("stuNum") String stuNum,
+                                                           @Field("idNum") String idNum,
+                                                           @Field("question_id") String qid,
+                                                           @Field("content") String content);
 }

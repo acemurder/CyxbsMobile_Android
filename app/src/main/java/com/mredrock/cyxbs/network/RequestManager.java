@@ -1,7 +1,6 @@
 package com.mredrock.cyxbs.network;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.BuildConfig;
@@ -33,6 +32,8 @@ import com.mredrock.cyxbs.model.lost.Lost;
 import com.mredrock.cyxbs.model.lost.LostDetail;
 import com.mredrock.cyxbs.model.lost.LostStatus;
 import com.mredrock.cyxbs.model.lost.LostWrapper;
+import com.mredrock.cyxbs.model.qa.AnswerList;
+import com.mredrock.cyxbs.model.qa.AnswersItem;
 import com.mredrock.cyxbs.model.social.BBDDNewsContent;
 import com.mredrock.cyxbs.model.social.CommentContent;
 import com.mredrock.cyxbs.model.social.HotNews;
@@ -46,6 +47,7 @@ import com.mredrock.cyxbs.network.exception.RedrockApiException;
 import com.mredrock.cyxbs.network.func.AffairTransformFunc;
 import com.mredrock.cyxbs.network.func.AffairWeekFilterFunc;
 import com.mredrock.cyxbs.network.func.ElectricQueryFunc;
+import com.mredrock.cyxbs.network.func.RedrockApiNoDataWrapperFunc;
 import com.mredrock.cyxbs.network.func.RedrockApiWrapperFunc;
 import com.mredrock.cyxbs.network.func.StartPageFunc;
 import com.mredrock.cyxbs.network.func.UpdateVerifyFunc;
@@ -84,6 +86,7 @@ import io.rx_cache2.EvictDynamicKey;
 import io.rx_cache2.Reply;
 import io.rx_cache2.internal.RxCache;
 import io.victoralbertos.jolyglot.JacksonSpeaker;
+import kotlin.Unit;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -182,7 +185,7 @@ public enum RequestManager {
                     }
                     return Integer.parseInt(courseWrapper.nowWeek);
                 });
-         emitObservable(observable, observer);
+        emitObservable(observable, observer);
     }
 
     public void getVolunteer(Observer<VolunteerTime> subscriber, String account, String password) {
@@ -209,10 +212,10 @@ public enum RequestManager {
     }
 
     public void getCourseList(Observer<List<Course>> observer, String stuNum, String idNum,
-                                             int week, boolean update, boolean forceFetch) {
+                              int week, boolean update, boolean forceFetch) {
         Observable<List<Course>> observable = CourseListProvider.start(stuNum, idNum, update, forceFetch)
                 .map(new UserCourseFilterFunc(week));
-         emitObservable(observable, observer);
+        emitObservable(observable, observer);
     }
 
     public void getRemindableList(Observer<List<Reminder>> observer, Context context, BaseRemindFunc remindFunc) {
@@ -220,7 +223,7 @@ public enum RequestManager {
                 .map(new UserCourseFilterFunc(new SchoolCalendar()
                         .getWeekOfTerm()))
                 .map(remindFunc);
-         emitObservable(observable, observer);
+        emitObservable(observable, observer);
     }
 
     public Observable<List<Course>> getCourseList(String stuNum, String idNum) {
@@ -754,6 +757,48 @@ public enum RequestManager {
         Observable<TopicArticle> observable = redrockApiService.getTopicArticle(stuNum, idNum, size, page, topicId)
                 .map(new RedrockApiWrapperFunc<>());
 
+        emitObservable(observable, observer);
+    }
+
+    //Q&A
+    public void getAnswerList(Observer<AnswerList> observer, String stuNum, String idNum, String qid) {
+        Observable<AnswerList> observable = redrockApiService.getAnswerList(stuNum, idNum, qid)
+                .map(new RedrockApiWrapperFunc<AnswerList>() {
+                    @Override
+                    public AnswerList apply(RedrockApiWrapper<AnswerList> wrapper) throws Exception {
+                        AnswerList data = super.apply(wrapper);
+                        if (data.hasAnswer()) {
+                            List<AnswersItem> answers = data.getAnswers();
+                            data.setHasAdoptedAnswer(true);
+                            assert answers != null;
+                            for (AnswersItem item : answers) {
+                                if (item.isAdopted()) {
+                                    data.setHasAdoptedAnswer(false);
+                                    break;
+                                }
+                            }
+                        }
+                        return data;
+                    }
+                });
+        emitObservable(observable, observer);
+    }
+
+    public void praiseAnswer(Observer<Unit> observer, String stuNum, String idNum, String aid, boolean isPraised) {
+        Observable<Unit> observable;
+        if (isPraised) {
+            observable = redrockApiService.cancelPraiseAnswer(stuNum, idNum, aid)
+                    .map(new RedrockApiNoDataWrapperFunc());
+        } else {
+            observable = redrockApiService.praiseAnswer(stuNum, idNum, aid)
+                    .map(new RedrockApiNoDataWrapperFunc());
+        }
+        emitObservable(observable, observer);
+    }
+
+    public void answerQuestion(Observer<Unit> observer, String stuNum, String idNum, String qid, String content) {
+        Observable<Unit> observable = redrockApiService.answerQuestion(stuNum, idNum, qid, content)
+                .map(new RedrockApiNoDataWrapperFunc());
         emitObservable(observable, observer);
     }
 

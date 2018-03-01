@@ -354,7 +354,7 @@ public class SpecificNewsActivity extends BaseActivity
                                 super.onNegative(dialog);
                                 dialog.dismiss();
                             }
-                        }).show());
+                        }).visible());
             }
         }
     */

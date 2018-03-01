@@ -214,7 +214,7 @@ public class TopicArticleActivity extends BaseActivity implements SwipeRefreshLa
 //
 //                                    @Override
 //                                    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-//                                        Toast.makeText(TopicArticleActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(TopicArticleActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).visible();
 //
 //                                    }
 //
@@ -224,7 +224,7 @@ public class TopicArticleActivity extends BaseActivity implements SwipeRefreshLa
 //                                    }
 //                                }).open();
 //                    } else {
-//                        Toast.makeText(this, "请授予权限", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(this, "请授予权限", Toast.LENGTH_SHORT).visible();
 //                    }
 //                });
     }

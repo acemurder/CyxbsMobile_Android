@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="RtlHardcoded">
+
+    <View
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="37dp">
+
+        <FrameLayout
+            android:id="@+id/sortByDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sortByDefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/answer_list_sort_by_default"
+                android:textColor="@color/answer_list_popup_window_sort_by_checked"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/checkedDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_answer_list_popup_window_sort_by_checked"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/answer_list_divider" />
+
+        <FrameLayout
+            android:id="@+id/sortByTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sortByTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/answer_list_sort_by_time"
+                android:textColor="@color/answer_list_popup_window_sort_by"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/checkedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_answer_list_popup_window_sort_by_checked"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -73,4 +73,33 @@
     <color name="explore_school_car_right">#95b5f7</color>
     <color name="Transent">#00000000</color>
 
+    <color name="answer_list_footer">#7396FA</color>
+    <color name="answer_list_footer_divider">#bfc6c4c5</color>
+    <color name="answer_list_menu">#7496FA</color>
+    <color name="answer_list_menu_divider">#EAEAEA</color>
+    <color name="answer_list_bg">#FFFFFF</color>
+    <color name="answer_list_question_title">#333333</color>
+    <color name="answer_list_question_content">#555555</color>
+    <color name="answer_list_questioner_nickname">#555555</color>
+    <color name="answer_list_questioner_disappear_time">#999999</color>
+    <color name="answer_list_question_reward">#888888</color>
+    <color name="answer_list_header_gap">#F6F6F6</color>
+    <color name="answer_list_answer_count">#888888</color>
+    <color name="answer_list_sort_by">#788EFA</color>
+    <color name="answer_list_divider">#59c6c4c5</color>
+    <color name="answer_list_nickname">#666666</color>
+    <color name="answer_list_accepted">#999999</color>
+    <color name="answer_list_accept">#788EFA</color>
+    <color name="answer_list_answer_content">#666666</color>
+    <color name="answer_list_answer_expand">#788EFA</color>
+    <color name="answer_list_answer_date">#e5999999</color>
+    <color name="answer_list_favor">#999999</color>
+    <color name="answer_list_no_answer">#999999</color>
+    <color name="answer_list_popup_window_sort_by">#999999</color>
+    <color name="answer_list_popup_window_sort_by_checked">#8093FA</color>
+    <color name="answer_question_divider">#14999999</color>
+    <color name="answer_question_hint">#999999</color>
+    <color name="answer_question_content">#333333</color>
+    <color name="answer_question_counter">#80000000</color>
+
 </resources>

@@ -67,7 +67,7 @@ public class CourseListRemoteViewsService extends RemoteViewsService {
                 return;
             }
             if (courses.size() == 0) {
-                // just show an empty list if there is no course.
+                // just visible an empty list if there is no course.
                 //setError("今天没有课");
             }
             generateItem(courses);

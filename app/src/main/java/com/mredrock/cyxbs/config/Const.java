@@ -114,6 +114,12 @@ public class Const {
         public static final String EDIT_PHONE = "11";
     }
 
+    //Q&A
+    public static final String ANSWER_LIST = "/springtest/cyxbsMobile/index.php/QA/Question/getDetailedInfo";
+    public static final String PRAISE_ANSWER = "/springtest/cyxbsMobile/index.php/QA/Answer/praise";
+    public static final String CANCEL_PRAISE_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/cancelPraise";
+    public static final String ANSWER_QUESTION = "springtest/cyxbsMobile/index.php/QA/Answer/add";
+
     public static final class Requests {
         public static final int SELECT_PICTURE = 1;
         public static final int SELECT_CAMERA = 2;

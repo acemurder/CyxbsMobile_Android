@@ -64,7 +64,7 @@ public class LostDetailsActivity extends BaseActivity {
             RequestManager.getInstance().getLostDetail(new SimpleObserver<LostDetail>(this, new SubscriberListener<LostDetail>() {
                 @Override
                 public boolean onError(Throwable e) {
-                    Toast.makeText(LostDetailsActivity.this, "抱歉，未拉取到数据", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostDetailsActivity.this, "抱歉，未拉取到数据", Toast.LENGTH_SHORT).visible();
                     return super.onError(e);
                 }
 
@@ -74,7 +74,7 @@ public class LostDetailsActivity extends BaseActivity {
                 }
             }),lost);
         }else {
-            Toast.makeText(this, "抱歉，未拉取到数据", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "抱歉，未拉取到数据", Toast.LENGTH_SHORT).visible();
         }*/
         lostDetail = (LostDetail) getIntent().getSerializableExtra("LostDetail");
         mNickName.setText(lostDetail.connectName);

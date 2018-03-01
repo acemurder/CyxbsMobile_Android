@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mredrock.cyxbs.ui.activity.qa.AnswerQuestionActivity"
+    tools:ignore="RtlHardcoded">
+
+    <com.mredrock.cyxbs.component.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toolbar"
+        android:fitsSystemWindows="true"
+        app:text_left="取消"
+        app:text_right="提交"
+        app:text_title="@string/answer_question_title" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="19dp">
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="@string/answer_question_hint"
+            android:maxLength="@integer/answer_max_length"
+            android:paddingBottom="29dp"
+            android:textColor="@color/answer_question_content"
+            android:textColorHint="@color/answer_question_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="19dp"
+            android:textColor="@color/answer_question_counter"
+            android:textSize="13sp"
+            tools:text="300" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="11dp"
+        android:background="@color/answer_question_divider" />
+
+    <com.mredrock.cyxbs.component.widget.ninelayout.NineGridlayout
+        android:id="@+id/images"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1" />
+</LinearLayout>

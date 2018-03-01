@@ -114,7 +114,7 @@ public class DormitorySettingActivity extends BaseActivity {
     public void onOkClick(){
 
         if (mBuildingPosition < 0 || dormitoryNumberEdit.getText().toString().length() < 3) {
-            //Toast.makeText(this,"信息不完整",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"信息不完整",Toast.LENGTH_SHORT).visible();
             Bundle bundle = new Bundle();
             DialogRemindFragment dialogRemindFragment = new DialogRemindFragment();
             if (mBuildingPosition < 0 && dormitoryNumberEdit.getText().toString().isEmpty()) {

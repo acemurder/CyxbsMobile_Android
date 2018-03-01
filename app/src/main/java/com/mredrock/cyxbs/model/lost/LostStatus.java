@@ -11,6 +11,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class LostStatus {
     @SerializedName("status")
-    public String status;  // The information which server return for us and we can show it to user directly.
+    public String status;  // The information which server return for us and we can visible it to user directly.
                     // However, if you want to catch the exception, the http status code will be more valuable
 }

@@ -23,9 +23,9 @@ import com.mredrock.cyxbs.model.social.Image;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.mredrock.cyxbs.ui.activity.qa.AnswerListActivity;
 import com.mredrock.cyxbs.ui.activity.social.ImageActivity;
 import com.mredrock.cyxbs.ui.activity.social.PersonInfoActivity;
-import com.mredrock.cyxbs.ui.activity.social.SpecificNewsActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
 import com.mredrock.cyxbs.util.LogUtils;
 import com.mredrock.cyxbs.util.RxBus;
@@ -153,8 +153,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         public void onItemClick(View view) {
             if (!isSingle) {
                 registerObservable();
-                SpecificNewsActivity.startActivityWithDataBean(view.getContext(), mHotNewsContent,
-                        mHotNewsContent.articleId, isFromPersonInfo, isFromMyTrend);
+                //todo 回答测试
+                AnswerListActivity.start(view.getContext(), "9");
             }
         }
 
