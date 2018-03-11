@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base.adapter
+package com.mredrock.cyxbs.common.base.adapter
 
 import android.databinding.OnRebindCallback
 import android.databinding.ViewDataBinding
@@ -6,7 +6,6 @@ import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import java.lang.IllegalArgumentException
 
 /**
  * Created by ：AceMurder
@@ -40,16 +39,14 @@ abstract class BaseDataBoundAdapter <T : ViewDataBinding> : RecyclerView.Adapter
         return vh
     }
 
-    override fun onBindViewHolder(holder: DataBoundViewHolder<T>, position: Int,
-                                  payloads: List<Any>?) {
+    override fun onBindViewHolder(holder: DataBoundViewHolder<T>?, position: Int, payloads: MutableList<Any>?) {
         if (payloads!!.isEmpty() || hasNonDataBindingInvalidate(payloads)) {
             bindItem(holder, position, payloads)
         }
-        holder.binding.executePendingBindings()
+        holder?.binding?.executePendingBindings()
     }
 
-
-    protected abstract fun bindItem(holder: DataBoundViewHolder<T>, position: Int,
+    protected abstract fun bindItem(holder: DataBoundViewHolder<T>?, position: Int,
                                     payloads: List<Any>)
 
     private fun hasNonDataBindingInvalidate(payloads: List<Any>): Boolean {
@@ -61,7 +58,7 @@ abstract class BaseDataBoundAdapter <T : ViewDataBinding> : RecyclerView.Adapter
         return false
     }
 
-    override fun onBindViewHolder(holder: DataBoundViewHolder<T>, position: Int) {
+    override final fun onBindViewHolder(holder: DataBoundViewHolder<T>, position: Int) {
         throw IllegalArgumentException("just overridden to make final.")
     }
 
@@ -73,7 +70,7 @@ abstract class BaseDataBoundAdapter <T : ViewDataBinding> : RecyclerView.Adapter
         mRecyclerView = null
     }
 
-    override fun getItemViewType(position: Int): Int {
+    override final fun getItemViewType(position: Int): Int {
         return getItemLayoutId(position)
     }
 

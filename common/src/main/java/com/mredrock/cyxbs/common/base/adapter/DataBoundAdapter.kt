@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base.adapter
+package com.mredrock.cyxbs.common.base.adapter
 
 import android.databinding.ViewDataBinding
 

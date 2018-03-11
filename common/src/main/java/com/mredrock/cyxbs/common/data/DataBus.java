@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.common.data;
 
+import android.content.Context;
+
 import com.mredrock.cyxbs.common.model.User;
 
 /**
@@ -22,6 +24,10 @@ public class DataBus {
 
     public static User getUser(){
         return dataProxy.getUser();
+    }
+
+    public static Context getContext(){
+        return dataProxy.getContext();
     }
 
 }

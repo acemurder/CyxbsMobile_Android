@@ -1,7 +1,6 @@
 package com.mredrock.cyxbs.network;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.BuildConfig;
@@ -69,6 +68,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -220,6 +220,7 @@ public enum RequestManager {
                 .map(new UserCourseFilterFunc(new SchoolCalendar()
                         .getWeekOfTerm()))
                 .map(remindFunc);
+        CookieStore
          emitObservable(observable, observer);
     }
 

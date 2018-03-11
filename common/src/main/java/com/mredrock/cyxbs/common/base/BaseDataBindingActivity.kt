@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base
+package com.mredrock.cyxbs.common.base
 
 import android.app.Activity
 import android.content.Context
@@ -182,7 +182,7 @@ abstract class BaseDataBindingActivity<P : BasePresenter, T : ViewDataBinding> :
         private lateinit var activity: WeakReference<Context>
         private lateinit var handlerOperate: HanlderOperate
 
-        constructor(activity: Context, operate: BaseHandler.HanlderOperate) : this() {
+        constructor(activity: Context, operate: HanlderOperate) : this() {
             this.activity = WeakReference(activity)
             this.handlerOperate = operate
 

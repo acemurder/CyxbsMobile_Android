@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base
+package com.mredrock.cyxbs.common.base
 
 import android.content.Context
 import android.databinding.DataBindingUtil

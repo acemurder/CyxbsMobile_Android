@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base
+package com.mredrock.cyxbs.common.base
 
 import android.databinding.BaseObservable
 import android.os.Bundle

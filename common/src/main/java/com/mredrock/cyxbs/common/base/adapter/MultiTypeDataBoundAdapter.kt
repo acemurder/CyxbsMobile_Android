@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base.adapter
+package com.mredrock.cyxbs.common.base.adapter
 
 import android.databinding.ViewDataBinding
 
@@ -10,7 +10,7 @@ import android.databinding.ViewDataBinding
  */
 abstract class MultiTypeDataBoundAdapter (private var mItems: MutableList<Any>) : BaseDataBoundAdapter<ViewDataBinding>(){
 
-    override fun bindItem(holder: DataBoundViewHolder<ViewDataBinding>, position: Int, payloads: List<Any>) {
+    override fun bindItem(holder: DataBoundViewHolder<ViewDataBinding>?, position: Int, payloads: List<Any>) {
 
     }
 

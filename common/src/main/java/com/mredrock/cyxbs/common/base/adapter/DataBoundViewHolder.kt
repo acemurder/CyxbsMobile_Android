@@ -1,4 +1,4 @@
-package com.acemurder.lightmusic.base.adapter
+package com.mredrock.cyxbs.common.base.adapter
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -13,7 +13,7 @@ import android.view.ViewGroup
  * Created for : LightMusic.
  * Enjoy it !!!
  */
-class DataBoundViewHolder<out T : ViewDataBinding>(val binding: T) : RecyclerView.ViewHolder(binding.root) {
+open class DataBoundViewHolder<out T : ViewDataBinding>(val binding: T) : RecyclerView.ViewHolder(binding.root) {
     companion object {
         fun <T : ViewDataBinding> create(parent: ViewGroup,
                                          @LayoutRes layoutId: Int): DataBoundViewHolder<T> {

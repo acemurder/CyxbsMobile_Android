@@ -34,7 +34,6 @@ object ApiGenerator {
                 .build();
     }
 
-
     private fun configureOkHttp(builder: OkHttpClient.Builder): OkHttpClient {
         builder.connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
 

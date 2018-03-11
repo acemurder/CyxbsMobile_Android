@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.common.data;
 
+import android.content.Context;
+
 import com.mredrock.cyxbs.common.model.User;
 
 /**
@@ -13,4 +15,5 @@ public interface DataProxy {
     boolean isDebug();
     User getUser();
     boolean isLogin();
+    Context getContext();
 }
