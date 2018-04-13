@@ -3,6 +3,8 @@
     package="com.mredrock.cyxbs">
 
     <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
+
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
@@ -55,6 +57,19 @@
             android:name="com.amap.api.v2.apikey"
             android:value="c85d4fb11d552c7112543bc0317d2da0" />
         -->
+
+        <!--Sophix热修复-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24853808-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="836029bff0a9c330c94b49ca1c46761e" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCHSrYCTZhDz543j3vo65iZ+25rXjaqNWP0i07FWt2Ws5skpf23QcUWgncD3Bv4E8m53x60i+dZZemhiMmBVGf+Y4IE/gEVRuw+CdtdKpQ3XkGO3OO8SQvaaW96XEhnGV50dZ4WYDJLydAsXLk2rQs2uLw2zDWdm7RPGRVbDDCORVF6EAPQOYPnwH132yXOTgGS88VgNw9uaA87OQyjnT2Y7J/sHGNV49LG8pLGQzl+HSVA8CgdY171Fo5AmcpaD44++MN6X5pEMMZfPVTp5VGRWNNlsAvTWjyVEvWvTS/DAqsHwHYMOGVRDARS4SDPi0FGI2ckZvzWQdBplA2uXarzAgMBAAECggEAL4PswohQBtjfH3JUOWytDr+Ae1L+be8MaPGYO7X7BxeTUF6/6eG+f3ZYqFFgvVLt0UrsdMqB+SLS1/m7k6F6WJzIKEqxRLDA/dTmZyUyIvQGoE8x6InbEN1g2p+YiiUdyFcaq48jevypETuLjQlfW9urtq8n0W/C9ti/aFeyofRv+Hj3TqIbMNcn9kLtyNLA5XuXVLFf1X4VlnD3DQu8Eeq6HWUGgbDagPjhpwicFNTaeWT7E7Qkvf4nuI6QYWMnInw+RbHNG7Ggm15Nfw+N+/kSFWrslijgfY0TgpNaHacy2xp5p7wSHOABc7I7tHbVHmGpbt+XqSC4GcTmuT2PIQKBgQDbUu7BmEnM4wqTHTPo086OKPDyqVGmPoOFApur0OsMIuEB+FhLgZA3+inUY+M5g40EENCt2setx+lWPMLKAipLu0relZ7CV/yubES4TtF8uEGtCjmyDOzKssf5iGeNbAIZRui+uSCkHmX2hUB1TH8GS9GpqKd+oobbkuGI6Ci1wwKBgQCd6m/Lia4YhwaWSau9/7r9vQtHLt/u0mwsp73k41kxJHdYroR8ejuOaWcjqgKgrcDz6BzY9U5rzkLEBk5JrDIs3QrEbbNGy2VZudZbWQLNhhLYS9AyJU5UK/ilg4Y7MT/7iIb13MnyA4t1AnNU1Cf2c5N8UtFnqROZEFgAJsFzEQKBgQCT9+y60fqgb2D4BdC6uQN3J6n/nTpH1Y830p2iGo4pnvJ9OMahEmVxTqaf81AewmEGKC4RzTPAS8ph8xZb4YAVneOSLhFw/pmsN8FZM1vkMA+nJens9Qlga6O890kdwYvc79kgq5eZAiU6X4YwXQ6p+ccXFoECT7Z6NytQCYlFrwKBgBs8PrHE+iDC0PEEnbk0LOTsQNCzFe4TnpKJD6g1ScG+/1JtLu5lCnaCWUZ+YNuje/7VDnyguji/pyY1zDTKnRC9wsij/uJ72+wAsCarEF+v+voRAURUyNCdkNHDAFifIuDX6CbpQG8cC2ZP2OJNgOLxhgNQKUuOjpG8juDfzkdxAoGAA9m0GVZlWBZlFHIkVYePnPwyInlx1zXnD2tNOqhwNg1M26fRDftp36I0dV1TTpHRKPbYWKZu316EcedfS6aQ51wpzNBxiEqt+2brNHpsxpFEmQTs9/MPm4SR12/19gsTUdZADhXBxnoTUs3/iu7OTjnuI/PWkQohKvNjbJAmu74=" />
+        <!--Sophix热修复-->
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="55d88b23e0f55a71ec007365" />

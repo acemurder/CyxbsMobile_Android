@@ -22,6 +22,7 @@ import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity {
 
+
     @BindView(R.id.about_1)
     TextView about1;
     @BindView(R.id.about_version)
