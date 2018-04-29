@@ -71,7 +71,7 @@ public class SpecificNewsActivity extends BaseActivity
     TextView mToolBarTitle;
     @BindView(R.id.refresh)
     SwipeRefreshLayout mRefresh;
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.easyRv)
     RecyclerView mRecyclerView;
     @BindView(R.id.downText)
     TextView mTextDown;

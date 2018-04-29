@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.util.extensions
 
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 
 /**
@@ -19,4 +21,10 @@ fun View.invisible() {
 
 fun View.setVisible(visible: Boolean, hideState: Int = View.INVISIBLE) {
     visibility = if (visible) View.VISIBLE else hideState
+}
+
+fun RecyclerView.verticalLayout() {
+    val layoutManager = LinearLayoutManager(this.context)
+    layoutManager.orientation = LinearLayoutManager.VERTICAL
+    setLayoutManager(layoutManager)
 }

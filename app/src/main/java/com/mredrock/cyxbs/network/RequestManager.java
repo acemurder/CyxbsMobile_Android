@@ -32,8 +32,8 @@ import com.mredrock.cyxbs.model.lost.Lost;
 import com.mredrock.cyxbs.model.lost.LostDetail;
 import com.mredrock.cyxbs.model.lost.LostStatus;
 import com.mredrock.cyxbs.model.lost.LostWrapper;
-import com.mredrock.cyxbs.model.qa.AnswerList;
-import com.mredrock.cyxbs.model.qa.AnswersItem;
+import com.mredrock.cyxbs.model.qa.Answer;
+import com.mredrock.cyxbs.model.qa.QuestionDetail;
 import com.mredrock.cyxbs.model.social.BBDDNewsContent;
 import com.mredrock.cyxbs.model.social.CommentContent;
 import com.mredrock.cyxbs.model.social.HotNews;
@@ -57,6 +57,7 @@ import com.mredrock.cyxbs.network.interceptor.StudentNumberInterceptor;
 import com.mredrock.cyxbs.network.observable.CourseListProvider;
 import com.mredrock.cyxbs.network.observable.EmptyRoomListProvider;
 import com.mredrock.cyxbs.network.service.LostApiService;
+import com.mredrock.cyxbs.network.service.QAService;
 import com.mredrock.cyxbs.network.service.RedrockApiService;
 import com.mredrock.cyxbs.network.service.VolunteerService;
 import com.mredrock.cyxbs.network.setting.CacheProviders;
@@ -109,6 +110,7 @@ public enum RequestManager {
     private CacheProviders cacheProviders;
     private OkHttpClient okHttpClient;
     private VolunteerService volunteerService;
+    private QAService qaService;
 
     RequestManager() {
         okHttpClient = configureOkHttp(new OkHttpClient.Builder());
@@ -128,6 +130,7 @@ public enum RequestManager {
         redrockApiService = retrofit.create(RedrockApiService.class);
         lostApiService = retrofit.create(LostApiService.class);
         volunteerService = retrofit.create(VolunteerService.class);
+        qaService = retrofit.create(QAService.class);
 
 //        Retrofit volunteerRetrofit = new Retrofit.Builder()
 //                .baseUrl(Const.API_VOLUNTEER)
@@ -761,19 +764,19 @@ public enum RequestManager {
     }
 
     //Q&A
-    public void getAnswerList(Observer<AnswerList> observer, String stuNum, String idNum, String qid) {
-        Observable<AnswerList> observable = redrockApiService.getAnswerList(stuNum, idNum, qid)
-                .map(new RedrockApiWrapperFunc<AnswerList>() {
+    public void getAnswerList(Observer<QuestionDetail> observer, String stuNum, String idNum, String qid) {
+        Observable<QuestionDetail> observable = qaService.getAnswerList(stuNum, idNum, qid)
+                .map(new RedrockApiWrapperFunc<QuestionDetail>() {
                     @Override
-                    public AnswerList apply(RedrockApiWrapper<AnswerList> wrapper) throws Exception {
-                        AnswerList data = super.apply(wrapper);
+                    public QuestionDetail apply(RedrockApiWrapper<QuestionDetail> wrapper) throws Exception {
+                        QuestionDetail data = super.apply(wrapper);
                         if (data.hasAnswer()) {
-                            List<AnswersItem> answers = data.getAnswers();
+                            List<Answer> answers = data.getAnswers();
                             data.setHasAdoptedAnswer(true);
-                            assert answers != null;
-                            for (AnswersItem item : answers) {
+                            assert answers != null; //method hasAnswer() has ensure it's not null
+                            for (Answer item : answers) {
                                 if (item.isAdopted()) {
-                                    data.setHasAdoptedAnswer(false);
+                                    data.setHasAdoptedAnswer(true);
                                     break;
                                 }
                             }
@@ -784,20 +787,83 @@ public enum RequestManager {
         emitObservable(observable, observer);
     }
 
+    public void loadMoreAnswer(Observer<List<Answer>> observer, String stuNum, String idNum, String qid, int page) {
+        //获取问题详情的接口返回的回答数量和这里size必须保持一致！
+        Observable<List<Answer>> observable = qaService.loadMoreAnswer(stuNum, idNum, qid, page, "6")
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
     public void praiseAnswer(Observer<Unit> observer, String stuNum, String idNum, String aid, boolean isPraised) {
         Observable<Unit> observable;
         if (isPraised) {
-            observable = redrockApiService.cancelPraiseAnswer(stuNum, idNum, aid)
+            observable = qaService.cancelPraiseAnswer(stuNum, idNum, aid)
                     .map(new RedrockApiNoDataWrapperFunc());
         } else {
-            observable = redrockApiService.praiseAnswer(stuNum, idNum, aid)
+            observable = qaService.praiseAnswer(stuNum, idNum, aid)
                     .map(new RedrockApiNoDataWrapperFunc());
         }
         emitObservable(observable, observer);
     }
 
-    public void answerQuestion(Observer<Unit> observer, String stuNum, String idNum, String qid, String content) {
-        Observable<Unit> observable = redrockApiService.answerQuestion(stuNum, idNum, qid, content)
+    public void acceptAnswer(Observer<Unit> observer, String stuNum, String idNum, String aid, String qid) {
+        Observable<Unit> observable = qaService.acceptAnswer(stuNum, idNum, aid, qid)
+                .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void answerQuestion(Observer<Unit> observer, String stuNum, String idNum, String qid, String content, List<File> files) {
+
+        Observable<Unit> observable;
+        if (files == null || files.isEmpty()) {
+            observable = qaService.answerQuestion(stuNum, idNum, qid, content)
+                    .map(new RedrockApiWrapperFunc<>())
+                    .map(it -> Unit.INSTANCE);
+        } else {
+            observable = qaService.answerQuestion(stuNum, idNum, qid, content)
+                    .map(new RedrockApiWrapperFunc<>())
+                    .flatMap(it -> uploadPic(stuNum, idNum, it, files))
+                    .map(new RedrockApiNoDataWrapperFunc());
+        }
+        emitObservable(observable, observer);
+    }
+
+    private Observable<RedrockApiWrapper<Unit>> uploadPic(String stuNum, String idNum, String aid, List<File> files) {
+        MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("stuNum", stuNum)
+                .addFormDataPart("idNum", idNum)
+                .addFormDataPart("answer_id", aid);
+        for (int i = 0; i < files.size(); i++) {
+            File file = files.get(i);
+            String suffix = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+            RequestBody imageBody = RequestBody.create(MediaType.parse("image/" + suffix), file);
+            String name = "photo" + (i + 1);
+            builder.addFormDataPart(name, name, imageBody);
+        }
+        return qaService.uploadAnswerPic(builder.build().parts());
+    }
+
+    public void cancelQuestion(Observer<Unit> observer, String stuNum, String idNum, String qid) {
+        Observable<Unit> observable = qaService.cancelQuestion(stuNum, idNum, qid)
+                .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void getAnswerCommentList(Observer<List<Answer>> observer, String stuNum, String idNum, String aid) {
+        Observable<List<Answer>> observable = qaService.getAnswerCommentList(stuNum, idNum, aid)
+                .map(wrapper -> {
+                    List<Answer> list = new RedrockApiWrapperFunc<List<Answer>>().apply(wrapper);
+                    if (list == null) {
+                        return new ArrayList<>();
+                    }
+                    return list;
+                });
+        emitObservable(observable, observer);
+    }
+
+    public void commentAnswer(Observer<Unit> observer, String stuNum, String idNum, String aid, String content) {
+        Observable<Unit> observable = qaService.commentAnswer(stuNum, idNum, aid, content)
                 .map(new RedrockApiNoDataWrapperFunc());
         emitObservable(observable, observer);
     }

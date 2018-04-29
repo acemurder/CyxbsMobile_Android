@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/answer_detail_header_title"
+            android:textSize="16sp"
+            tools:text="线代第一题不会，求解，公式应该没 问题，算了几次都不对" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/answer_detail_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="6dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar" />
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/avatar"
+                android:drawablePadding="3dp"
+                android:textColor="@color/answer_detail_nickname"
+                android:textSize="14sp"
+                tools:drawableEnd="@drawable/ic_question_detail_male"
+                tools:text="刘学霸" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nickname"
+                android:layout_toRightOf="@+id/avatar"
+                android:textColor="@color/answer_detail_date"
+                android:textSize="12sp"
+                tools:text="2018-03-08" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/accepted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_answer_detail_accept"
+                    android:drawablePadding="5dp"
+                    android:text="@string/question_detail_accepted"
+                    android:textColor="@color/answer_detail_list_accepted"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_question_detail_accept"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/question_detail_accept"
+                    android:textColor="@color/question_detail_accept"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/answer_detail_header_content"
+            android:textSize="15sp"
+            tools:text="符号A属于Rmxn表示一个m行n列的矩阵，并且矩 阵A中所有的所有元素都是实数。符号x属于Rn表 示一个含有n个元素的向量。符号A属于Rmxn表 示一个m行n列的矩阵，并且矩阵A中所有的所有 元素都是实数，符号x属于Rn表示一个含有n个元 素的向量。符号A属于Rmxn表示一个m行n列的矩 阵，并且矩阵A中所有的所有元素都是实数." />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/singleImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/default_avatar" />
+
+            <com.mredrock.cyxbs.component.widget.ninelayout.AutoNineGridlayout
+                android:id="@+id/images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#F6F6F6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/answer_detail_comment"
+            android:textColor="#888888"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/commentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#888888"
+            android:textSize="13sp"
+            tools:text="20" />
+    </LinearLayout>
+</LinearLayout>

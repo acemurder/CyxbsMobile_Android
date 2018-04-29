@@ -54,7 +54,7 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
 
     @BindView(R.id.mToolbar)
     Toolbar mToolbar;
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.easyRv)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/answer_list_bg"
+    android:background="@color/question_detail_bg"
     android:orientation="vertical"
     tools:ignore="RtlHardcoded">
 
@@ -19,7 +19,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/answer_list_question_title"
+            android:textColor="@color/question_detail_question_title"
             android:textSize="17sp"
             tools:text="线代第一题不会，求解，公式应该没问题，算了几次都不对" />
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textColor="@color/answer_list_question_content"
+            android:textColor="@color/question_detail_question_content"
             android:textSize="14sp"
             tools:text="#线代# 常规题目，还请大佬帮忙解答常规题目，还 请大佬帮忙解答常规题目，还请大佬常规常规题目， 还请大佬常规题目，还请大佬帮忙解答常规题目帮忙 答常规题目常规题目，还请大佬帮忙解答常规题目常 规题目常规题目" />
 
@@ -71,9 +71,9 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/avatar"
                 android:drawablePadding="2dp"
-                android:textColor="@color/answer_list_questioner_nickname"
+                android:textColor="@color/question_detail_questioner_nickname"
                 android:textSize="13sp"
-                tools:drawableRight="@drawable/ic_answer_list_female"
+                tools:drawableRight="@drawable/ic_question_detail_female"
                 tools:text="刘童鞋" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_below="@+id/nickname"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/avatar"
-                android:textColor="@color/answer_list_questioner_disappear_time"
+                android:textColor="@color/question_detail_questioner_disappear_time"
                 android:textSize="11sp"
                 tools:ignore="SmallSp"
                 tools:text="5小时后消失" />
@@ -99,17 +99,17 @@
                     android:id="@+id/reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_answer_list_reward"
+                    android:drawableLeft="@drawable/ic_question_detail_reward"
                     android:drawablePadding="3dp"
-                    android:textColor="@color/answer_list_question_reward"
+                    android:textColor="@color/question_detail_question_reward"
                     android:textSize="12sp"
                     tools:text="5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/answer_list_question_reward"
-                    android:textColor="@color/answer_list_question_reward"
+                    android:text="@string/question_detail_question_reward"
+                    android:textColor="@color/question_detail_question_reward"
                     android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
@@ -120,7 +120,7 @@
         android:layout_height="16dp"
         android:layout_marginBottom="18dp"
         android:layout_marginTop="18dp"
-        android:background="@color/answer_list_header_gap" />
+        android:background="@color/question_detail_header_gap" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -132,7 +132,7 @@
             android:id="@+id/answerCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/answer_list_answer_count"
+            android:textColor="@color/question_detail_answer_count"
             android:textSize="14sp"
             tools:text="6" />
 
@@ -140,8 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/answerCount"
-            android:text="@string/answer_list_answer_count"
-            android:textColor="@color/answer_list_answer_count"
+            android:text="@string/question_detail_answer_count"
+            android:textColor="@color/question_detail_answer_count"
             android:textSize="14sp" />
 
         <TextView
@@ -149,8 +149,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/answer_list_sort_by_default"
-            android:textColor="@color/answer_list_sort_by"
+            android:text="@string/question_detail_sort_by_default"
+            android:textColor="@color/question_detail_sort_by"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -164,5 +164,5 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="18dp"
-        android:background="@color/answer_list_divider" />
+        android:background="@color/question_detail_divider" />
 </LinearLayout>

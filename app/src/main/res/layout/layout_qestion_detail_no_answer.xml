@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/answer_list_no_answer_helper"
-        android:textColor="@color/answer_list_no_answer"
+        android:text="@string/question_detail_no_answer_helper"
+        android:textColor="@color/question_detail_no_answer"
         android:textSize="14sp" />
 </FrameLayout>

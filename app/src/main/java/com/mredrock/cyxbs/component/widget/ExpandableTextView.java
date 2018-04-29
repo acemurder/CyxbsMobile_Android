@@ -163,7 +163,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         mCollapsed = !mCollapsed;
         mButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
                 mCollapsed ? mExpandDrawable : mCollapseDrawable, null);
-        mButton.setText(mCollapsed ? "展开" : "收起");
+        mButton.setText(mCollapsed ? "展开更多" : "收起");
         if (mCollapsedStatus != null) {
             mCollapsedStatus.put(mPosition, mCollapsed);
         }
@@ -333,12 +333,12 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         mExpandDrawable = typedArray.getDrawable(com.ms.square.android.expandabletextview.R.styleable.ExpandableTextView_expandDrawable);
         mCollapseDrawable = typedArray.getDrawable(com.ms.square.android.expandabletextview.R.styleable.ExpandableTextView_collapseDrawable);
 
-        if (mExpandDrawable == null) {
+        /*if (mExpandDrawable == null) {
             mExpandDrawable = getDrawable(getContext(), com.ms.square.android.expandabletextview.R.drawable.ic_expand_small_holo_light);
         }
         if (mCollapseDrawable == null) {
             mCollapseDrawable = getDrawable(getContext(), com.ms.square.android.expandabletextview.R.drawable.ic_collapse_small_holo_light);
-        }
+        }*/
 
         typedArray.recycle();
 

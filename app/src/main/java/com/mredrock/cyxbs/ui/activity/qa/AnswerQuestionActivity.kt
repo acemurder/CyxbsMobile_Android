@@ -1,7 +1,7 @@
 package com.mredrock.cyxbs.ui.activity.qa
 
 import android.Manifest
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -11,14 +11,15 @@ import com.mredrock.cyxbs.R
 import com.mredrock.cyxbs.component.multi_image_selector.MultiImageSelectorActivity
 import com.mredrock.cyxbs.model.social.Image
 import com.mredrock.cyxbs.network.RequestManager
+import com.mredrock.cyxbs.network.error.QAErrorHandler
 import com.mredrock.cyxbs.subscriber.SimpleObserver
 import com.mredrock.cyxbs.subscriber.SubscriberListener
 import com.mredrock.cyxbs.ui.activity.BaseActivity
 import com.mredrock.cyxbs.util.extensions.doPermissionAction
 import kotlinx.android.synthetic.main.activity_answer_question.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
+import java.io.File
 
 class AnswerQuestionActivity : BaseActivity() {
     private lateinit var qid: String
@@ -33,10 +34,11 @@ class AnswerQuestionActivity : BaseActivity() {
         private const val ADD_IMAGE_PATH = "file:///android_asset/add_news.jpg"
         private const val MAX_IMAGE_NUM = 4
         private const val SELECT_IMAGE = 0x123
+        const val ANSWER = 0x12
 
         @JvmStatic
-        fun start(context: Context, questionId: String) {
-            context.startActivity<AnswerQuestionActivity>("questionId" to questionId)
+        fun start(context: Activity, questionId: String) {
+            context.startActivityForResult<AnswerQuestionActivity>(ANSWER, "questionId" to questionId)
         }
     }
 
@@ -93,24 +95,23 @@ class AnswerQuestionActivity : BaseActivity() {
     }
 
     private fun upload() {
-        //todo 上传图片
+        //todo 待测试
+        //todo notify pre activity item
         val user = BaseAPP.getUser(this)
-        RequestManager.INSTANCE.answerQuestion(SimpleObserver<Unit>(this, true, object : SubscriberListener<Unit>() {
+        val files = mutableListOf<File>()
+        imageList.map { File(it.url) }
+                .toCollection(files)
+        if (content.text.isBlank()) {
+            toast("回答不能为空哦~")
+        }
+        RequestManager.INSTANCE.answerQuestion(SimpleObserver<Unit>(this, true, object : SubscriberListener<Unit>(QAErrorHandler) {
             override fun onNext(t: Unit?) {
                 super.onNext(t)
-                toast("发布完成")
+                toast("发布成功")
+                setResult(Activity.RESULT_OK)
                 finish()
             }
-
-            override fun onError(e: Throwable?): Boolean {
-                if (e?.message == "the answer is already existing in the list") {
-                    toast("只能发布一个")
-                }
-                toast("发布失败，请重试")
-                return super.onError(e)
-            }
-
-        }), user.stuNum, user.idNum, qid, content.text.toString())
+        }), user.stuNum, user.idNum, qid, content.text.toString(), files)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

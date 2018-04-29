@@ -351,7 +351,7 @@ public class EditAffairActivity extends BaseActivity {
                 - DensityUtils.dp2px(this, 20)) / DensityUtils.dp2px(this, 100));
         GridLayoutManager layoutManager = new GridLayoutManager(this, count);
         layoutManager.setAutoMeasureEnabled(true);
-        RecyclerView rv = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+        RecyclerView rv = (RecyclerView) itemView.findViewById(R.id.easyRv);
         rv.setLayoutManager(layoutManager);
         rv.setAdapter(mWeekAdapter);
         View cancel = itemView.findViewById(R.id.cancel);

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:paddingLeft="15dp"
+android:paddingRight="15dp"
+tools:ignore="RtlHardcoded">
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginBottom="18dp"
+    android:background="#7fc6c4c5" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_avatar" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/avatar"
+        android:drawablePadding="3dp"
+        android:textColor="@color/answer_detail_nickname"
+        android:textSize="14sp"
+        tools:drawableEnd="@drawable/ic_question_detail_male"
+        tools:text="王同学" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/answer_detail_date"
+        android:textSize="12sp"
+        tools:text="2018-03-08" />
+</RelativeLayout>
+
+<TextView
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="17dp"
+    android:layout_marginTop="10dp"
+    android:textColor="#666666"
+    android:textSize="13sp"
+    tools:text="是的，公式是没有问题，但是你第三步那个代入方式是错 误的，不应该用x的负5次方是的5次方是的5次方是。" />
+</LinearLayout>

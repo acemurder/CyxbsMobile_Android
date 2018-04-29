@@ -1,22 +1,15 @@
 package com.mredrock.cyxbs.ui.adapter.qa
 
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.PopupWindow
 import com.jude.easyrecyclerview.adapter.BaseViewHolder
 import com.mredrock.cyxbs.R
-import com.mredrock.cyxbs.model.qa.AnswerList
-import com.mredrock.cyxbs.model.social.Image
-import com.mredrock.cyxbs.ui.activity.social.ImageActivity
+import com.mredrock.cyxbs.model.qa.QuestionDetail
 import com.mredrock.cyxbs.util.ImageLoader
-import com.mredrock.cyxbs.util.extensions.gone
-import com.mredrock.cyxbs.util.extensions.setVisible
-import com.mredrock.cyxbs.util.extensions.toDate
-import com.mredrock.cyxbs.util.extensions.visible
-import kotlinx.android.synthetic.main.header_answer_list.view.*
-import kotlinx.android.synthetic.main.popup_window_answer_list_sort_by.view.*
+import com.mredrock.cyxbs.util.extensions.*
+import kotlinx.android.synthetic.main.header_question_detail.view.*
+import kotlinx.android.synthetic.main.popup_window_question_detail_sort_by.view.*
 import org.apache.commons.lang3.text.StrBuilder
 import org.jetbrains.anko.layoutInflater
 import java.util.*
@@ -24,7 +17,7 @@ import java.util.*
 /**
  * Created By jay68 on 2018/2/14.
  */
-class AnswerListHeaderViewWrapper(parent: ViewGroup) : BaseViewHolder<AnswerList>(parent, R.layout.header_answer_list) {
+class QuestionDetailHeaderViewWrapper(itemView: View) : BaseViewHolder<QuestionDetail>(itemView) {
     private val sortOrderContainer: View by lazy { initMenuContentView() }
     private val popupWindow: PopupWindow by lazy {
         PopupWindow(sortOrderContainer,
@@ -34,18 +27,18 @@ class AnswerListHeaderViewWrapper(parent: ViewGroup) : BaseViewHolder<AnswerList
 
     var onSortOrderChangedListener: ((sortOrder: String) -> Unit)? = null
 
-    override fun setData(answerList: AnswerList) {
-        super.setData(answerList)
+    override fun setData(questionDetail: QuestionDetail) {
+        super.setData(questionDetail)
         itemView.apply {
-            title.text = answerList.title
-            content.text = answerList.description
-            loadImage(answerList.photoUrls)
-            ImageLoader.getInstance().loadAvatar(answerList.questionerPhotoThumbnailSrc, avatar)
-            nickname.text = answerList.questionerNickname
-            initGenderIcon(answerList)
-            disappearTime.text = convertTime(answerList.disappearAt)
-            reward.text = answerList.reward
-            answerCount.text = "${answerList.answers?.size ?: 0}"
+            title.text = questionDetail.title
+            content.text = questionDetail.spannableDescription
+            images.setImageUrls(questionDetail.photoUrls, this, singleImage)
+            ImageLoader.getInstance().loadAvatar(questionDetail.questionerPhotoThumbnailSrc, avatar)
+            nickname.text = questionDetail.questionerNickname
+            nickname.initGender(questionDetail.shouldShowGenderIcon(), questionDetail.isFemale)
+            disappearTime.text = convertTime(questionDetail.disappearAt)
+            reward.text = questionDetail.reward
+            answerCount.text = "${questionDetail.answers?.size ?: 0}"
             initSortBy()
         }
     }
@@ -56,34 +49,6 @@ class AnswerListHeaderViewWrapper(parent: ViewGroup) : BaseViewHolder<AnswerList
         } else {
             itemView.sortBy.visible()
             itemView.sortBy.setOnClickListener { popupWindow.show() }
-        }
-    }
-
-    private fun loadImage(url: List<String>?) {
-        if (url.isEmpty()) return
-        if (url!!.size == 1) {
-            itemView.images.gone()
-            itemView.singleImage.visible()
-            itemView.setOnClickListener { ImageActivity.startWithData(itemView.context, url[0]) }
-            ImageLoader.getInstance().loadOffcialImg(url[0], itemView.singleImage, itemView)
-        } else {
-            itemView.singleImage.gone()
-            itemView.images.visible()
-            val imageList = List(url.size) { Image(url[it], Image.TYPE_ADD) }
-            itemView.images.setImagesData(imageList)
-            itemView.images.setOnAddImagItemClickListener { _, position ->
-                ImageActivity.startWithData(itemView.context, url[position])
-            }
-        }
-    }
-
-    private fun initGenderIcon(answerList: AnswerList) {
-        if (answerList.shouldShowGenderIcon()) {
-            val resId = if (answerList.isFemale) R.drawable.ic_answer_list_female else R.drawable.ic_answer_list_male
-            val gender = itemView.resources.getDrawable(resId)
-            itemView.nickname.setCompoundDrawablesWithIntrinsicBounds(null, null, gender, null)
-        } else {
-            itemView.nickname.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
         }
     }
 
@@ -104,10 +69,8 @@ class AnswerListHeaderViewWrapper(parent: ViewGroup) : BaseViewHolder<AnswerList
         return result.build()
     }
 
-    private fun List<*>?.isEmpty() = (this == null || isEmpty())
-
     private fun initMenuContentView(): View {
-        val root = context.layoutInflater.inflate(R.layout.popup_window_answer_list_sort_by, null, false)
+        val root = context.layoutInflater.inflate(R.layout.popup_window_question_detail_sort_by, null, false)
         root.sortByDefault.setOnClickListener {
             val sortOrder = root.sortByDefaultText.text.toString()
             itemView.sortBy.text = sortOrder
@@ -128,12 +91,12 @@ class AnswerListHeaderViewWrapper(parent: ViewGroup) : BaseViewHolder<AnswerList
 
     private fun changeCheckedState(checkedDefault: Boolean, root: View) {
         val defaultColor = context.resources.getColor(
-                if (checkedDefault) R.color.answer_list_popup_window_sort_by_checked
-                else R.color.answer_list_popup_window_sort_by
+                if (checkedDefault) R.color.question_detail_popup_window_sort_by_checked
+                else R.color.question_detail_popup_window_sort_by
         )
         val timeColor = context.resources.getColor(
-                if (!checkedDefault) R.color.answer_list_popup_window_sort_by_checked
-                else R.color.answer_list_popup_window_sort_by
+                if (!checkedDefault) R.color.question_detail_popup_window_sort_by_checked
+                else R.color.question_detail_popup_window_sort_by
         )
         root.sortByDefaultText.setTextColor(defaultColor)
         root.sortByTimeText.setTextColor(timeColor)

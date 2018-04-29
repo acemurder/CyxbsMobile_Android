@@ -1,7 +1,9 @@
 package com.mredrock.cyxbs.ui.activity.qa
 
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
@@ -10,20 +12,21 @@ import android.view.*
 import android.widget.PopupWindow
 import com.mredrock.cyxbs.BaseAPP
 import com.mredrock.cyxbs.R
-import com.mredrock.cyxbs.model.qa.AnswerList
+import com.mredrock.cyxbs.model.qa.QuestionDetail
 import com.mredrock.cyxbs.network.RequestManager
+import com.mredrock.cyxbs.network.error.QAErrorHandler
 import com.mredrock.cyxbs.subscriber.SimpleObserver
 import com.mredrock.cyxbs.subscriber.SubscriberListener
 import com.mredrock.cyxbs.ui.activity.BaseActivity
-import com.mredrock.cyxbs.ui.adapter.qa.AnswerListRvAdapter
-import kotlinx.android.synthetic.main.activity_answer_list.*
+import com.mredrock.cyxbs.ui.adapter.qa.QuestionDetailRvAdapter
+import com.mredrock.cyxbs.util.extensions.gone
+import com.mredrock.cyxbs.util.extensions.visible
+import kotlinx.android.synthetic.main.activity_question_detail.*
 import org.jetbrains.anko.*
 
-
-class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
-    private lateinit var adapter: AnswerListRvAdapter
+class QuestionDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
+    private lateinit var adapter: QuestionDetailRvAdapter
     private lateinit var questionId: String
-    private var isSelf = false
 
     private val menuContentView: View by lazy { initMenuContentView() }
     private val popupWindow: PopupWindow by lazy {
@@ -37,19 +40,15 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
     companion object {
         @JvmStatic
         fun start(context: Context, questionId: String) {
-            context.startActivity<AnswerListActivity>("questionId" to questionId)
+            context.startActivity<QuestionDetailActivity>("questionId" to questionId)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_answer_list)
+        setContentView(R.layout.activity_question_detail)
         initView()
         initData()
-    }
-
-    override fun onResume() {
-        super.onResume()
         onRefresh()
     }
 
@@ -66,46 +65,50 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
     private fun initRv() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.setLayoutManager(layoutManager)
+        easyRv.setLayoutManager(layoutManager)
 
-        adapter = AnswerListRvAdapter(this)
-        recyclerView.adapter = adapter
-
-        recyclerView.setRefreshListener(this)
-        adapter.onItemClickListener = {
-            //todo item click
-        }
+        adapter = QuestionDetailRvAdapter(this, easyRv.recyclerView)
+        easyRv.adapter = adapter
+        easyRv.setRefreshListener(this)
     }
 
     private fun initData() {
         questionId = intent.getStringExtra("questionId")
-        recyclerView.setRefreshing(true)
+        easyRv.setRefreshing(true)
     }
 
     override fun onRefresh() {
         val user = BaseAPP.getUser(this)
-        RequestManager.INSTANCE.getAnswerList(SimpleObserver(this, object : SubscriberListener<AnswerList>() {
-            override fun onNext(answerList: AnswerList) {
-                super.onNext(answerList)
-                recyclerView.setRefreshing(false)
-                isSelf = answerList.isSelf
-                adapter.refreshData(answerList)
-                initFooter()
+        RequestManager.INSTANCE.getAnswerList(SimpleObserver(this, object : SubscriberListener<QuestionDetail>(QAErrorHandler) {
+            override fun onNext(questionDetail: QuestionDetail) {
+                super.onNext(questionDetail)
+                easyRv.setRefreshing(false)
+                questionDetail.id = questionId
+                adapter.refreshData(questionDetail)
+                initFooter(questionDetail.isSelf, questionDetail.hasAdoptedAnswer)
             }
 
             override fun onError(e: Throwable?): Boolean {
-                recyclerView.setRefreshing(false)
+                easyRv.setRefreshing(false)
                 return super.onError(e)
             }
         }), user.stuNum, user.idNum, questionId)
     }
 
-    private fun initFooter() {
+    private fun initFooter(isSelf: Boolean, hasAdoptedAnswer: Boolean) {
+        if (hasAdoptedAnswer) {
+            footer.gone()
+            return
+        }
         if (isSelf) {
-            leftFooterButtonTv.setCompoundDrawables(resources.getDrawable(R.drawable.ic_answer_list_add_reward), null, null, null)
-            leftFooterButtonTv.setText(R.string.answer_list_add_reward)
-            rightFooterButtonTv.setCompoundDrawables(resources.getDrawable(R.drawable.ic_answer_list_cancel_question), null, null, null)
-            rightFooterButtonTv.setText(R.string.answer_list_cancel_question)
+            leftFooterButtonTv.setCompoundDrawablesWithIntrinsicBounds(
+                    resources.getDrawable(R.drawable.ic_question_detail_add_reward), null, null, null
+            )
+            leftFooterButtonTv.setText(R.string.question_detail_add_reward)
+            rightFooterButtonTv.setCompoundDrawablesWithIntrinsicBounds(
+                    resources.getDrawable(R.drawable.ic_question_detail_cancel_question), null, null, null
+            )
+            rightFooterButtonTv.setText(R.string.question_detail_cancel_question)
         }
         leftFooterButton.setOnClickListener {
             if (isSelf) addReward()
@@ -130,7 +133,7 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
             customView {
                 verticalLayout {
                     gravity = Gravity.CENTER_HORIZONTAL
-                    textView("\t\t\t对方将通过你的描述\n来决定是否采纳你的答案") {
+                    textView("\t\t\t对方将通过你的描述\t\t\n来决定是否采纳你的答案") {
                         textColor = Color.parseColor("#cc000000")
                         textSize = 15f
                     }.lparams(wrapContent, wrapContent) {
@@ -141,7 +144,7 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
                         textColor = Color.parseColor("#FEFEFE")
                         backgroundColor = Color.parseColor("#cc788efa")
                         setOnClickListener {
-                            AnswerQuestionActivity.start(this@AnswerListActivity, questionId)
+                            AnswerQuestionActivity.start(this@QuestionDetailActivity, questionId)
                             answerDialog?.dismiss()
                         }
                     }.lparams(matchParent, wrapContent) {
@@ -155,11 +158,18 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
     }
 
     private fun deleteQuestion() {
-        //todo cancel question
+        val user = BaseAPP.getUser(this)
+        RequestManager.INSTANCE.cancelQuestion(SimpleObserver<Unit>(this, object : SubscriberListener<Unit>(QAErrorHandler) {
+            override fun onNext(t: Unit?) {
+                super.onNext(t)
+                //todo notify pre activity question has been cancel
+                finish()
+            }
+        }), user.stuNum, user.idNum, questionId)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_activity_answer_list, menu)
+        menuInflater.inflate(R.menu.activity_question_detail, menu)
         return true
     }
 
@@ -171,7 +181,7 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
     }
 
     private fun initMenuContentView(): View {
-        val root = layoutInflater.inflate(R.layout.popup_window_answer_list_menu, null, false)
+        val root = layoutInflater.inflate(R.layout.popup_window_question_detail_menu, null, false)
         root.find<View>(R.id.share).setOnClickListener {
             //todo share
         }
@@ -185,12 +195,19 @@ class AnswerListActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
         isTouchable = true
         isOutsideTouchable = true
         animationStyle = R.style.PopupAnimation
-        setOnDismissListener { frame.visibility = View.GONE }
+        setOnDismissListener { frame.gone() }
         return this
     }
 
     private fun PopupWindow.show() {
         showAtLocation(toolbar, Gravity.END or Gravity.TOP, 0, toolbar.height)
-        frame.visibility = View.VISIBLE
+        frame.visible()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AnswerQuestionActivity.ANSWER && resultCode == Activity.RESULT_OK) {
+            easyRv.setRefreshing(true, true)
+        }
     }
 }

@@ -4,6 +4,9 @@ import com.mredrock.cyxbs.config.Const;
 import com.mredrock.cyxbs.model.RedrockApiWrapper;
 import com.mredrock.cyxbs.network.exception.RedrockApiException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.functions.Function;
 
 

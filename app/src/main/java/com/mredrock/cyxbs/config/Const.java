@@ -116,9 +116,15 @@ public class Const {
 
     //Q&A
     public static final String ANSWER_LIST = "/springtest/cyxbsMobile/index.php/QA/Question/getDetailedInfo";
+    public static final String LOAD_MORE_ANSWER = "/springtest/cyxbsMobile/index.php/QA/Answer/getAnswerlist";
     public static final String PRAISE_ANSWER = "/springtest/cyxbsMobile/index.php/QA/Answer/praise";
     public static final String CANCEL_PRAISE_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/cancelPraise";
+    public static final String ACCEPT_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/adopt";
     public static final String ANSWER_QUESTION = "springtest/cyxbsMobile/index.php/QA/Answer/add";
+    public static final String CANCEL_QUESTION = "springtest/cyxbsMobile/index.php/QA/Question/cancelQuestion";
+    public static final String ANSWER_COMMENT_LIST = "springtest/cyxbsMobile/index.php/QA/Answer/getRemarkList";
+    public static final String COMMENT_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/remark";
+
 
     public static final class Requests {
         public static final int SELECT_PICTURE = 1;

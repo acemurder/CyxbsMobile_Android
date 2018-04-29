@@ -314,24 +314,29 @@
     <string name="volunteer_password" />
 
     <!--问答社区-->
-    <string name="activity_answer_list_title">求助详情</string>
-    <string name="answer_list_ignore">忽略</string>
-    <string name="answer_list_help">帮助</string>
-    <string name="answer_list_add_reward">加价</string>
-    <string name="answer_list_cancel_question">取消提问</string>
-    <string name="answer_list_report">举报</string>
-    <string name="answer_list_share">分享</string>
-    <string name="answer_list_more">更多</string>
-    <string name="answer_list_question_reward">积分</string>
-    <string name="answer_list_answer_count">个回答</string>
-    <string name="answer_list_sort_by_default">默认排序</string>
-    <string name="answer_list_sort_by_time">按时间排序</string>
-    <string name="answer_list_accepted">已采纳</string>
-    <string name="answer_list_accept">采纳</string>
-    <string name="answer_list_no_answer_helper">快来成为第一个帮助者吧~</string>
-    <string name="answer_list_no_answer_questioner">\t\t暂时还没有同学回答\n有新的回答会及时通知哒~</string>
+    <string name="question_detail_title">求助详情</string>
+    <string name="question_detail_ignore">忽略</string>
+    <string name="question_detail_help">帮助</string>
+    <string name="question_detail_add_reward">加价</string>
+    <string name="question_detail_cancel_question">取消提问</string>
+    <string name="question_detail_report">举报</string>
+    <string name="question_detail_share">分享</string>
+    <string name="question_detail_more">更多</string>
+    <string name="question_detail_question_reward">积分</string>
+    <string name="question_detail_answer_count">个回答</string>
+    <string name="question_detail_sort_by_default">默认排序</string>
+    <string name="question_detail_sort_by_time">按时间排序</string>
+    <string name="question_detail_accepted">已采纳</string>
+    <string name="question_detail_accept">采纳</string>
+    <string name="question_detail_no_answer_helper">快来成为第一个帮助者吧~</string>
+    <string name="question_detail_no_answer_questioner">\t\t暂时还没有同学回答\n有新的回答会及时通知哒~</string>
     <string name="answer_question_title">提供帮助</string>
     <string name="answer_question_hint">请尽可能给出明确的解决思路哦!</string>
     <string name="answer_max_length">300</string>
     <integer name="answer_max_length">300</integer>
+    <string name="answer_detail_praise">点赞</string>
+    <string name="answer_detail_title">回答详情</string>
+    <string name="answer_detail_comment">评论</string>
+    <string name="answer_detail_submit">发送</string>
+    <string name="answer_detail_content_hint">添加你的评论</string>
 </resources>

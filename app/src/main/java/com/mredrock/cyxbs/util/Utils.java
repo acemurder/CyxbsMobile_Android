@@ -289,25 +289,25 @@ public class Utils {
     }
 
     /**
-     * Increases the hit rect of a view. This should be used when an icon is small and cannot be easily tapped on.
+     * Increases the hit margin of a view. This should be used when an icon is small and cannot be easily tapped on.
      * Source: http://stackoverflow.com/a/1343796/5210
      *
      * @param amount   The amount of dp's to be added to all four sides of the view hit purposes.
-     * @param delegate The view that needs to have its hit rect increased.
+     * @param delegate The view that needs to have its hit margin increased.
      */
     public static void increaseHitRectBy(final int amount, final View delegate) {
         increaseHitRectBy(amount, amount, amount, amount, delegate);
     }
 
     /**
-     * Increases the hit rect of a view. This should be used when an icon is small and cannot be easily tapped on.
+     * Increases the hit margin of a view. This should be used when an icon is small and cannot be easily tapped on.
      * Source: http://stackoverflow.com/a/1343796/5210
      *
      * @param top      The amount of dp's to be added to the top for hit purposes.
      * @param left     The amount of dp's to be added to the left for hit purposes.
      * @param bottom   The amount of dp's to be added to the bottom for hit purposes.
      * @param right    The amount of dp's to be added to the right for hit purposes.
-     * @param delegate The view that needs to have its hit rect increased.
+     * @param delegate The view that needs to have its hit margin increased.
      */
     public static void increaseHitRectBy(final int top, final int left, final int bottom, final int right, final View delegate) {
         final View parent = (View) delegate.getParent();
