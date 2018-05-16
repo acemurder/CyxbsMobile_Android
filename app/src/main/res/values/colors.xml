@@ -112,5 +112,8 @@
     <color name="answer_detail_list_date">#999999</color>
     <color name="answer_detail_content_hint">#999999</color>
     <color name="answer_detail_submit">#7F94FA</color>
+    <color name="user_fragment_item_title">#333333</color>
+    <color name="user_fragment_white_color">#FEFEFE</color>
+    <color name="user_fragment_divider">#3FE2E2E2</color>
 
 </resources>

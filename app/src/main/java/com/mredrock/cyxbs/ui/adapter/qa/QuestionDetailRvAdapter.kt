@@ -50,7 +50,7 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
         super.onItemClickListener(holder, position)
         val question = questionDetail ?: return
         AnswerDetailActivity.start(context, question.tags, question.id, question.title, question.hasAdoptedAnswer,
-                question.isSelf, question.shouldShowGenderIcon(), question.answers!![position])
+                question.isSelf, question.shouldShowGenderIcon(), dataSet[position])
     }
 
     fun refreshData(questionDetail: QuestionDetail) {

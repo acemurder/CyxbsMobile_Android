@@ -339,4 +339,6 @@
     <string name="answer_detail_comment">评论</string>
     <string name="answer_detail_submit">发送</string>
     <string name="answer_detail_content_hint">添加你的评论</string>
+    <string name="fragment_user_empty_username">请填写用户名</string>
+    <string name="fragment_user_empty_introduce">写下你对世界想说的话，就现在</string>
 </resources>
