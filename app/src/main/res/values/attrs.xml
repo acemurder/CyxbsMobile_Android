@@ -99,11 +99,6 @@
         <attr name="ratio" format="float" />
     </declare-styleable>
 
-    <declare-styleable name="ExploreItem">
-        <attr name="icon" format="reference" />
-        <attr name="title" format="string" />
-    </declare-styleable>
-
     <declare-styleable name="MultiSelector">
         <attr name="max_num" format="integer" />
         <attr name="min_num" format="integer" />
@@ -116,6 +111,9 @@
         <attr name="itemIcon" format="reference" />
         <attr name="itemTitle" format="string" />
         <attr name="showRemindIcon" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="JCardView">
         <attr name="leftRadius" format="dimension" />
         <attr name="topRadius" format="dimension" />
         <attr name="rightRadius" format="dimension" />

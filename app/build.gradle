@@ -10,8 +10,8 @@ android {
         applicationId "com.mredrock.cyxbs"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 38
-        versionName "2017秋季版"
+        versionCode 40
+        versionName "2018问答版"
         multiDexEnabled true
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "official"]
     }
@@ -188,8 +188,8 @@ dependencies {
 
     compile project(':push')
 
-    compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile 'com.tencent.bugly:crashreport:2.6.6.1'
+    compile 'com.tencent.bugly:nativecrashreport:3.3.1'
     testCompile 'junit:junit:4.12'
 
     // kotlin support
