@@ -14,6 +14,7 @@ import com.mredrock.cyxbs.ui.activity.BaseActivity
 import com.mredrock.cyxbs.ui.adapter.qa.ReportTypeSelectorViewWrapper
 import com.mredrock.cyxbs.util.DensityUtils
 import kotlinx.android.synthetic.main.activity_report.*
+import kotlinx.android.synthetic.main.item_report_selector.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.startActivity
 
@@ -59,6 +60,7 @@ class ReportActivity : BaseActivity() {
                     override fun bindView(holder: ReportTypeSelectorViewWrapper, displayValue: String, selected: Boolean, position: Int) {
                         holder.setChecked(selected)
                         holder.setValue(displayValue)
+                        holder.itemView.radioButton.setOnClickListener { selector.setSelected(position, true) }
                     }
                 }).build()
         selector.setViewInitializer(initializer)
