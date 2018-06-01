@@ -72,6 +72,8 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
         private Question mQuestion;
 
         private SimpleDateFormat formatToData;
+        private SimpleDateFormat formatToMonth;
+        private SimpleDateFormat formatToDay;
         private SimpleDateFormat formatToHour;
 
 
@@ -153,7 +155,9 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
         private String changeTime(String time) {
             if (formatToData == null || formatToHour == null) {
                 formatToData = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                formatToHour = new SimpleDateFormat("dd天HH小时后消失");
+                formatToMonth = new SimpleDateFormat("MM月dd天HH小时后消失");
+                formatToDay = new SimpleDateFormat("dd天HH小时后消失");
+                formatToHour = new SimpleDateFormat("HH小时后消失");
             }
 
             Date disappearDate = null;
@@ -164,7 +168,18 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
                 return "error";
             }
             Date now = new Date();
-            return formatToHour.format(new Date(disappearDate.getTime() - now.getTime()));
+            long t = disappearDate.getTime() - now.getTime();
+            long day = t / (24 * 60 * 60 * 1000);
+            long hour = (t / (60 * 60 * 1000) - day * 24);
+            long min = ((t / (60 * 1000)) - day * 24 * 60 - hour * 60);
+            long sec = (t / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+            if (day > 0) {
+                return day + "天" + hour + "小时后消失";
+            }  else if (hour > 0) {
+                return hour + "小时" + min + "分钟后消失";
+            } else {
+                return min + "分钟" + sec + "秒后消失";
+            }
         }
     }
 
