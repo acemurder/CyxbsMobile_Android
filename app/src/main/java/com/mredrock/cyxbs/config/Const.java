@@ -124,6 +124,7 @@ public class Const {
     public static final String CANCEL_QUESTION = "springtest/cyxbsMobile/index.php/QA/Question/cancelQuestion";
     public static final String ANSWER_COMMENT_LIST = "springtest/cyxbsMobile/index.php/QA/Answer/getRemarkList";
     public static final String COMMENT_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/remark";
+    public static final String DRAFT_LIST = "springtest/cyxbsMobile/index.php/QA/User/getDraftList";
 
 
     public static final class Requests {

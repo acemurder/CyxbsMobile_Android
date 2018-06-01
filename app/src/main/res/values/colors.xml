@@ -115,5 +115,8 @@
     <color name="user_fragment_item_title">#333333</color>
     <color name="user_fragment_white_color">#FEFEFE</color>
     <color name="user_fragment_divider">#3FE2E2E2</color>
+    <color name="report_main_color">#999999</color>
+    <color name="report_main_color_8c">#8c999999</color>
+    <color name="report_submit">#7396FA</color>
 
 </resources>

@@ -16,7 +16,9 @@ import com.mredrock.cyxbs.event.AskLoginEvent
 import com.mredrock.cyxbs.ui.activity.explore.MapActivity
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity
 import com.mredrock.cyxbs.ui.activity.me.*
+import com.mredrock.cyxbs.ui.adapter.ExploreRollerViewAdapter
 import com.mredrock.cyxbs.ui.fragment.BaseFragment
+import com.mredrock.cyxbs.ui.widget.RollerView
 import com.mredrock.cyxbs.util.LogUtils
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.support.v4.browse
@@ -24,7 +26,7 @@ import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
- * Created by Stormouble on 16/4/16.
+ * Created By jay68 on 2018/05/30.
  */
 class ExploreFragment : BaseFragment() {
 
@@ -43,9 +45,25 @@ class ExploreFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_explore, container, false)
-        val gridView = view.findViewById<GridView>(R.id.gridView)
-        setupGridView(gridView, inflater)
+        setupRollerView(view.findViewById(R.id.rollerView))
+        setupGridView(view.findViewById(R.id.gridView), inflater)
         return view
+    }
+
+    private fun setupRollerView(rollerView: RollerView) {
+        rollerView.setAdapter(ExploreRollerViewAdapter(context, intArrayOf(R.drawable.img_cqupt1,
+                R.drawable.img_cqupt2,
+                R.drawable.img_cqupt3,
+                R.drawable.img_cqupt1,
+                R.drawable.img_cqupt2,
+                R.drawable.img_cqupt3)))
+
+        /*RequestManager.getInstance().getRollerViewInfo(SimpleObserver<List<RollerViewInfo>>(activity, object : SubscriberListener<List<RollerViewInfo>>() {
+            override fun onNext(t: List<RollerViewInfo>) {
+                super.onNext(t)
+                rollerView.setAdapter(ExploreRollerViewAdapter(context, t))
+            }
+        }), "4")*/
     }
 
     private fun setupGridView(gridView: GridView, inflater: LayoutInflater) {

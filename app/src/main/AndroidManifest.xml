@@ -334,7 +334,11 @@
         <activity
             android:name=".ui.activity.qa.AnswerDetailActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.activity.qa.StoreActivity"></activity>
+        <activity android:name=".ui.activity.me.StoreActivity" />
+        <activity android:name=".ui.activity.qa.DraftActivity" />
+        <activity
+            android:name=".ui.activity.qa.ReportActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

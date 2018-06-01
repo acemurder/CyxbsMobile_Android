@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.activity.qa.ReportActivity"
+        tools:ignore="RtlHardcoded">
+
+        <include layout="@layout/toolbar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/report_title_type"
+            android:textColor="@color/report_main_color"
+            android:textSize="13sp" />
+
+
+        <com.mredrock.cyxbs.component.widget.selector.MultiSelector
+            android:id="@+id/selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rect_bg_report"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:display_values="@array/report_type"
+            app:radio_button_mode="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/report_title_content"
+            android:textColor="@color/report_main_color"
+            android:textSize="13sp" />
+
+        <com.mredrock.cyxbs.ui.widget.RatioLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ratio="0.38">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_rect_bg_report"
+                    android:gravity="start|top"
+                    android:hint="@string/report_hint_content"
+                    android:maxLength="200"
+                    android:padding="16dp"
+                    android:textColor="@color/report_main_color"
+                    android:textColorHint="@color/report_main_color_8c"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="16dp"
+                    android:textColor="#999999"
+                    android:textSize="13sp"
+                    tools:text="0/200" />
+            </FrameLayout>
+        </com.mredrock.cyxbs.ui.widget.RatioLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="34dp"
+            android:background="@color/report_submit"
+            android:text="@string/report_submit"
+            android:textColor="#FEFEFE"
+            android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>

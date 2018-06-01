@@ -341,4 +341,19 @@
     <string name="answer_detail_content_hint">添加你的评论</string>
     <string name="fragment_user_empty_username">请填写用户名</string>
     <string name="fragment_user_empty_introduce">写下你对世界想说的话，就现在</string>
+    <string name="draft_empty">还没有草稿在这里哦~</string>
+    <string name="draft_menu_edit">编辑</string>
+    <string name="report_title_type">请选择举报原因</string>
+    <string name="report_title_content">请输入具体投诉原因（选填）</string>
+    <string name="report_submit">提交</string>
+    <string name="report_hint_content">请输入内容</string>
+
+    <string-array name="report_type">
+        <item>色情低俗</item>
+        <item>广告骚扰</item>
+        <item>违法信息</item>
+        <item>辱骂威胁</item>
+        <item>欺诈骗钱</item>
+        <item>政治敏感</item>
+    </string-array>
 </resources>

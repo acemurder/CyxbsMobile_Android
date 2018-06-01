@@ -1,4 +1,4 @@
-package com.mredrock.cyxbs.ui.activity.qa
+package com.mredrock.cyxbs.ui.activity.me
 
 import android.os.Bundle
 import com.mredrock.cyxbs.R

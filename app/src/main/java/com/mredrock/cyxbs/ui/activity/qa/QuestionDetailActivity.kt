@@ -185,9 +185,7 @@ class QuestionDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListe
         root.find<View>(R.id.share).setOnClickListener {
             //todo share
         }
-        root.find<View>(R.id.report).setOnClickListener {
-            //todo report
-        }
+        root.find<View>(R.id.report).setOnClickListener { ReportActivity.start(this, questionId) }
         return root
     }
 

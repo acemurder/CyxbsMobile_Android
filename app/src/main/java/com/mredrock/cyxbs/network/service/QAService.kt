@@ -3,6 +3,7 @@ package com.mredrock.cyxbs.network.service
 import com.mredrock.cyxbs.config.Const
 import com.mredrock.cyxbs.model.RedrockApiWrapper
 import com.mredrock.cyxbs.model.qa.Answer
+import com.mredrock.cyxbs.model.qa.Draft
 import com.mredrock.cyxbs.model.qa.QuestionDetail
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -74,4 +75,11 @@ interface QAService {
                       @Field("idNum") idNum: String,
                       @Field("answer_id") aid: String,
                       @Field("content") content: String): Observable<RedrockApiWrapper<Unit>>
+
+    @FormUrlEncoded
+    @POST(Const.DRAFT_LIST)
+    fun getDraftList(@Field("stunum") stuNum: String,
+                     @Field("idnum") idNum: String,
+                     @Field("page") page: Int,
+                     @Field("size") size: Int): Observable<RedrockApiWrapper<List<Draft>>>
 }

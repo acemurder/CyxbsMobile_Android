@@ -33,6 +33,7 @@ import com.mredrock.cyxbs.model.lost.LostDetail;
 import com.mredrock.cyxbs.model.lost.LostStatus;
 import com.mredrock.cyxbs.model.lost.LostWrapper;
 import com.mredrock.cyxbs.model.qa.Answer;
+import com.mredrock.cyxbs.model.qa.Draft;
 import com.mredrock.cyxbs.model.qa.QuestionDetail;
 import com.mredrock.cyxbs.model.social.BBDDNewsContent;
 import com.mredrock.cyxbs.model.social.CommentContent;
@@ -865,6 +866,12 @@ public enum RequestManager {
     public void commentAnswer(Observer<Unit> observer, String stuNum, String idNum, String aid, String content) {
         Observable<Unit> observable = qaService.commentAnswer(stuNum, idNum, aid, content)
                 .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void getDraftList(Observer<List<Draft>> observer, String stuNum, String idNum, int page) {
+        Observable<List<Draft>> observable = qaService.getDraftList(stuNum, idNum, page, 6)
+                .map(new RedrockApiWrapperFunc<>());
         emitObservable(observable, observer);
     }
 
