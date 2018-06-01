@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.mredrock.cyxbs"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 38
         versionName "2017秋季版"
@@ -116,6 +116,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.android.support:support-v4:26.1.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -180,6 +181,7 @@ dependencies {
     implementation 'info.hoang8f:android-segmented:1.0.6'
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation 'com.contrarywind:Android-PickerView:3.0.7'
+    implementation 'com.github.duanhong169:picker-view:0.3.1'
     implementation 'com.jude:swipebackhelper:3.1.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.jude:easyrecyclerview:4.4.0'
@@ -189,8 +191,8 @@ dependencies {
 
     compile project(':push')
 
-    compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile 'com.tencent.bugly:crashreport:2.6.6'
+    compile 'com.tencent.bugly:nativecrashreport:3.3.1'
     testCompile 'junit:junit:4.12'
 
     // kotlin support
@@ -199,4 +201,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }

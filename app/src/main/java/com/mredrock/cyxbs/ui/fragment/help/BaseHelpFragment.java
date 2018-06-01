@@ -1,5 +1,7 @@
-package com.mredrock.cyxbs.ui.fragment.social;
+package com.mredrock.cyxbs.ui.fragment.help;
 
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -8,14 +10,18 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
 
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.mredrock.cyxbs.model.help.Question;
 import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.network.RequestManager;
@@ -26,51 +32,56 @@ import com.mredrock.cyxbs.ui.activity.social.FooterViewWrapper;
 import com.mredrock.cyxbs.ui.activity.social.HeaderViewWrapper;
 import com.mredrock.cyxbs.ui.activity.social.PostNewsActivity;
 import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
+import com.mredrock.cyxbs.ui.adapter.HelpAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseLazyFragment;
+import com.mredrock.cyxbs.ui.fragment.social.BaseNewsFragment;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 
+import static com.mredrock.cyxbs.ui.activity.lost.ReleaseActivity.getTime;
+import static com.taobao.accs.client.AccsConfig.build;
 
 /**
- * Created by mathiasluo on 16-4-26.
+ * Created by yan on 2018/2/20.
  */
-public abstract class BaseNewsFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static final int PER_PAGE_NUM = 10;
-    public static final String TAG = "BaseNewsFragment";
-    public static final int FIRST_PAGE_INDEX = 0;
-    @BindView(R.id.fab_main)
-    FloatingActionButton mFabMain;
+public abstract class BaseHelpFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener {
+    public static final int PER_PAGE_NUM = 6;
+    public static final String TAG = "BaseHelpFragment";
+    public static final int FIRST_PAGE_INDEX = 1;
+    public int type = HelpAdapter.TYPE_EMOTION;
 
     private boolean hasLoginStateChanged = false;
 
+    @BindView(R.id.fab_main)
+    FloatingActionButton mFabMain;
     @BindView(R.id.information_RecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.information_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
+
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     public int currentIndex = 0;
-    private List<HotNews> mListHotNews;
+    private List<Question> mListHotNews;
     private FooterViewWrapper mFooterViewWrapper;
 
-    protected NewsAdapter mNewsAdapter;
+    protected HelpAdapter mHelpAdapter;
     private EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener;
 
-    abstract void provideData(Observer<List<HotNews>> observer, int size, int page);
+    abstract void provideData(SimpleObserver<List<Question>> observer, int size, int page);
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_help, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -79,12 +90,6 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-        mFabMain.setOnClickListener(view1 -> {
-            if (BaseAPP.getUser(getActivity()).id == null || BaseAPP.getUser(getActivity()).id.equals("0")) {
-                RequestManager.getInstance().checkWithUserId("还没有完善信息，不能发动态哟！");
-            } else
-                PostNewsActivity.startActivity(getActivity());
-        });
     }
 
     protected void init() {
@@ -93,11 +98,65 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
                 ContextCompat.getColor(BaseAPP.getContext(), R.color.colorPrimary)
         );
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        mFabMain.setOnClickListener(view1 -> {
+            if (BaseAPP.getUser(getActivity()).id == null || BaseAPP.getUser(getActivity()).id.equals("0")) {
+                RequestManager.getInstance().checkWithUserId("还没有完善信息，不能发动态哟！");
+            } else
+                popBottomDialog();
+        });
         mLinearLayoutManager = new LinearLayoutManager(getParentFragment().getActivity());
 
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         addOnScrollListener();
         initAdapter(null);
+    }
+
+    public void getCurrentData(int size, int page) {
+        mSwipeRefreshLayout.post(this::showLoadingProgress);
+        provideData(new SimpleObserver<>(getActivity(), new SubscriberListener<List<Question>>() {
+            @Override
+            public boolean onError(Throwable e) {
+                super.onError(e);
+                mFooterViewWrapper.showLoadingFailed();
+                closeLoadingProgress();
+                return false;
+            }
+
+            @Override
+            public void onNext(List<Question> Questions) {
+                super.onNext(Questions);
+                if (mListHotNews == null) {
+                    initAdapter(Questions);
+                    if (Questions.size() == 0);
+                        mFooterViewWrapper.showLoadingNoData();
+                } else mHelpAdapter.replaceDataList(Questions);
+                Log.i("====>>>", "page===>>>" + page + "size==>>" + Questions.size());
+                closeLoadingProgress();
+            }
+        }), size, page);
+    }
+
+    private void getNextPageData(int size, int page) {
+        mFooterViewWrapper.showLoading();
+        provideData(new SimpleObserver<>(getContext(), new SubscriberListener<List<Question>>() {
+            @Override
+            public boolean onError(Throwable e) {
+                super.onError(e);
+                mFooterViewWrapper.showLoadingFailed();
+                return true;
+            }
+
+            @Override
+            public void onNext(List<Question> questions) {
+                super.onNext(questions);
+                if (questions.size() == 0) {
+                    mFooterViewWrapper.showLoadingNoMoreData();
+                    return;
+                }
+                mHelpAdapter.addDataList(questions);
+                //Log.i("====>>>", "page===>>>" + page + "size==>>" + hotNewses.size());
+            }
+        }), size, page);
     }
 
     @Override
@@ -117,12 +176,12 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
 
             @Override
             public void onShow() {
-                mFabMain.show();
+
             }
 
             @Override
             public void onHide() {
-                mFabMain.hide();
+
             }
         };
         mRecyclerView.addOnScrollListener(endlessRecyclerOnScrollListener);
@@ -133,6 +192,7 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
         getCurrentData(PER_PAGE_NUM, FIRST_PAGE_INDEX);
         currentIndex = 0;
         addOnScrollListener();
+
     }
 
     private void showLoadingProgress() {
@@ -147,46 +207,14 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
         }
     }
 
-    public void getCurrentData(int size, int page) {
-        mSwipeRefreshLayout.post(this::showLoadingProgress);
-        provideData(new SimpleObserver<>(getActivity(), new SubscriberListener<List<HotNews>>() {
-            @Override
-            public boolean onError(Throwable e) {
-                super.onError(e);
-                mFooterViewWrapper.showLoadingFailed();
-                closeLoadingProgress();
-                return false;
-            }
-
-            @Override
-            public void onNext(List<HotNews> hotNewses) {
-                super.onNext(hotNewses);
-                if (mListHotNews == null) {
-                    initAdapter(hotNewses);
-                    if (hotNewses.size() == 0) mFooterViewWrapper.showLoadingNoData();
-                } else mNewsAdapter.replaceDataList(hotNewses);
-                Log.i("====>>>", "page===>>>" + page + "size==>>" + hotNewses.size());
-            }
-        }), size, page);
-    }
-
-
-    public void initAdapter(List<HotNews> listHotNews) {
+    public void initAdapter(List<Question> questions) {
         if (mRecyclerView == null) return;  // prevent it be called before lazy loading
-        mListHotNews = listHotNews;
-        mNewsAdapter = new NewsAdapter(mListHotNews) {
-            @Override
-            public void setDate(NewsViewHolder holder, HotNewsContent hotNewsContent) {
-                BaseNewsFragment.this.setDate(holder, hotNewsContent);
-            }
-        };
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mNewsAdapter);
+        mListHotNews = questions;
+        mHelpAdapter = new HelpAdapter(questions, type);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mHelpAdapter);
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         addFooterView(mHeaderViewRecyclerAdapter);
         mFooterViewWrapper.getCircleProgressBar().setVisibility(View.INVISIBLE);
-    }
-
-    protected void setDate(NewsAdapter.NewsViewHolder holder, HotNewsContent mDataBean) {
     }
 
     private void addFooterView(HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter) {
@@ -198,31 +226,17 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
         });
     }
 
-    public void addHeaderView() {
-        mHeaderViewRecyclerAdapter.addHeaderView(new HeaderViewWrapper(mRecyclerView, getContext()).getView());
-    }
-
-    private void getNextPageData(int size, int page) {
-        mFooterViewWrapper.showLoading();
-        provideData(new SimpleObserver<>(getContext(), new SubscriberListener<List<HotNews>>() {
-            @Override
-            public boolean onError(Throwable e) {
-                super.onError(e);
-                mFooterViewWrapper.showLoadingFailed();
-                return true;
-            }
-
-            @Override
-            public void onNext(List<HotNews> hotNewses) {
-                super.onNext(hotNewses);
-                if (hotNewses.size() == 0) {
-                    mFooterViewWrapper.showLoadingNoMoreData();
-                    return;
-                }
-                mNewsAdapter.addDataList(hotNewses);
-                //Log.i("====>>>", "page===>>>" + page + "size==>>" + hotNewses.size());
-            }
-        }), size, page);
+    private void popBottomDialog() {
+        Dialog dialog = new SelectTypeDialog(getContext(), R.style.BottomDialogTheme);
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.BottomPopupAnimation);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+        dialog.show();
     }
 
     @Override
@@ -235,33 +249,8 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-    }
-
-    @Override
     public void onLoginStateChangeEvent(LoginStateChangeEvent event) {
         super.onLoginStateChangeEvent(event);
         hasLoginStateChanged = true;
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onItemChangedEvent(ItemChangedEvent event) {
-        if (mListHotNews == null)
-            return;
-        int index = -1;
-        for (HotNews hotNews : mListHotNews) {
-            index++;
-            if (hotNews.data.articleId.equals(event.getArticleId())) {
-                /*Log.i("onItemChangedEvent","index ="+ index
-                        +"   "+event.getArticleId()+"hotNews.data.isMyLike"+ hotNews.data.isMyLike
-                        +"  event.isMyLike()"+event.isMyLike());*/
-                hotNews.data.isMyLike = event.isMyLike();
-                hotNews.data.likeNum = event.getNum();
-                mNewsAdapter.notifyItemChanged(index);
-            }
-
-        }
     }
 }

@@ -42,4 +42,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return (mTitleList.size() > position) ? mTitleList.get(position) : "";
     }
+
+
 }

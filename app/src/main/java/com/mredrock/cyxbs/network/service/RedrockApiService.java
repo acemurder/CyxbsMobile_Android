@@ -21,6 +21,8 @@ import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
 import com.mredrock.cyxbs.model.VolunteerTime;
+import com.mredrock.cyxbs.model.help.Question;
+import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -35,6 +37,7 @@ import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.model.social.UploadImgResponse;
 import com.mredrock.cyxbs.network.setting.annotation.XmlApi;
 
+import java.io.File;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -349,4 +352,29 @@ public interface RedrockApiService {
     @FormUrlEncoded
     @POST(Const.API_ROLLER_VIEW)
     Observable<RedrockApiWrapper<List<RollerViewInfo>>> getRollerViewInfo(@Field("pic_num") String pic_num);
+
+    @FormUrlEncoded
+    @POST(Const.API_ALL_QUESTION)
+    Observable<RedrockApiWrapper<List<Question>>> getAllQuestion(@Field("page") String page,
+                                                                 @Field("size") String size,
+                                                                 @Field("kind") String kind);
+
+    @FormUrlEncoded
+    @POST(Const.API_ADD_QUESTION)
+    Observable<RedrockApiWrapper<QuestionId>> postNewQuestion(@Field("stuNum") String stuNum,
+                                                          @Field("idNum") String idNum,
+                                                          @Field("title") String title,
+                                                          @Field("description") String description,
+                                                          @Field("is_anonymous") int is_anonymous,
+                                                          @Field("kind") String kind,
+                                                          @Field("tags") String tags,
+                                                          @Field("reward") int reward,
+                                                          @Field("disappear_time") String disappear_time);
+
+    @Multipart
+    @POST(Const.API_UPLOAD_QUESTION_PITURE)
+    Observable<RedrockApiWrapper<List<String>>> uploadHelpImg(@Part("stuNum") RequestBody stuNum,
+                                                @Part("idNum") RequestBody idNum,
+                                                @Part("question_id") RequestBody question_id,
+                                                @Part() List<MultipartBody.Part> parts);
 }

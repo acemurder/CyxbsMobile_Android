@@ -123,6 +123,13 @@ public class Const {
         public static final int EDIT_PHONE = 6;
     }
 
+    //问答首页
+    public static final String API_ALL_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/getQuestionList";
+    public static final String API_ADD_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/add";
+    public static final String API_UPLOAD_QUESTION_PITURE = "/springtest/cyxbsMobile/index.php/QA/Question/uploadPicture";
+    public static final String API_CANCEL_QUESTION = "springtest/cyxbsMobile/index.php/QA/Question/cancelQuestion";
+
+
     /**
      * type_id of some red rock api
      */

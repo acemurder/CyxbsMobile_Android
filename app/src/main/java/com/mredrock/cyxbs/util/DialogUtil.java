@@ -1,6 +1,10 @@
 package com.mredrock.cyxbs.util;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
@@ -58,6 +62,18 @@ public class DialogUtil {
         void onPositive();
 
         void onNegative();
+    }
+
+    public static void showBottomDialog(Dialog dialog) {
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.BottomPopupAnimation);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+        dialog.show();
     }
 
 }
