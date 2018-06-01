@@ -31,8 +31,10 @@ public class MyHelpAdapter extends RecyclerView.Adapter<MyHelpAdapter.ViewHolder
     private SimpleDateFormat formatToDay;
     private SimpleDateFormat formatToHour;
 
-    public static final int TYPE_ADOPTED = 0;
-    public static final int TYPE_UNADOPTED = 1;
+    public static final int TYPE_HELP_ADOPTED = 0;
+    public static final int TYPE_HELP_UNADOPTED = 1;
+    public static final int TYPE_ASK_ADOPTED = 2;
+    public static final int TYPE_ASK_UNADOPTED = 3;
 
     private int type;
 
@@ -56,9 +58,11 @@ public class MyHelpAdapter extends RecyclerView.Adapter<MyHelpAdapter.ViewHolder
         holder.mAnswer.setText("帮助：" + question.content);
         holder.mQuestion.setText("提问：" + question.question_title);
 
-        if (type == TYPE_ADOPTED) {
+        if (type == TYPE_HELP_ADOPTED) {
             holder.mTime.setText("采纳时间: " + changeTime(question.updated_at));
-        } else if (type == TYPE_UNADOPTED) {
+        } else if (type == TYPE_ASK_ADOPTED) {
+            holder.mTime.setText("提问时间: " + changeTime(question.created_at));
+        } else {
             holder.mTime.setText("发布时间: " + changeTime(question.created_at));
         }
     }
@@ -89,6 +93,12 @@ public class MyHelpAdapter extends RecyclerView.Adapter<MyHelpAdapter.ViewHolder
     public void addDataList(List<MyQuestion> questions) {
         list.addAll(questions);
         notifyItemRangeInserted(list.size(), questions.size());
+    }
+
+    public void replaceDataList(List<MyQuestion> questions) {
+        list.clear();
+        list.addAll(questions);
+        notifyDataSetChanged();
     }
 
 

@@ -39,11 +39,11 @@ class MyQuestionActivity : BaseActivity() {
 
     private fun init() {
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false)
-        val f1 = BaseMyHelpFragment()
-        val f2 = BaseMyHelpFragment()
+        val f1 = BaseMyHelpFragment(BaseMyHelpFragment.TYPE_ASK_ADOPTED)
+        val f2 = BaseMyHelpFragment(BaseMyHelpFragment.TYPE_ASK_UNADOPTED)
 
         val fragmentList = listOf<BaseMyHelpFragment>(f1, f2)
-        val titleList = listOf("已采纳", "未采纳")
+        val titleList = listOf("已解决", "未解决")
 
         view_pager.adapter = TabPagerAdapter(supportFragmentManager, fragmentList, titleList)
         view_pager.offscreenPageLimit = fragmentList.size
