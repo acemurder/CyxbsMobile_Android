@@ -118,6 +118,7 @@
         <attr name="topRadius" format="dimension" />
         <attr name="rightRadius" format="dimension" />
         <attr name="bottomRadius" format="dimension" />
+        <attr name="radius" format="dimension" />
         <attr name="hideLeftShadow" format="boolean" />
         <attr name="hideTopShadow" format="boolean" />
         <attr name="hideRightShadow" format="boolean" />

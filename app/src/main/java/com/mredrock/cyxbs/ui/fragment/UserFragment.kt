@@ -16,6 +16,7 @@ import com.mredrock.cyxbs.ui.activity.me.EditInfoActivity
 import com.mredrock.cyxbs.ui.activity.me.SettingActivity
 import com.mredrock.cyxbs.ui.activity.me.StoreActivity
 import com.mredrock.cyxbs.ui.activity.qa.DraftActivity
+import com.mredrock.cyxbs.ui.activity.qa.SignActivity
 import com.mredrock.cyxbs.util.ImageLoader
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.greenrobot.eventbus.EventBus
@@ -35,7 +36,7 @@ class UserFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         getPersonInfoData()
         //todo 页面跳转
-        dailySign.setOnClickListener { checkLoginBeforeAction("签到") { } }
+        dailySign.setOnClickListener { checkLoginBeforeAction("签到") { startActivity<SignActivity>() } }
         store.setOnClickListener { checkLoginBeforeAction("积分商场") { startActivity<StoreActivity>() } }
         question.setOnClickListener { checkLoginBeforeAction("问一问") { } }
         help.setOnClickListener { checkLoginBeforeAction("帮一帮") { } }

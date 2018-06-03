@@ -125,6 +125,8 @@ public class Const {
     public static final String ANSWER_COMMENT_LIST = "springtest/cyxbsMobile/index.php/QA/Answer/getRemarkList";
     public static final String COMMENT_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/remark";
     public static final String DRAFT_LIST = "springtest/cyxbsMobile/index.php/QA/User/getDraftList";
+    public static final String CHECK_IN = "springtest/cyxbsMobile/index.php/QA/Integral/checkIn";
+    public static final String CHECK_IN_STATUS = "springtest/cyxbsMobile/index.php/QA/Integral/getCheckInStatus";
 
 
     public static final class Requests {

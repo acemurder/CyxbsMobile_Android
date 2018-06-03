@@ -29,10 +29,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="6dp"
         android:layout_weight="37"
-        app:bottomRadius="6dp"
-        app:leftRadius="6dp"
-        app:rightRadius="6dp"
-        app:topRadius="6dp">
+        app:radius="6dp">
 
         <GridView
             android:id="@+id/gridView"

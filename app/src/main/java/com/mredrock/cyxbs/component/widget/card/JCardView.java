@@ -38,12 +38,21 @@ public class JCardView extends FrameLayout {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.JCardView);
-        final int dp9 = DimensionsKt.dip(this, 9);
         Rect radius = new Rect();
-        radius.left = typedArray.getDimensionPixelSize(R.styleable.JCardView_leftRadius, dp9);
-        radius.top = typedArray.getDimensionPixelSize(R.styleable.JCardView_topRadius, dp9);
-        radius.right = typedArray.getDimensionPixelSize(R.styleable.JCardView_rightRadius, dp9);
-        radius.bottom = typedArray.getDimensionPixelSize(R.styleable.JCardView_bottomRadius, dp9);
+        int r = typedArray.getDimensionPixelSize(R.styleable.JCardView_radius, -1);
+        if (r < 0) {
+            final int dp9 = DimensionsKt.dip(this, 9);
+            radius.left = typedArray.getDimensionPixelSize(R.styleable.JCardView_leftRadius, dp9);
+            radius.top = typedArray.getDimensionPixelSize(R.styleable.JCardView_topRadius, dp9);
+            radius.right = typedArray.getDimensionPixelSize(R.styleable.JCardView_rightRadius, dp9);
+            radius.bottom = typedArray.getDimensionPixelSize(R.styleable.JCardView_bottomRadius, dp9);
+        } else {
+            radius.left = r;
+            radius.right = r;
+            radius.top = r;
+            radius.bottom = r;
+        }
+
         boolean[] hideShadow = new boolean[4];
         hideShadow[0] = typedArray.getBoolean(R.styleable.JCardView_hideLeftShadow, false);
         hideShadow[1] = typedArray.getBoolean(R.styleable.JCardView_hideTopShadow, false);

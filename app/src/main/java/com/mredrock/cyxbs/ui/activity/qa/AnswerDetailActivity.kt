@@ -230,8 +230,12 @@ class AnswerDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListene
         val root = layoutInflater.inflate(R.layout.popup_window_question_detail_menu, null, false)
         root.find<View>(R.id.share).setOnClickListener {
             //todo share
+            popupWindow.dismiss()
         }
-        root.find<View>(R.id.report).setOnClickListener { ReportActivity.start(this, qid) }
+        root.find<View>(R.id.report).setOnClickListener {
+            ReportActivity.start(this, qid)
+            popupWindow.dismiss()
+        }
         return root
     }
 

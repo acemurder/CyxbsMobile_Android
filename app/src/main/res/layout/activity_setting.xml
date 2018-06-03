@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/background_grey"
-              android:orientation="vertical"
-              tools:context=".ui.activity.me.SettingActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:orientation="vertical"
+    tools:context=".ui.activity.me.SettingActivity">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <RelativeLayout
         android:id="@+id/setting_remind"
@@ -18,30 +18,35 @@
         android:padding="17dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/setting_switch_show"
+            android:layout_toStartOf="@+id/setting_switch_show"
             android:text="@string/setting_show_mode"
             android:textColor="#333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <com.suke.widget.SwitchButton
             android:id="@+id/setting_switch_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             app:sb_background="#BEBEBE"
             app:sb_button_color="#FFFFFF"
             app:sb_checked_color="#788EFA"
             app:sb_effect_duration="200"
             app:sb_show_indicator="false"
-            app:sb_uncheck_color="#BEBEBE"/>
+            app:sb_uncheck_color="#BEBEBE" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E4E4E4"/>
+        android:background="#E4E4E4" />
 
     <RelativeLayout
         android:id="@+id/setting_feedback"
@@ -56,13 +61,13 @@
             android:layout_centerVertical="true"
             android:text="@string/setting_feedback"
             android:textColor="#333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E4E4E4"/>
+        android:background="#E4E4E4" />
 
     <RelativeLayout
         android:id="@+id/setting_about"
@@ -77,13 +82,13 @@
             android:layout_centerVertical="true"
             android:text="@string/setting_about"
             android:textColor="#333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E4E4E4"/>
+        android:background="#E4E4E4" />
 
     <RelativeLayout
         android:id="@+id/setting_share"
@@ -98,7 +103,7 @@
             android:layout_centerVertical="true"
             android:text="分享"
             android:textColor="#333333"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <Button
@@ -111,5 +116,5 @@
         android:background="@drawable/bg_btn"
         android:text="@string/setting_exit"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 </LinearLayout>

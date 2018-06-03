@@ -33,6 +33,7 @@ import com.mredrock.cyxbs.model.lost.LostDetail;
 import com.mredrock.cyxbs.model.lost.LostStatus;
 import com.mredrock.cyxbs.model.lost.LostWrapper;
 import com.mredrock.cyxbs.model.qa.Answer;
+import com.mredrock.cyxbs.model.qa.CheckInStatus;
 import com.mredrock.cyxbs.model.qa.Draft;
 import com.mredrock.cyxbs.model.qa.QuestionDetail;
 import com.mredrock.cyxbs.model.social.BBDDNewsContent;
@@ -871,6 +872,18 @@ public enum RequestManager {
 
     public void getDraftList(Observer<List<Draft>> observer, String stuNum, String idNum, int page) {
         Observable<List<Draft>> observable = qaService.getDraftList(stuNum, idNum, page, 6)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
+    public void checkIn(Observer<Unit> observer, String stuNum, String idNum) {
+        Observable<Unit> observable = qaService.checkIn(stuNum, idNum)
+                .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void getCheckInStatus(Observer<CheckInStatus> observer, String stuNum, String idNum) {
+        Observable<CheckInStatus> observable = qaService.getCheckInStatus(stuNum, idNum)
                 .map(new RedrockApiWrapperFunc<>());
         emitObservable(observable, observer);
     }
