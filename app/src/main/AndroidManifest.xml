@@ -340,15 +340,15 @@
         <activity
             android:name=".ui.activity.qa.ReportActivity"
             android:windowSoftInputMode="adjustPan" />
+
         <activity android:name=".ui.activity.qa.SignActivity" />
         <activity android:name=".ui.activity.qa.SignRulesActivity" />
         <activity android:name=".ui.activity.qa.PointSpecActivity" />
         <activity android:name=".ui.activity.qa.RelateMeActivity" />
-        <activity android:name=".ui.activity.qa.PointSpecActivity" />
-
         <activity android:name=".ui.activity.help.PostHelpActivity" />
         <activity android:name=".ui.activity.help.MyHelpActivity" />
         <activity android:name=".ui.activity.help.MyQuestionActivity" />
+        <activity android:name=".ui.activity.help.MyAskActivity"/>
     </application>
 
 </manifest>

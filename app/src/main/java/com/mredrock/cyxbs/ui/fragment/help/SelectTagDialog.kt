@@ -7,52 +7,50 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.CompoundButton
-import android.widget.EditText
 import android.widget.RadioGroup
 import com.mredrock.cyxbs.R
-import com.mredrock.cyxbs.util.DialogUtil
-import com.mredrock.cyxbs.util.Utils
 import kotlinx.android.synthetic.main.dialog_select_help_tag.*
+import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.sdk25.coroutines.textChangedListener
 
-class SelectTagDialog(context: Context?, themeResId: Int, val listener: SelectTagListener, var tag: String = "") : Dialog(context, themeResId), CompoundButton.OnCheckedChangeListener {
+class SelectTagDialog(context: Context?, themeResId: Int, var tag: String = "", val listener: SelectDialogListener) : Dialog(context, themeResId) {
     private val TAG = "SelectTagDialog"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_select_help_tag)
+        initData()
         init()
     }
 
+    private fun initData() {
+
+    }
+
     private fun init() {
-        btn_tag_1.setOnCheckedChangeListener(this)
-        btn_tag_2.setOnCheckedChangeListener(this)
-        btn_tag_3.setOnCheckedChangeListener(this)
-        btn_tag_4.setOnCheckedChangeListener(this)
-        btn_tag_5.setOnCheckedChangeListener(this)
-        btn_tag_6.setOnCheckedChangeListener(this)
 
         btn_next.onClick {
+            listener.onNext(tag)
             cancel()
         }
 
         if (tag != "") {
             img_search.visibility = View.GONE
             edt_tag.setText("#${tag}#")
-
+            group_tag.setCheckedRadioButton(tag)
         } else {
             img_search.visibility = View.VISIBLE
         }
 
         edt_tag.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                group_tag_1.clearCheck()
-                group_tag_2.clearCheck()
+                val text = edt_tag.text.toString().replace("#", "")
+                if (group_tag.checkedRadioButtonIndex != -1 && text != group_tag.checkedRadioButtonText) {
+                    group_tag.clearCheck()
+                }
 
-                tag = edt_tag.text.toString().replace("#", "")
-
-                listener.changed(tag)
+                tag = text
+                listener.onChange(tag)
 
                 if (tag != "") {
                     img_search.visibility = View.GONE
@@ -67,39 +65,16 @@ class SelectTagDialog(context: Context?, themeResId: Int, val listener: SelectTa
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
-    }
 
-
-    override fun onCheckedChanged(buttonView : CompoundButton, isChecked: Boolean) {
-        when (buttonView.id) {
-            R.id.btn_tag_1 -> {
-                group_tag_2.clearCheck()
-            }
-            R.id.btn_tag_2 -> {
-                group_tag_2.clearCheck()
-            }
-            R.id.btn_tag_3 -> {
-                group_tag_2.clearCheck()
-            }
-            R.id.btn_tag_4 -> {
-                group_tag_2.clearCheck()
-            }
-            R.id.btn_tag_5 -> {
-                group_tag_1.clearCheck()
-            }
-            R.id.btn_tag_6 -> {
-                group_tag_1.clearCheck()
+        group_tag.onCheckedChange { group, checkedId ->
+            run {
+                img_search.visibility = View.GONE
+                if (group_tag.checkedRadioButtonText != "") {
+                    tag = group_tag.checkedRadioButtonText
+                    edt_tag.setText("#${tag}#")
+                }
             }
         }
-        if (isChecked) {
-            tag = buttonView.text.toString()
-            edt_tag.setText("#${tag}#")
-        }
-
     }
 
-
-    interface SelectTagListener {
-        fun changed(tag: String)
-    }
 }

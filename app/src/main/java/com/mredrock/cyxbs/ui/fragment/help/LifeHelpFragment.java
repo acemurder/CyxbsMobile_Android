@@ -13,7 +13,6 @@ import java.util.List;
 
 public class LifeHelpFragment extends BaseHelpFragment {
 
-
     @Override
     void provideData(SimpleObserver<List<Question>> observer, int size, int page) {
         RequestManager.getInstance().getAllQuestion(observer, Integer.toString(page), Integer.toString(size), "生活");

@@ -106,8 +106,9 @@ public class HelpContainerFragment extends BaseFragment {
 
         fragmentList.add(mAllHelpFragment);
         fragmentList.add(mLearnHelpFragment);
-        fragmentList.add(mEmotionFragment);
         fragmentList.add(mLifeHelpFragment);
+        fragmentList.add(mEmotionFragment);
+
 
         TabPagerAdapter adapter = new TabPagerAdapter(getChildFragmentManager(), fragmentList, Arrays
                 .asList(getActivity().getResources().getStringArray(R.array.question_tab_titles)));

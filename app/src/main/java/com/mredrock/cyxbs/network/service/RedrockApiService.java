@@ -20,6 +20,8 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
+import com.mredrock.cyxbs.model.VolunteerTime;
+import com.mredrock.cyxbs.model.help.MyQuestion;
 import com.mredrock.cyxbs.model.help.Question;
 import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
@@ -36,6 +38,7 @@ import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.model.social.UploadImgResponse;
 import com.mredrock.cyxbs.network.setting.annotation.XmlApi;
 
+import java.io.File;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -376,4 +379,25 @@ public interface RedrockApiService {
                                                 @Part("idNum") RequestBody idNum,
                                                 @Part("question_id") RequestBody question_id,
                                                 @Part() List<MultipartBody.Part> parts);
+
+    @FormUrlEncoded
+    @POST(Const.API_GET_DISCOUNT_BALANCE)
+    Observable<RedrockApiWrapper<Integer>> getUserDiscountBalance(@Field("stuNum") String stuNum,
+                                                              @Field("idNum") String idNum);
+
+    @FormUrlEncoded
+    @POST(Const.API_HELP_USER_HELP)
+    Observable<RedrockApiWrapper<List<MyQuestion>>> getMyHelp(@Field("stunum") String stuNum,
+                                                              @Field("idnum") String idNum,
+                                                              @Field("page") int page,
+                                                                   @Field("size") int size,
+                                                                   @Field("type") int type);
+
+    @FormUrlEncoded
+    @POST(Const.API_HELP_USER_ASK)
+    Observable<RedrockApiWrapper<List<MyQuestion>>> getMyAsk(@Field("stunum") String stuNum,
+                                                              @Field("idnum") String idNum,
+                                                              @Field("page") int page,
+                                                              @Field("size") int size,
+                                                              @Field("type") int type);
 }

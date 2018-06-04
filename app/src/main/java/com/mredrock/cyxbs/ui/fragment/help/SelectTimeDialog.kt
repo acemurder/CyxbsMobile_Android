@@ -13,10 +13,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SelectTimeDialog(context: Context?, themeResId: Int, val listener: OnTimeChangeListener) : Dialog(context, themeResId) {
+class SelectTimeDialog(context: Context?, themeResId: Int, var time : String = "", val listener: SelectDialogListener) : Dialog(context, themeResId) {
     private val TAG = "SelectTimeDialog"
     private var formatToData: SimpleDateFormat? = null
-    var time: String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +26,7 @@ class SelectTimeDialog(context: Context?, themeResId: Int, val listener: OnTimeC
     @SuppressLint("SimpleDateFormat")
     private fun init() {
         formatToData = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
         btn_cancel.onClick { cancel() }
         btn_next.onClick {
             listener.onNext(time)
@@ -34,24 +34,25 @@ class SelectTimeDialog(context: Context?, themeResId: Int, val listener: OnTimeC
         }
 
         datePickerView.setStartDate(Calendar.getInstance())
-        datePickerView.selectedDate = Calendar.getInstance()
+
+        if (time != "" && !time.isEmpty()) {
+            val data = formatToData!!.parse(time)
+            val calendar = Calendar.getInstance()
+            calendar.time = data
+            datePickerView.selectedDate = calendar
+
+        } else {
+            time = formatToData!!.format(Calendar.getInstance().time).toString()
+            datePickerView.selectedDate = Calendar.getInstance()
+        }
+
         datePickerView.setOnSelectedDateChangedListener{
             date ->
             run {
-                val year = date.get(Calendar.YEAR)
-//                val month = date.get(Calendar.MONTH)
-//                val dayOfMonth = date.get(Calendar.DAY_OF_MONTH)
-//                val hour = date.get(Calendar.HOUR_OF_DAY)
-//                val minute = date.get(Calendar.MINUTE)
                 time = formatToData?.format(date.time).toString()
                 listener.onChange(time)
-
             }
         }
     }
 
-    interface OnTimeChangeListener {
-        fun onChange(time: String)
-        fun onNext(time: String)
-    }
 }

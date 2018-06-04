@@ -1,17 +1,11 @@
 package com.mredrock.cyxbs.ui.activity.help
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.ButterKnife
 import com.jude.swipbackhelper.SwipeBackHelper
 import com.mredrock.cyxbs.R
 import com.mredrock.cyxbs.ui.activity.BaseActivity
@@ -19,14 +13,12 @@ import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter
 import com.mredrock.cyxbs.ui.fragment.help.BaseMyHelpFragment
 import kotlinx.android.synthetic.main.activity_my_question.*
 import kotlinx.android.synthetic.main.item_tablayout_with_point.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
-class MyQuestionActivity : BaseActivity() {
+class MyAskActivity : BaseActivity() {
 
     companion object {
         fun startActivity(context: Context) {
-            context.startActivity(Intent(context, MyQuestionActivity::class.java))
+            context.startActivity(Intent(context, MyAskActivity::class.java))
         }
     }
 
