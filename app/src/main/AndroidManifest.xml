@@ -265,13 +265,14 @@
             android:name=".ui.activity.ActionActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Transparent">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="cyxbsmobile" />
+                <data android:scheme="https" />
             </intent-filter>
         </activity>
         <!-- 社会化分享 -->
@@ -341,7 +342,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.qa.SignActivity" />
         <activity android:name=".ui.activity.qa.SignRulesActivity" />
-        <activity android:name=".ui.activity.qa.PointSpecActivity"></activity>
+        <activity android:name=".ui.activity.qa.PointSpecActivity" />
+        <activity android:name=".ui.activity.qa.RelateMeActivity" />
     </application>
 
 </manifest>

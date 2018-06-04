@@ -16,6 +16,7 @@ import com.mredrock.cyxbs.ui.activity.me.EditInfoActivity
 import com.mredrock.cyxbs.ui.activity.me.SettingActivity
 import com.mredrock.cyxbs.ui.activity.me.StoreActivity
 import com.mredrock.cyxbs.ui.activity.qa.DraftActivity
+import com.mredrock.cyxbs.ui.activity.qa.RelateMeActivity
 import com.mredrock.cyxbs.ui.activity.qa.SignActivity
 import com.mredrock.cyxbs.util.ImageLoader
 import kotlinx.android.synthetic.main.fragment_user.*
@@ -41,7 +42,7 @@ class UserFragment : BaseFragment() {
         question.setOnClickListener { checkLoginBeforeAction("问一问") { } }
         help.setOnClickListener { checkLoginBeforeAction("帮一帮") { } }
         draft.setOnClickListener { checkLoginBeforeAction("草稿箱") { startActivity<DraftActivity>() } }
-        relateMe.setOnClickListener { checkLoginBeforeAction("与我相关") { } }
+        relateMe.setOnClickListener { checkLoginBeforeAction("与我相关") { startActivity<RelateMeActivity>() } }
         setting.setOnClickListener { startActivity<SettingActivity>() }
 
         val clickToEditInfo = View.OnClickListener { checkLoginBeforeAction("个人资料") { startActivity<EditInfoActivity>() } }

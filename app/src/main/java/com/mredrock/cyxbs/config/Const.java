@@ -154,5 +154,6 @@ public class Const {
         // please modify AndroidManifest.xml if you change it
         public static final String SCHEME = "cyxbsmobile";
         public static final String HOST_TOPIC = "topic";
+        public static final String QA_SHARE = "share";
     }
 }

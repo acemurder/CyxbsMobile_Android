@@ -11,6 +11,7 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ScheduleView;
 import com.mredrock.cyxbs.config.Const;
 import com.mredrock.cyxbs.model.Course;
+import com.mredrock.cyxbs.ui.activity.qa.QuestionDetailActivity;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.widget.CourseListAppWidget;
 import com.mredrock.cyxbs.util.LogUtils;
@@ -34,6 +35,7 @@ public class ActionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         try {
             checkMatch(checkNull(intent));
+            checkQaShare(intent);
             checkMatch(checkTopicArticle(intent));
             checkMatch(checkCourseListAppWidget(intent));
             startActivity(SplashActivity.class);
@@ -49,6 +51,18 @@ public class ActionActivity extends AppCompatActivity {
         if (intent == null) {
             startActivity(SplashActivity.class);
             return true;
+        }
+        return false;
+    }
+
+    private boolean checkQaShare(Intent intent) {
+        if (intent.getData() != null) {
+            Uri uri = intent.getData();
+            if (Const.CyxbsUri.SCHEME.equals(uri.getScheme()) && Const.CyxbsUri.QA_SHARE.equals(uri.getHost())) {
+                String qid = uri.getQueryParameters("questionId").get(0);
+                QuestionDetailActivity.start(this, qid);
+                return true;
+            }
         }
         return false;
     }

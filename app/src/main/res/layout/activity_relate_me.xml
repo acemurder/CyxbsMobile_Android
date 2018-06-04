@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_relate_me"
-    tools:context=".ui.activity.me.AboutMeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.activity.qa.RelateMeActivity">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/about_me_swipe_refresh"
+    <com.mredrock.cyxbs.component.widget.card.JCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="50dp"
+        app:hideLeftShadow="true"
+        app:hideRightShadow="true"
+        app:hideTopShadow="true"
+        app:radius="0dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/relate_me_recycler_View"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_relate_me"/>
+            android:layout_height="match_parent" />
+    </com.mredrock.cyxbs.component.widget.card.JCardView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/easyRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
