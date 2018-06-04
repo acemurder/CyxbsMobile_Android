@@ -20,6 +20,8 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
+import com.mredrock.cyxbs.model.help.Question;
+import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -359,14 +361,14 @@ public interface RedrockApiService {
     @FormUrlEncoded
     @POST(Const.API_ADD_QUESTION)
     Observable<RedrockApiWrapper<QuestionId>> postNewQuestion(@Field("stuNum") String stuNum,
-                                                          @Field("idNum") String idNum,
-                                                          @Field("title") String title,
-                                                          @Field("description") String description,
-                                                          @Field("is_anonymous") int is_anonymous,
-                                                          @Field("kind") String kind,
-                                                          @Field("tags") String tags,
-                                                          @Field("reward") int reward,
-                                                          @Field("disappear_time") String disappear_time);
+                                                              @Field("idNum") String idNum,
+                                                              @Field("title") String title,
+                                                              @Field("description") String description,
+                                                              @Field("is_anonymous") int is_anonymous,
+                                                              @Field("kind") String kind,
+                                                              @Field("tags") String tags,
+                                                              @Field("reward") int reward,
+                                                              @Field("disappear_time") String disappear_time);
 
     @Multipart
     @POST(Const.API_UPLOAD_QUESTION_PITURE)
