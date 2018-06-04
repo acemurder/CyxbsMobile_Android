@@ -1,6 +1,7 @@
 package com.mredrock.cyxbs.network;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.BuildConfig;
@@ -28,6 +29,8 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
 import com.mredrock.cyxbs.model.VolunteerTime;
+import com.mredrock.cyxbs.model.help.Question;
+import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.lost.Lost;
 import com.mredrock.cyxbs.model.lost.LostDetail;
 import com.mredrock.cyxbs.model.lost.LostStatus;
@@ -79,9 +82,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.rx_cache2.DynamicKey;
@@ -917,6 +923,64 @@ public enum RequestManager {
         Observable<List<RollerViewInfo>> observable = redrockApiService.getRollerViewInfo(pic_num)
                 .map(new RedrockApiWrapperFunc<>());
         emitObservable(observable, observer);
+    }
+
+    public void getAllQuestion(Observer<List<Question>> observer, String page, String size, String kind) {
+        Observable<List<Question>> observable = redrockApiService.getAllQuestion(page, size, kind)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
+
+    public void postNewQuestion(Observer observer, String stuNum, String idNum, Question q, List<String> files) {
+        Observable<QuestionId> observable = redrockApiService.postNewQuestion(
+                stuNum,
+                idNum,
+                q.getTitle(),
+                q.getDescription(),
+                q.getIs_anonymous(),
+                q.getKind(),
+                q.getTags(),
+                q.getReward(),
+                q.getDisappear_at())
+                .map(new RedrockApiWrapperFunc<>());
+
+        if (files.isEmpty()) {
+            emitObservable(observable, observer);
+        } else {
+            observable.map(questionId -> questionId.id + "")
+                    .subscribeOn(Schedulers.io())
+                    .flatMap(questionId -> uploadHelpImg(stuNum, idNum, questionId, files))
+                    .unsubscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(observer);
+
+        }
+    }
+
+    public Observable<List<String>> uploadHelpImg(String stuNum, String idNum, String question_id, List<String> files) {
+        List<MultipartBody.Part> parts = new ArrayList<>(files.size());
+        int i = 1;
+        for (String filePath : files) {
+            File file = new File(filePath);
+            try {
+                file = BitmapUtil.decodeBitmapFromRes(BaseAPP.getContext(), filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            MultipartBody.Part file_body = MultipartBody.Part.createFormData("photo" + i, file.getName(), requestFile);
+            parts.add(file_body);
+            i++;
+        }
+
+        RequestBody stuNum_body = RequestBody.create(MediaType.parse("multipart/form-data"), stuNum);
+        RequestBody idNum_body = RequestBody.create(MediaType.parse("multipart/form-data"), idNum);
+        RequestBody questionId_body = RequestBody.create(MediaType.parse("multipart/form-data"), question_id);
+
+        Observable<List<String>> observable = redrockApiService.uploadHelpImg(stuNum_body, idNum_body, questionId_body, parts)
+                .map(new RedrockApiWrapperFunc<>());
+        return observable;
     }
 
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/grey_hex_fe">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_gravity="left"
+            android:text="取消"/>
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_gravity="right"
+            android:text="完成"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_hex_d8"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/tv_my_rewards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="积分剩余：20"/>
+
+        <TextView
+            android:id="@+id/tv_selected_rewards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="3积分"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_hex_d8"
+            />
+        <RadioGroup
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/btn_reward_1"
+                android:layout_marginRight="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/btn_reward_2"
+                android:layout_marginRight="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="false"/>
+
+            <RadioButton
+                android:id="@+id/btn_reward_3"
+                android:layout_marginRight="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="false"/>
+
+            <RadioButton
+                android:id="@+id/btn_reward_5"
+                android:layout_marginRight="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="false"/>
+
+            <RadioButton
+                android:id="@+id/btn_reward_10"
+                android:layout_marginRight="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="false"/>
+
+            <RadioButton
+                android:id="@+id/btn_reward_15"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_btn_help_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="@color/help_btn_radio_text_color"
+                android:textSize="14sp"
+                android:checked="false"/>
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+</LinearLayout>
