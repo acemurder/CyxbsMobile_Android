@@ -2,37 +2,19 @@ package com.mredrock.cyxbs.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.config.Const;
-import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.mredrock.cyxbs.model.help.Question;
-import com.mredrock.cyxbs.model.social.BBDDNews;
-import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.model.social.Image;
-import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.social.ImageActivity;
-import com.mredrock.cyxbs.ui.activity.social.PersonInfoActivity;
-import com.mredrock.cyxbs.ui.activity.social.SpecificNewsActivity;
+import com.mredrock.cyxbs.ui.activity.qa.QuestionDetailActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.LogUtils;
-import com.mredrock.cyxbs.util.RxBus;
-import com.mredrock.cyxbs.util.TimeUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,13 +27,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;
 
-import static com.thefinestartist.Base.getResources;
-
 /**
  * Created by yan on 2018/2/20.
  */
 
-public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
+public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder> {
     public static int TYPE_EMOTION = 0;
     public static int TYPE_OTHER = 1;
 
@@ -64,7 +44,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
         this.type = type;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public static final String TAG = "HelpAdapter.ViewHolder";
         public View itemView;
@@ -117,7 +97,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
 
         @OnClick(R.id.help_item_card_view)
         public void onItemClick(View view) {
-
+            QuestionDetailActivity.start(view.getContext(), mQuestion.getId() + "");
         }
 
 
@@ -133,8 +113,9 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
         }
 
         public void setData(Question mQuestion, int type) {
+            this.mQuestion = mQuestion;
             mNickName.setText(mQuestion.getNickname());
-            mTag.setText("#" +  mQuestion.getTags() + "#");
+            mTag.setText("#" + mQuestion.getTags() + "#");
             mTitle.setText(mQuestion.getTitle());
             mDescription.setText(mQuestion.getDescription());
             mTextTime.setText(changeTime(mQuestion.getDisappear_at()));
@@ -175,7 +156,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.ViewHolder>{
             long sec = (t / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
             if (day > 0) {
                 return day + "天" + hour + "小时后消失";
-            }  else if (hour > 0) {
+            } else if (hour > 0) {
                 return hour + "小时" + min + "分钟后消失";
             } else {
                 return min + "分钟" + sec + "秒后消失";

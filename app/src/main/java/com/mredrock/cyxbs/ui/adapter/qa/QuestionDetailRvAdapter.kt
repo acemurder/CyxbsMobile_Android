@@ -17,6 +17,7 @@ import com.mredrock.cyxbs.ui.activity.qa.AnswerDetailActivity
 import com.mredrock.cyxbs.util.ImageLoader
 import com.mredrock.cyxbs.util.LogUtils
 import com.mredrock.cyxbs.util.extensions.*
+import kotlinx.android.synthetic.main.item_empty_answer_detail.view.*
 import kotlinx.android.synthetic.main.item_question_detail.view.*
 
 /**
@@ -38,6 +39,7 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
         headerViewWrapper = header
 
         itemView = layoutInflater.inflate(R.layout.item_empty_answer_detail, rv, false)
+        itemView.divider.gone()
         emptyViewWrapper = AnswerDetailEmptyViewWrapper(itemView)
 
         itemView = layoutInflater.inflate(R.layout.footer_question_detail, rv, false)

@@ -91,7 +91,7 @@ public class SettingActivity extends BaseActivity {
                 editor.putBoolean(SHOW_MODE, b);
                 editor.apply();
                 currentMode = b;
-                subscriber.onNext(null);
+                subscriber.onNext(new Object());
                 subscriber.onComplete();
             }).subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io()).subscribe();

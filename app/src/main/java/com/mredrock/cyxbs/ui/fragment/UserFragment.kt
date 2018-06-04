@@ -12,6 +12,8 @@ import com.mredrock.cyxbs.model.User
 import com.mredrock.cyxbs.network.RequestManager
 import com.mredrock.cyxbs.subscriber.SimpleObserver
 import com.mredrock.cyxbs.subscriber.SubscriberListener
+import com.mredrock.cyxbs.ui.activity.help.MyAskActivity
+import com.mredrock.cyxbs.ui.activity.help.MyHelpActivity
 import com.mredrock.cyxbs.ui.activity.me.EditInfoActivity
 import com.mredrock.cyxbs.ui.activity.me.SettingActivity
 import com.mredrock.cyxbs.ui.activity.me.StoreActivity
@@ -36,11 +38,11 @@ class UserFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getPersonInfoData()
-        //todo 页面跳转
+
         dailySign.setOnClickListener { checkLoginBeforeAction("签到") { startActivity<SignActivity>() } }
         store.setOnClickListener { checkLoginBeforeAction("积分商场") { startActivity<StoreActivity>() } }
-        question.setOnClickListener { checkLoginBeforeAction("问一问") { } }
-        help.setOnClickListener { checkLoginBeforeAction("帮一帮") { } }
+        question.setOnClickListener { checkLoginBeforeAction("问一问") { startActivity<MyAskActivity>() } }
+        help.setOnClickListener { checkLoginBeforeAction("帮一帮") { startActivity<MyHelpActivity>() } }
         draft.setOnClickListener { checkLoginBeforeAction("草稿箱") { startActivity<DraftActivity>() } }
         relateMe.setOnClickListener { checkLoginBeforeAction("与我相关") { startActivity<RelateMeActivity>() } }
         setting.setOnClickListener { startActivity<SettingActivity>() }

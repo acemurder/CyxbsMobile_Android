@@ -141,7 +141,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Fullscreen" />
         <activity android:name=".ui.activity.me.EditInfoActivity" />
-        <activity android:name=".ui.activity.me.AboutMeActivity" />
         <activity android:name=".ui.activity.me.MyTrendActivity" />
         <activity android:name=".ui.activity.me.SettingActivity" />
         <activity android:name=".ui.activity.me.NewsRemindActivity" />
