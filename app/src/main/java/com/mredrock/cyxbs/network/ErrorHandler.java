@@ -27,7 +27,7 @@ public class ErrorHandler {
 
     public <T> void handle(Throwable e, SubscriberListener<T> listener) {
         if (listener != null && listener.onError(e)) {
-            LogUtils.LOGI("SimpleSubscribe", "onError: Handled by listener", e);
+            LogUtils.LOGI("SimpleSubscribe", "onError: Handled by listenerSelect", e);
         } else {
             if (e instanceof SocketTimeoutException || e instanceof ConnectException || e instanceof UnknownHostException) {
                 if (BuildConfig.DEBUG) {

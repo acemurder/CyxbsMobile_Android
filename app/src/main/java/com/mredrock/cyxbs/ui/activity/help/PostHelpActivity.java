@@ -4,22 +4,14 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.OptionsPickerView;
-import com.bigkoo.pickerview.TimePickerView;
-import com.bigkoo.pickerview.lib.WheelView;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.R;
@@ -27,12 +19,13 @@ import com.mredrock.cyxbs.component.multi_image_selector.MultiImageSelectorActiv
 import com.mredrock.cyxbs.component.widget.ninelayout.NineGridlayout;
 import com.mredrock.cyxbs.model.User;
 import com.mredrock.cyxbs.model.help.Question;
-import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.social.Image;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.mredrock.cyxbs.ui.fragment.help.RecheckDialog;
+import com.mredrock.cyxbs.ui.fragment.help.SelectDialogListener;
 import com.mredrock.cyxbs.ui.fragment.help.SelectRewardDialog;
 import com.mredrock.cyxbs.ui.fragment.help.SelectTagDialog;
 import com.mredrock.cyxbs.ui.fragment.help.SelectTimeDialog;
@@ -43,7 +36,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -64,6 +56,9 @@ public class PostHelpActivity extends BaseActivity {
     private final static String ADD_IMG = "file:///android_asset/add_help.png";
     public static final String EXTRA_TOPIC_ID = "extra_topic_id";
     private final static int REQUEST_IMAGE = 0001;
+
+    private final static int FROM_IMG_BTN = 0;
+    private final static int FROM_NEXT_BTN = 1;
 
     @BindView(R.id.toolbar_next)
     TextView mNextBtn;
@@ -90,7 +85,8 @@ public class PostHelpActivity extends BaseActivity {
     private String kind;
     private String tag = "";
     private String disappear_time = "";
-    private int reward;
+    private int reward = 1;
+    private int my_discount_balance = 0;
 
 
     public static void startActivity(Context context, String kind) {
@@ -110,7 +106,6 @@ public class PostHelpActivity extends BaseActivity {
         initToolbar();
         Intent intent = getIntent();
         kind = intent.getStringExtra("kind");
-        Utils.toast(this, kind);
     }
 
     private void init() {
@@ -152,6 +147,28 @@ public class PostHelpActivity extends BaseActivity {
             mImgList.remove(position);
             mNineGridlayout.setImagesData(mImgList);
         });
+
+        RequestManager.getInstance().getUserDiscountBalance(new Observer<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Integer discount_balance) {
+                my_discount_balance = discount_balance;
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Utils.toast(PostHelpActivity.this, e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }, mUser.stuNum, mUser.idNum);
     }
 
     private void initToolbar() {
@@ -205,55 +222,87 @@ public class PostHelpActivity extends BaseActivity {
 
     @OnClick(R.id.toolbar_next)
     public void onViewClicked() {
-        if (tag == "") {
+        if (mTitle.getText().toString().isEmpty()){
+            Utils.toast(this, "请先填写标题~");
+        } else if (mContent.getText().toString().isEmpty()){
+            Utils.toast(this, "请先填写内容~");
+        } else if (tag == "") {
             Utils.toast(this, "请先选择一个标签~");
-            selectTag();
+            selectTag(FROM_NEXT_BTN);
         } else {
             selectTime();
         }
     }
 
-    private void selectTime() {
-        Dialog dialog = new SelectTimeDialog(this, R.style.BottomDialogTheme, new SelectTimeDialog.OnTimeChangeListener() {
+    private void selectTag(int type) {
+
+        Dialog dialog = new SelectTagDialog(this, R.style.BottomDialogTheme, tag, new SelectDialogListener() {
             @Override
-            public void onChange(@NotNull String time) {
-                disappear_time = time;
+            public <T> void onChange(T data) {
+                tag = (String) data;
+                if (tag != "")
+                    mTag.setText("#" + tag + "#");
+                else
+                    mTag.setText("");
             }
 
             @Override
-            public void onNext(String time) {
-                disappear_time = time;
+            public <T> void onNext(T data) {
+                tag = (String) data;
+                if (type == FROM_NEXT_BTN) {
+                    selectTime();
+                }
+            }
+        });
+
+        DialogUtil.showBottomDialog(dialog);
+    }
+
+    private void selectTime() {
+        Dialog dialog = new SelectTimeDialog(this, R.style.BottomDialogTheme, disappear_time, new SelectDialogListener() {
+            @Override
+            public <T> void onNext(T data) {
+                disappear_time = (String) data;
                 selectReward();
+            }
+
+            @Override
+            public <T> void onChange(T data) {
+                disappear_time = (String) data;
+            }
+
+        });
+        DialogUtil.showBottomDialog(dialog);
+    }
+
+    private void selectReward() {
+        Dialog dialog = new SelectRewardDialog(this, R.style.BottomDialogTheme, reward, my_discount_balance, new SelectDialogListener() {
+            @Override
+            public <T> void onChange(T data) {
+                reward = (Integer) data;
+            }
+
+            @Override
+            public <T> void onNext(T data) {
+                reward = (Integer) data;
+                recheck();
             }
         });
         DialogUtil.showBottomDialog(dialog);
     }
 
-    private void selectTag() {
-        Dialog dialog = new SelectTagDialog(this, R.style.BottomDialogTheme, tag -> {
-            this.tag = tag;
-            if (tag != "")
-                mTag.setText("#" + tag + "#");
-            else
-                mTag.setText("");
-        }, tag);
-
-        DialogUtil.showBottomDialog(dialog);
-    }
-
-    private void selectReward() {
-        reward = 1;
-        Dialog dialog = new SelectRewardDialog(this, R.style.BottomDialogTheme, new SelectRewardDialog.OnRewardChangeListener() {
+    private void recheck() {
+        Dialog dialog = new RecheckDialog(this, R.style.BottomDialogTheme, disappear_time, reward, new SelectDialogListener() {
             @Override
-            public void onChange(int r) {
-                 reward = r;
-                 Utils.toast(PostHelpActivity.this, reward + "");
-            }
-
-            @Override
-            public void onNext() {
+            public <T> void onNext(T data) {
                 postNewHelp();
             }
+
+            @Override
+            public <T> void onChange(T data) {
+
+            }
+
         });
         DialogUtil.showBottomDialog(dialog);
     }
@@ -268,6 +317,7 @@ public class PostHelpActivity extends BaseActivity {
 
         String title = mTitle.getText().toString();
         String description = mContent.getText().toString();
+
         int is_anonymous = mCheckBox.isChecked() ? 1 : 0;
 
 
@@ -280,17 +330,15 @@ public class PostHelpActivity extends BaseActivity {
         question.setReward(reward);
         question.setDisappear_at(disappear_time);
 
-        RequestManager.getInstance().postNewQuestion(new Observer<List<String>>() {
+        RequestManager.getInstance().postNewQuestion(new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(List<String> strings) {
-                if(strings != null);
-                for (String str : strings)
-                    Utils.toast(PostHelpActivity.this, str);
+            public void onNext(Object o) {
+                PostHelpActivity.this.finish();
             }
 
             @Override
@@ -329,7 +377,7 @@ public class PostHelpActivity extends BaseActivity {
 
     @OnClick(R.id.btn_tag)
     public void btnTagOnclick() {
-        selectTag();
+        selectTag(FROM_IMG_BTN);
     }
 
 }

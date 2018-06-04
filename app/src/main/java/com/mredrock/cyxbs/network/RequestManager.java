@@ -29,6 +29,7 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
 import com.mredrock.cyxbs.model.VolunteerTime;
+import com.mredrock.cyxbs.model.help.MyQuestion;
 import com.mredrock.cyxbs.model.help.Question;
 import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.lost.Lost;
@@ -851,5 +852,22 @@ public enum RequestManager {
         return observable;
     }
 
+    public void getUserDiscountBalance(Observer<Integer> observer, String stuNum, String idNum) {
+        Observable<Integer> observable = redrockApiService.getUserDiscountBalance(stuNum, idNum)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
+    public void getMyHelp(Observer<List<MyQuestion>> observer, String stuNum, String idNum, int page, int size, int type) {
+        Observable<List<MyQuestion>> observable = redrockApiService.getMyHelp(stuNum, idNum, page, size, type)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
+    public void getMyAsk(Observer<List<MyQuestion>> observer, String stuNum, String idNum, int page, int size, int type) {
+        Observable<List<MyQuestion>> observable = redrockApiService.getMyAsk(stuNum, idNum, page, size, type)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
 }
 

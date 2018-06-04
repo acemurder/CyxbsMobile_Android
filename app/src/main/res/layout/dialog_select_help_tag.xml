@@ -72,8 +72,8 @@
         android:layout_marginTop="15dp"
         android:text="热门话题"/>
 
-    <RadioGroup
-        android:id="@+id/group_tag_1"
+    <com.mredrock.cyxbs.ui.widget.FlowRadioGroup
+        android:id="@+id/group_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left|center"
@@ -83,9 +83,8 @@
         <RadioButton
             android:id="@+id/btn_tag_1"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
@@ -97,9 +96,8 @@
         <RadioButton
             android:id="@+id/btn_tag_2"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
@@ -111,9 +109,8 @@
         <RadioButton
             android:id="@+id/btn_tag_3"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
@@ -125,9 +122,8 @@
         <RadioButton
             android:id="@+id/btn_tag_4"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
@@ -136,25 +132,15 @@
             android:textSize="14sp"
             android:checked="false"/>
 
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/group_tag_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left|center"
-        android:orientation="horizontal">
-
         <RadioButton
             android:id="@+id/btn_tag_5"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
-            android:text="大物"
+            android:text="几何"
             android:textColor="@color/help_btn_radio_text_color"
             android:textSize="14sp"
             android:checked="false"/>
@@ -162,28 +148,16 @@
         <RadioButton
             android:id="@+id/btn_tag_6"
             android:layout_margin="5dp"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
             android:background="@drawable/bg_btn_help_radio"
             android:button="@null"
             android:gravity="center"
-            android:text="英语"
+            android:text="思修"
             android:textColor="@color/help_btn_radio_text_color"
             android:textSize="14sp"
             android:checked="false"/>
 
-
-        <View
-            android:layout_margin="5dp"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_margin="5dp"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-    </RadioGroup>
+    </com.mredrock.cyxbs.ui.widget.FlowRadioGroup>
 
 </LinearLayout>

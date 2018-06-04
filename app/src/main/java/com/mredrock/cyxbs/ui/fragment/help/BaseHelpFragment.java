@@ -56,7 +56,7 @@ public abstract class BaseHelpFragment extends BaseLazyFragment implements Swipe
     public static final int PER_PAGE_NUM = 6;
     public static final String TAG = "BaseHelpFragment";
     public static final int FIRST_PAGE_INDEX = 1;
-    public int type = HelpAdapter.TYPE_EMOTION;
+    public int type = HelpAdapter.TYPE_OTHER;
 
     private boolean hasLoginStateChanged = false;
 
@@ -91,6 +91,7 @@ public abstract class BaseHelpFragment extends BaseLazyFragment implements Swipe
         super.onViewCreated(view, savedInstanceState);
         init();
     }
+
 
     protected void init() {
         mSwipeRefreshLayout.setColorSchemeColors(
@@ -176,12 +177,12 @@ public abstract class BaseHelpFragment extends BaseLazyFragment implements Swipe
 
             @Override
             public void onShow() {
-
+                mFabMain.show();
             }
 
             @Override
             public void onHide() {
-
+                mFabMain.hide();
             }
         };
         mRecyclerView.addOnScrollListener(endlessRecyclerOnScrollListener);

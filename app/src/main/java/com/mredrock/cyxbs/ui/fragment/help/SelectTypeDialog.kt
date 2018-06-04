@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import com.mredrock.cyxbs.R
+import com.mredrock.cyxbs.ui.activity.help.MyAskActivity
+import com.mredrock.cyxbs.ui.activity.help.MyHelpActivity
 import com.mredrock.cyxbs.ui.activity.help.PostHelpActivity
 import com.mredrock.cyxbs.util.Utils
 import kotlinx.android.synthetic.main.dialog_select_help_type.*
@@ -30,7 +32,7 @@ class SelectTypeDialog(context: Context?, themeResId: Int) : Dialog(context, the
             else {
                 this.cancel()
                 PostHelpActivity.startActivity(context, type)
-                //MyQuestionActivity.startActivity(context)
+                //MyAskActivity.startActivity(context)
             }
         }
         btn_cancel.setOnClickListener { this.cancel() }

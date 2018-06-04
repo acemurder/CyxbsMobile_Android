@@ -123,11 +123,17 @@ public class Const {
         public static final int EDIT_PHONE = 6;
     }
 
-    //问答首页
+    //问答
     public static final String API_ALL_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/getQuestionList";
     public static final String API_ADD_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/add";
     public static final String API_UPLOAD_QUESTION_PITURE = "/springtest/cyxbsMobile/index.php/QA/Question/uploadPicture";
     public static final String API_CANCEL_QUESTION = "springtest/cyxbsMobile/index.php/QA/Question/cancelQuestion";
+    public static final String API_HELP_USER_HELP = "/springtest/cyxbsMobile/index.php/QA/User/help";
+    public static final String API_HELP_USER_ASK = "/springtest/cyxbsMobile/index.php/QA/User/ask";
+
+    //积分
+    public static final String API_GET_DISCOUNT_BALANCE = "/springtest/cyxbsMobile/index.php/QA/Integral/getDiscountBalance";
+
 
 
     /**

@@ -6,16 +6,17 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.RadioGroup
 import com.mredrock.cyxbs.R
+import com.mredrock.cyxbs.util.Utils
 import kotlinx.android.synthetic.main.dialog_select_help_reward.*
+import org.jetbrains.anko.db.INTEGER
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 
 /**
  * Created by yan on 2018/6/1.
  */
-class SelectRewardDialog(context: Context?, themeResId: Int, val listener: OnRewardChangeListener) : Dialog(context, themeResId) {
+class SelectRewardDialog(context: Context?, themeResId: Int, var reward: Int, val my_discount_balance: Int,  val listener: SelectDialogListener) : Dialog(context, themeResId) {
     private val TAG = "SelectTimeDialog"
-    var reward = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,27 +26,28 @@ class SelectRewardDialog(context: Context?, themeResId: Int, val listener: OnRew
 
     @SuppressLint("SetTextI18n")
     private fun init() {
+        group.setCheckedRadioButton(reward.toString())
+        tv_my_rewards.text = "积分剩余：${my_discount_balance}"
+        tv_selected_rewards.text = "${reward}积分"
+
         group.setOnCheckedChangeListener({ radioGroup, id ->
             run {
-                reward = when (id) {
-                    R.id.btn_reward_1 -> 1
-                    R.id.btn_reward_2 -> 2
-                    R.id.btn_reward_3 -> 3
-                    R.id.btn_reward_5 -> 4
-                    R.id.btn_reward_10 -> 10
-                    R.id.btn_reward_15 -> 15
-                    else -> -1
+                val select_reward = group.checkedRadioButtonText.toInt()
+                if (select_reward > my_discount_balance) {
+                    Utils.toast(context, "你的积分不够哦~")
+                } else {
+                    reward = select_reward
+                    tv_selected_rewards.text = "${reward}积分"
+                    listener.onChange(reward)
                 }
-                tv_selected_rewards.text = "${reward}积分"
-                listener.onChange(reward)
             }
         })
 
-        btn_next.onClick { listener.onNext() }
+        btn_next.onClick {
+            listener.onNext(reward)
+            cancel()
+        }
+        btn_cancel.onClick { cancel() }
     }
 
-    interface OnRewardChangeListener {
-        fun onChange(reward : Int)
-        fun onNext()
-    }
 }

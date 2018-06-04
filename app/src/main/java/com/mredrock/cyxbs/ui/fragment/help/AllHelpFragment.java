@@ -13,6 +13,7 @@ import com.mredrock.cyxbs.model.help.Question;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.mredrock.cyxbs.ui.adapter.HelpAdapter;
 
 import java.util.List;
 
@@ -22,12 +23,6 @@ import io.reactivex.Observer;
  * A simple {@link Fragment} subclass.
  */
 public class AllHelpFragment extends BaseHelpFragment {
-
-
-    public AllHelpFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     void provideData(SimpleObserver<List<Question>> observer, int size, int page) {

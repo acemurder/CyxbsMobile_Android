@@ -193,7 +193,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
                 // clear the animation flag
                 mAnimating = false;
 
-                // notify the listener
+                // notify the listenerSelect
                 if (mListener != null) {
                     mListener.onExpandStateChanged(mTv, !mCollapsed);
                 }

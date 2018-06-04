@@ -13,6 +13,13 @@ import java.util.List;
 
 public class EmotionHelpFragment extends BaseHelpFragment {
 
+
+    @Override
+    public void initAdapter(List<Question> questions) {
+        type = HelpAdapter.TYPE_EMOTION;
+        super.initAdapter(questions);
+    }
+
     @Override
     void provideData(SimpleObserver<List<Question>> observer, int size, int page) {
         RequestManager.getInstance().getAllQuestion(observer, Integer.toString(page), Integer.toString(size), "情感");
