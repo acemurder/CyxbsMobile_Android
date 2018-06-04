@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:orientation="vertical"
+    android:background="@color/grey_hex_fe"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="请选择求助类型"
+            android:textSize="18sp"
+            android:textColor="@color/black_lightly"
+            />
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="下一步"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/select_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:id="@+id/btn_help_select_type_learn"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/btn_help_type_learn"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="学习"
+            android:drawablePadding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/btn_help_select_type_life"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/btn_help_type_life"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="生活"
+            android:drawablePadding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/btn_help_select_type_emotion"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/btn_help_type_emotion"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="情感"
+            android:drawablePadding="10dp"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/btn_help_select_type_others"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/btn_help_type_others"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:text="其他"
+            android:drawablePadding="10dp"
+            android:checked="false"/>
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/btn_cancel"
+        android:layout_marginTop="15dp"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/btn_help_cancel"/>
+</LinearLayout>

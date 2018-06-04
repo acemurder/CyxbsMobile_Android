@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/help_item_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/list_help_img_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/list_help_img_avatar"
+                android:id="@+id/list_help_nick"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/list_help_text_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="张二叔"
+                        android:textColor="@color/grey_hex_55"
+                        android:textSize="15sp"/>
+
+                    <ImageView
+                        android:id="@+id/img_sex"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="2dp"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/list_help_text_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6小时后消失"
+                    android:textColor="@color/grey_hex_aa"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/list_help_nick"
+                android:gravity="center_vertical"
+                >
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"/>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/list_help_integral"/>
+                <TextView
+                    android:id="@+id/list_help_rewards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/grey_hex_9f"
+                    android:textSize="13sp"
+                    android:text="5积分"/>
+            </LinearLayout>
+
+
+            
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+            <TextView
+                android:id="@+id/list_help_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp"
+                android:text="#线代#"
+                />
+            <TextView
+                android:id="@+id/list_help_title"
+                android:layout_marginLeft="7dp"
+                android:textSize="16sp"
+                android:textColor="@color/black_lightly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="线性第一题不会做，求解"
+                android:singleLine="true"
+                android:ellipsize="end"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/list_help_description"
+                android:textSize="15sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="这个代码太难写了这个代码太难写了这个代"
+                android:maxLines="1"
+                android:ellipsize="end"
+                />
+            <TextView
+                android:text="查看图片"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

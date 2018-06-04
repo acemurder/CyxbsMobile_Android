@@ -2,6 +2,7 @@
     <string name="cyxbsmobile">掌上重邮</string>
     <string name="app_name">掌上重邮</string>
     <string name="community">社 区</string>
+    <string name="help">邮 问</string>
     <string name="course">课 表</string>
     <string name="explore">发 现</string>
     <string name="my_page">我 的</string>
@@ -125,7 +126,13 @@
         <item>资讯</item>
     </string-array>
 
-    ？
+    <string-array name="question_tab_titles">
+        <item>全部</item>
+        <item>学习</item>
+        <item>生活</item>
+        <item>情感</item>
+    </string-array>
+
     <!--explore page start-->
     <string name="error_text">加载失败</string>
 
@@ -309,9 +316,9 @@
     <integer name="no_limit">-1</integer>
 
 
-    <!--volunteer Time-->
-    <string name="volunteer_account" />
-    <string name="volunteer_password" />
+    <!--TODO volunteer Time there has something lose-->
+    <string name="volunteer_account"></string>
+    <string name="volunteer_password"></string>
 
     <!--问答社区-->
     <string name="question_detail_title">求助详情</string>
@@ -392,4 +399,7 @@
         <item>欺诈骗钱</item>
         <item>政治敏感</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mredrock.cyxbs">
 
-    <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
+    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
@@ -327,7 +327,7 @@
         <activity
             android:name=".PushActivity"
             android:exported="true" />
-        <!-- <activity android:name=".ui.activity.explore.SchoolCarSearch" /> -->
+        <!--<activity android:name=".ui.activity.explore.SchoolCarSearch" />-->
         <activity android:name=".ui.activity.explore.ExploreSchoolCarActivity" />
         <activity android:name=".ui.activity.explore.SchoolCarLearnMoreActivity" />
         <activity android:name=".ui.activity.qa.QuestionDetailActivity" />
@@ -344,6 +344,11 @@
         <activity android:name=".ui.activity.qa.SignRulesActivity" />
         <activity android:name=".ui.activity.qa.PointSpecActivity" />
         <activity android:name=".ui.activity.qa.RelateMeActivity" />
+        <activity android:name=".ui.activity.qa.PointSpecActivity" />
+
+        <activity android:name=".ui.activity.help.PostHelpActivity" />
+        <activity android:name=".ui.activity.help.MyHelpActivity" />
+        <activity android:name=".ui.activity.help.MyQuestionActivity" />
     </application>
 
 </manifest>

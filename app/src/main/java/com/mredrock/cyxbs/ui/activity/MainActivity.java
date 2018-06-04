@@ -39,6 +39,7 @@ import com.mredrock.cyxbs.ui.fragment.CourseContainerFragment;
 import com.mredrock.cyxbs.ui.fragment.UnLoginFragment;
 import com.mredrock.cyxbs.ui.fragment.UserFragment;
 import com.mredrock.cyxbs.ui.fragment.explore.ExploreFragment;
+import com.mredrock.cyxbs.ui.fragment.help.HelpContainerFragment;
 import com.mredrock.cyxbs.ui.fragment.social.SocialContainerFragment;
 import com.mredrock.cyxbs.ui.widget.BottomNavigationViewHelper;
 import com.mredrock.cyxbs.ui.widget.JToolbar;
@@ -70,12 +71,13 @@ public class MainActivity extends BaseActivity {
     String mStringCommunity;
     @BindString(R.string.course)
     String mStringCourse;
-    @BindString(R.string.explore)
-    String mStringExplore;
+    @BindString(R.string.help)
+    String mStringHelp;
     @BindString(R.string.my_page)
     String mStringMyPage;
 
     BaseFragment socialContainerFragment;
+    BaseFragment helpContainerFragment;
     BaseFragment courseContainerFragment;
     BaseFragment exploreFragment;
     BaseFragment userFragment;
@@ -144,7 +146,8 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         initToolbar();
-        socialContainerFragment = new SocialContainerFragment();
+        //socialContainerFragment = new SocialContainerFragment();
+        helpContainerFragment = new HelpContainerFragment();
         courseContainerFragment = new CourseContainerFragment();
         exploreFragment = new ExploreFragment();
         userFragment = new UserFragment();
@@ -159,14 +162,15 @@ public class MainActivity extends BaseActivity {
             mFragments.add(courseContainerFragment);
 //            loginFace();
         }
-        mFragments.add(socialContainerFragment);
+        //mFragments.add(socialContainerFragment);
+        mFragments.add(helpContainerFragment);
         mFragments.add(exploreFragment);
         mFragments.add(userFragment);
 
         ArrayList<String> titles = new ArrayList<>();
         titles.add(mStringCourse);
         titles.add(mStringCommunity);
-        titles.add(mStringExplore);
+        titles.add(mStringHelp);
         titles.add(mStringMyPage);
         mAdapter = new TabPagerAdapter(getSupportFragmentManager(), mFragments, titles);
         mViewPager.setAdapter(mAdapter);
@@ -418,7 +422,7 @@ public class MainActivity extends BaseActivity {
 //                    mMainToolbarFace.setVisibility(View.GONE);
                     mToolbar.setVisibility(View.VISIBLE);
                     setCourseUnfold(false, mUnfold);
-                    setTitle("社 区");
+                    setTitle("邮 问");
                     hiddenMenu();
                     break;
                 case 2:

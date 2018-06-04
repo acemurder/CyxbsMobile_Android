@@ -8,9 +8,9 @@
 
     <item
         android:id="@+id/item2"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_help"
         android:orderInCategory="1"
-        android:title="@string/community"/>
+        android:title="@string/help"/>
 
     <item
         android:id="@+id/item3"

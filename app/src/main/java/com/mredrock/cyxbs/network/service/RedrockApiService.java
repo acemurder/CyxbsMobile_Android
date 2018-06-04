@@ -20,6 +20,8 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
+import com.mredrock.cyxbs.model.help.Question;
+import com.mredrock.cyxbs.model.help.QuestionId;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -349,4 +351,29 @@ public interface RedrockApiService {
     @FormUrlEncoded
     @POST(Const.API_ROLLER_VIEW)
     Observable<RedrockApiWrapper<List<RollerViewInfo>>> getRollerViewInfo(@Field("pic_num") String pic_num);
+
+    @FormUrlEncoded
+    @POST(Const.API_ALL_QUESTION)
+    Observable<RedrockApiWrapper<List<Question>>> getAllQuestion(@Field("page") String page,
+                                                                 @Field("size") String size,
+                                                                 @Field("kind") String kind);
+
+    @FormUrlEncoded
+    @POST(Const.API_ADD_QUESTION)
+    Observable<RedrockApiWrapper<QuestionId>> postNewQuestion(@Field("stuNum") String stuNum,
+                                                              @Field("idNum") String idNum,
+                                                              @Field("title") String title,
+                                                              @Field("description") String description,
+                                                              @Field("is_anonymous") int is_anonymous,
+                                                              @Field("kind") String kind,
+                                                              @Field("tags") String tags,
+                                                              @Field("reward") int reward,
+                                                              @Field("disappear_time") String disappear_time);
+
+    @Multipart
+    @POST(Const.API_UPLOAD_QUESTION_PITURE)
+    Observable<RedrockApiWrapper<List<String>>> uploadHelpImg(@Part("stuNum") RequestBody stuNum,
+                                                @Part("idNum") RequestBody idNum,
+                                                @Part("question_id") RequestBody question_id,
+                                                @Part() List<MultipartBody.Part> parts);
 }
