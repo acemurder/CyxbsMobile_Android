@@ -2,10 +2,7 @@ package com.mredrock.cyxbs.network.service
 
 import com.mredrock.cyxbs.config.Const
 import com.mredrock.cyxbs.model.RedrockApiWrapper
-import com.mredrock.cyxbs.model.qa.Answer
-import com.mredrock.cyxbs.model.qa.CheckInStatus
-import com.mredrock.cyxbs.model.qa.Draft
-import com.mredrock.cyxbs.model.qa.QuestionDetail
+import com.mredrock.cyxbs.model.qa.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -93,4 +90,12 @@ interface QAService {
     @POST(Const.CHECK_IN_STATUS)
     fun getCheckInStatus(@Field("stunum") stuNum: String,
                          @Field("idnum") idNum: String): Observable<RedrockApiWrapper<CheckInStatus>>
+
+    @FormUrlEncoded
+    @POST(Const.RELATE_ME_LIST)
+    fun getRelateMeList(@Field("stunum") stuNum: String,
+                        @Field("idnum") idNum: String,
+                        @Field("page") page: Int,
+                        @Field("size") size: Int,
+                        @Field("type") type: Int): Observable<RedrockApiWrapper<List<RelateMeItem>>>
 }

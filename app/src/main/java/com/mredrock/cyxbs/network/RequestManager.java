@@ -39,6 +39,7 @@ import com.mredrock.cyxbs.model.qa.Answer;
 import com.mredrock.cyxbs.model.qa.CheckInStatus;
 import com.mredrock.cyxbs.model.qa.Draft;
 import com.mredrock.cyxbs.model.qa.QuestionDetail;
+import com.mredrock.cyxbs.model.qa.RelateMeItem;
 import com.mredrock.cyxbs.model.social.BBDDNewsContent;
 import com.mredrock.cyxbs.model.social.CommentContent;
 import com.mredrock.cyxbs.model.social.HotNews;
@@ -887,6 +888,12 @@ public enum RequestManager {
 
     public void getCheckInStatus(Observer<CheckInStatus> observer, String stuNum, String idNum) {
         Observable<CheckInStatus> observable = qaService.getCheckInStatus(stuNum, idNum)
+                .map(new RedrockApiWrapperFunc<>());
+        emitObservable(observable, observer);
+    }
+
+    public void getRelateMeList(Observer<List<RelateMeItem>> observer, String stuNum, String idNum, int page, int type) {
+        Observable<List<RelateMeItem>> observable = qaService.getRelateMeList(stuNum, idNum, page, 6, type)
                 .map(new RedrockApiWrapperFunc<>());
         emitObservable(observable, observer);
     }

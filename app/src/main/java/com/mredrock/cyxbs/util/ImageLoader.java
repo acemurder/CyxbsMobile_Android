@@ -82,7 +82,7 @@ public class ImageLoader {
     public void loadRedrockImage(String url, ImageView imageView) {
         if (url.length() > 0) {
             Glide.with(BaseAPP.getContext())
-                    .load(url.startsWith("http") ? url : CustomImageView.BASE_THUMBNAIL_IMG_URL + url)
+                    .load(url.startsWith("http") || url.startsWith("https") ? url : CustomImageView.BASE_THUMBNAIL_IMG_URL + url)
                     .placeholder(R.drawable.place_holder)
                     .error(R.drawable.place_holder)
                     .crossFade()

@@ -91,7 +91,7 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
         }), user.stuNum, user.idNum, questionDetail!!.id, nextPage)
     }
 
-    override fun addData(dataSet: List<Answer>) {
+    override fun addData(dataSet: Collection<Answer>) {
         super.addData(dataSet)
         resortData(sortOrder)
     }

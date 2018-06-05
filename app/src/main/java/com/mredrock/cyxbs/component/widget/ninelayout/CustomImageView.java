@@ -25,7 +25,7 @@ import com.mredrock.cyxbs.util.DensityUtils;
 public class CustomImageView extends android.support.v7.widget.AppCompatImageView {
 
 
-    public static final String BASE_NORMAL_IMG_URL = "http://hongyan.cqupt.edu.cn/cyxbsMobile/Public/photo/";
+    public static final String BASE_NORMAL_IMG_URL = "https://wx.idsbllp.cn/cyxbsMobile/Public/photo/";
     public static final String BASE_THUMBNAIL_IMG_URL = BASE_NORMAL_IMG_URL + "thumbnail/";
 
     private String url;

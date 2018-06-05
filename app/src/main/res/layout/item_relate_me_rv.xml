@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mredrock.cyxbs.component.widget.card.JCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    app:radius="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/default_avatar" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp">
+
+                <TextView
+                    android:id="@+id/nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/relate_me_nickname"
+                    android:textSize="14sp"
+                    tools:text="刘童鞋" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nickname"
+                    android:textColor="@color/relate_me_time"
+                    android:textSize="12sp"
+                    tools:text="23:30" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/nickname"
+                    android:textColor="@color/relate_me_type"
+                    android:textSize="14sp"
+                    tools:text="评论" />
+
+                <TextView
+                    android:id="@+id/typeSuffix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/type"
+                    android:text="@string/relate_me_type_suffix"
+                    android:textColor="@color/relate_me_type"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/typeSuffix"
+                    android:gravity="end"
+                    android:text="@string/relate_me_reply"
+                    android:textColor="@color/relate_me_nickname"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            tools:text="大佬！这道题正解！" />
+
+        <LinearLayout
+            android:id="@+id/answerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/relate_me_bg_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/default_error" />
+
+            <TextView
+                android:id="@+id/answerContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/relate_me_answer_content"
+                android:textSize="13sp"
+                tools:text="给的新思路，仔细看图,给的新思路，仔细看图, 给的新思路，仔细看图" />
+        </LinearLayout>
+    </LinearLayout>
+</com.mredrock.cyxbs.component.widget.card.JCardView>

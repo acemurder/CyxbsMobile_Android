@@ -127,6 +127,7 @@ public class Const {
     public static final String DRAFT_LIST = "springtest/cyxbsMobile/index.php/QA/User/getDraftList";
     public static final String CHECK_IN = "springtest/cyxbsMobile/index.php/QA/Integral/checkIn";
     public static final String CHECK_IN_STATUS = "springtest/cyxbsMobile/index.php/QA/Integral/getCheckInStatus";
+    public static final String RELATE_ME_LIST = "springtest/cyxbsMobile/index.php/QA/User/aboutMe";
     public static final String API_ALL_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/getQuestionList";
     public static final String API_ADD_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/add";
     public static final String API_UPLOAD_QUESTION_PITURE = "/springtest/cyxbsMobile/index.php/QA/Question/uploadPicture";

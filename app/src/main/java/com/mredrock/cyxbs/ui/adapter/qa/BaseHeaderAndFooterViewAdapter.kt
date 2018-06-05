@@ -16,19 +16,19 @@ abstract class BaseHeaderAndFooterViewAdapter<T>(private val context: Context) :
         const val TYPE_EMPTY = 3
     }
 
-    val dataSet = ArrayList<T>()
+    protected val dataSet = ArrayList<T>()
 
     var headerViewWrapper: BaseViewHolder<*>? = null
     var footerViewWrapper: BaseViewHolder<*>? = null
     var emptyViewWrapper: BaseViewHolder<*>? = null
 
-    open fun refreshData(dataSet: List<T>) {
+    open fun refreshData(dataSet: Collection<T>) {
         this.dataSet.clear()
         this.dataSet.addAll(dataSet)
         notifyDataSetChanged()
     }
 
-    open fun addData(dataSet: List<T>) {
+    open fun addData(dataSet: Collection<T>) {
         this.dataSet.addAll(dataSet)
         notifyItemInserted(itemCount - 1)
     }

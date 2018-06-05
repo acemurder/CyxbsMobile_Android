@@ -126,5 +126,10 @@
     <color name="sign_divider">#839BFA</color>
     <color name="sign_hint_singed">#bf000000</color>
     <color name="sign_rules_rules">#b2000000</color>
+    <color name="relate_me_nickname">#6898FF</color>
+    <color name="relate_me_time">#d8999999</color>
+    <color name="relate_me_type">#666666</color>
+    <color name="relate_me_bg_content">#7FF1F2F4</color>
+    <color name="relate_me_answer_content">#777777</color>
 
 </resources>
