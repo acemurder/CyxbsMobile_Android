@@ -125,12 +125,15 @@ public class Const {
     public static final String ANSWER_COMMENT_LIST = "springtest/cyxbsMobile/index.php/QA/Answer/getRemarkList";
     public static final String COMMENT_ANSWER = "springtest/cyxbsMobile/index.php/QA/Answer/remark";
     public static final String DRAFT_LIST = "springtest/cyxbsMobile/index.php/QA/User/getDraftList";
+    public static final String ADD_DRAFT = "springtest/cyxbsMobile/index.php/QA/User/addItemInDraft";
+    public static final String DELETE_DRAFT = "springtest/cyxbsMobile/index.php/QA/User/deleteItemInDraft";
+    public static final String REFRESH_DRAFT = "https://wx.idsbllp.cn/springtest/cyxbsMobile/index.php/QA/User/updateItemInDraft";
     public static final String CHECK_IN = "springtest/cyxbsMobile/index.php/QA/Integral/checkIn";
     public static final String CHECK_IN_STATUS = "springtest/cyxbsMobile/index.php/QA/Integral/getCheckInStatus";
     public static final String RELATE_ME_LIST = "springtest/cyxbsMobile/index.php/QA/User/aboutMe";
     public static final String API_ALL_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/getQuestionList";
     public static final String API_ADD_QUESTION = "/springtest/cyxbsMobile/index.php/QA/Question/add";
-    public static final String API_UPLOAD_QUESTION_PITURE = "/springtest/cyxbsMobile/index.php/QA/Question/uploadPicture";
+    public static final String API_UPLOAD_QUESTION_PICTURE = "/springtest/cyxbsMobile/index.php/QA/Question/uploadPicture";
     public static final String API_CANCEL_QUESTION = "springtest/cyxbsMobile/index.php/QA/Question/cancelQuestion";
     public static final String API_HELP_USER_HELP = "/springtest/cyxbsMobile/index.php/QA/User/help";
     public static final String API_HELP_USER_ASK = "/springtest/cyxbsMobile/index.php/QA/User/ask";

@@ -13,7 +13,7 @@ import com.mredrock.cyxbs.network.error.QAErrorHandler
 import com.mredrock.cyxbs.subscriber.SimpleObserver
 import com.mredrock.cyxbs.subscriber.SubscriberListener
 import com.mredrock.cyxbs.ui.activity.BaseActivity
-import com.mredrock.cyxbs.ui.adapter.qa.QuestionDetailFooterViewWrapper
+import com.mredrock.cyxbs.ui.adapter.qa.BaseFooterViewWrapper
 import com.mredrock.cyxbs.ui.adapter.qa.RelateMeRvAdapter
 import kotlinx.android.synthetic.main.activity_relate_me.*
 import kotlinx.android.synthetic.main.layout_me_empty_data.view.*
@@ -126,20 +126,20 @@ class RelateMeActivity : BaseActivity(), TabLayout.OnTabSelectedListener, SwipeR
     }
 
     private fun onLoadMore(wrapper: BaseViewHolder<Int>) {
-        wrapper.setData(QuestionDetailFooterViewWrapper.LOADING)
+        wrapper.setData(BaseFooterViewWrapper.LOADING)
         val user = BaseAPP.getUser(this)!!
         val presentType = type
         val list = getPresentList(presentType)
         if (list.size % 6 != 0) {
-            wrapper.setData(QuestionDetailFooterViewWrapper.NO_MORE_DATA)
+            wrapper.setData(BaseFooterViewWrapper.NO_MORE_DATA)
             return
         }
         RequestManager.INSTANCE.getRelateMeList(SimpleObserver(this, object : SubscriberListener<List<RelateMeItem>>(QAErrorHandler) {
             override fun onNext(t: List<RelateMeItem>) {
                 super.onNext(t)
-                wrapper.setData(QuestionDetailFooterViewWrapper.LOAD_SUCCESS)
+                wrapper.setData(BaseFooterViewWrapper.LOAD_SUCCESS)
                 if (t.isEmpty()) {
-                    wrapper.setData(QuestionDetailFooterViewWrapper.NO_MORE_DATA)
+                    wrapper.setData(BaseFooterViewWrapper.NO_MORE_DATA)
                     return
                 }
                 list.addAll(t)
@@ -155,7 +155,7 @@ class RelateMeActivity : BaseActivity(), TabLayout.OnTabSelectedListener, SwipeR
 
             override fun onError(e: Throwable?): Boolean {
                 easyRv.setRefreshing(false)
-                wrapper.setData(QuestionDetailFooterViewWrapper.LOAD_FAIL)
+                wrapper.setData(BaseFooterViewWrapper.LOAD_FAIL)
                 return super.onError(e)
             }
         }), user.stuNum, user.idNum, list.size / 6 + 1, presentType)

@@ -16,26 +16,26 @@ abstract class BaseHeaderAndFooterViewAdapter<T>(private val context: Context) :
         const val TYPE_EMPTY = 3
     }
 
-    protected val dataSet = ArrayList<T>()
+    protected val dataList = ArrayList<T>()
 
     var headerViewWrapper: BaseViewHolder<*>? = null
     var footerViewWrapper: BaseViewHolder<*>? = null
     var emptyViewWrapper: BaseViewHolder<*>? = null
 
     open fun refreshData(dataSet: Collection<T>) {
-        this.dataSet.clear()
-        this.dataSet.addAll(dataSet)
+        this.dataList.clear()
+        this.dataList.addAll(dataSet)
         notifyDataSetChanged()
     }
 
     open fun addData(dataSet: Collection<T>) {
-        this.dataSet.addAll(dataSet)
+        this.dataList.addAll(dataSet)
         notifyItemInserted(itemCount - 1)
     }
 
     override fun getItemViewType(position: Int) = when {
         headerViewWrapper != null && position == 0 -> TYPE_HEADER
-        emptyViewWrapper != null && dataSet.size == 0 -> TYPE_EMPTY
+        emptyViewWrapper != null && dataList.size == 0 -> TYPE_EMPTY
         footerViewWrapper != null && position == itemCount - 1 -> TYPE_FOOTER
         else -> TYPE_DATA
     }
@@ -48,10 +48,10 @@ abstract class BaseHeaderAndFooterViewAdapter<T>(private val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        var count = dataSet.size
+        var count = dataList.size
         if (headerViewWrapper != null) ++count
-        if (footerViewWrapper != null && dataSet.size != 0) ++count
-        if (emptyViewWrapper != null && dataSet.size == 0) ++count
+        if (footerViewWrapper != null && dataList.size != 0) ++count
+        if (emptyViewWrapper != null && dataList.size == 0) ++count
         return count
     }
 
@@ -61,7 +61,7 @@ abstract class BaseHeaderAndFooterViewAdapter<T>(private val context: Context) :
             holder.itemView.setOnClickListener { onLoadMoreData(footerViewWrapper!!) }
         }
         TYPE_DATA -> {
-            (holder as BaseViewHolder<T>).setData(dataSet[getDataSetPosition(position)])
+            (holder as BaseViewHolder<T>).setData(dataList[getDataSetPosition(position)])
             holder.itemView.setOnClickListener { onItemClickListener(holder, getDataSetPosition(position)) }
         }
         else -> Unit

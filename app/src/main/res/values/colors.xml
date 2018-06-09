@@ -131,5 +131,8 @@
     <color name="relate_me_type">#666666</color>
     <color name="relate_me_bg_content">#7FF1F2F4</color>
     <color name="relate_me_answer_content">#777777</color>
+    <color name="draft_item_title">#2E2E2E</color>
+    <color name="draft_item_content">#555555</color>
+    <color name="draft_item_time">#888888</color>
 
 </resources>

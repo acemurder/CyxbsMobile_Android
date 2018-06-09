@@ -37,8 +37,8 @@ class RelateMeRvAdapter(rv: RecyclerView, private val context: Context, private 
     private lateinit var aid: String
 
     init {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.footer_question_detail, rv, false)
-        footerViewWrapper = QuestionDetailFooterViewWrapper(itemView)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.footer_base_footer_view_wrapper, rv, false)
+        footerViewWrapper = BaseFooterViewWrapper(itemView)
     }
 
     private fun initDialog(): BottomSheetDialog {

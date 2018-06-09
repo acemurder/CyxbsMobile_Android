@@ -405,4 +405,5 @@
     <string name="relate_me_empty_hint">还没有与我相关的动态哦</string>
     <string name="relate_me_type_suffix">了我</string>
     <string name="relate_me_reply">回复</string>
+    <string name="draft_empty_hint">还没有草稿在这里哦～</string>
 </resources>

@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.util.Base64;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.BaseAPP;
 import com.mredrock.cyxbs.R;
@@ -19,11 +21,14 @@ import com.mredrock.cyxbs.component.multi_image_selector.MultiImageSelectorActiv
 import com.mredrock.cyxbs.component.widget.ninelayout.NineGridlayout;
 import com.mredrock.cyxbs.model.User;
 import com.mredrock.cyxbs.model.help.Question;
+import com.mredrock.cyxbs.model.qa.Draft;
 import com.mredrock.cyxbs.model.social.Image;
 import com.mredrock.cyxbs.network.RequestManager;
+import com.mredrock.cyxbs.network.error.QAErrorHandler;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.mredrock.cyxbs.ui.activity.qa.DraftActivity;
 import com.mredrock.cyxbs.ui.fragment.help.RecheckDialog;
 import com.mredrock.cyxbs.ui.fragment.help.SelectDialogListener;
 import com.mredrock.cyxbs.ui.fragment.help.SelectRewardDialog;
@@ -33,7 +38,7 @@ import com.mredrock.cyxbs.util.DialogUtil;
 import com.mredrock.cyxbs.util.Utils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.anko.ToastsKt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,7 @@ import butterknife.OnTextChanged;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import kotlin.Unit;
 
 /**
  * Created by yan on 2018/5/23.
@@ -88,10 +94,21 @@ public class PostHelpActivity extends BaseActivity {
     private int reward = 1;
     private int my_discount_balance = 0;
 
+    private String draftId = null;
+    private boolean saveCache = true;
 
     public static void startActivity(Context context, String kind) {
         Intent intent = new Intent(context, PostHelpActivity.class);
         intent.putExtra("kind", kind);
+        context.startActivity(intent);
+    }
+
+    public static void startActivityFromDraft(Context context, String kind, String id, String title, String description) {
+        Intent intent = new Intent(context, PostHelpActivity.class);
+        intent.putExtra("kind", kind);
+        intent.putExtra("id", id);
+        intent.putExtra("title", title);
+        intent.putExtra("description", description);
         context.startActivity(intent);
     }
 
@@ -106,6 +123,13 @@ public class PostHelpActivity extends BaseActivity {
         initToolbar();
         Intent intent = getIntent();
         kind = intent.getStringExtra("kind");
+
+        //草稿箱内容复原
+        String title = intent.getStringExtra("title");
+        String description = intent.getStringExtra("description");
+        draftId = intent.getStringExtra("id");
+        mTitle.setText(title);
+        mContent.setText(description);
     }
 
     private void init() {
@@ -222,9 +246,9 @@ public class PostHelpActivity extends BaseActivity {
 
     @OnClick(R.id.toolbar_next)
     public void onViewClicked() {
-        if (mTitle.getText().toString().isEmpty()){
+        if (mTitle.getText().toString().isEmpty()) {
             Utils.toast(this, "请先填写标题~");
-        } else if (mContent.getText().toString().isEmpty()){
+        } else if (mContent.getText().toString().isEmpty()) {
             Utils.toast(this, "请先填写内容~");
         } else if (tag == "") {
             Utils.toast(this, "请先选择一个标签~");
@@ -309,7 +333,7 @@ public class PostHelpActivity extends BaseActivity {
 
     private void postNewHelp() {
         List<String> files = new ArrayList<>();
-        for (Image image :mImgList) {
+        for (Image image : mImgList) {
             files.add(image.url);
         }
         //删除最后一张添加按钮的图片
@@ -338,7 +362,13 @@ public class PostHelpActivity extends BaseActivity {
 
             @Override
             public void onNext(Object o) {
-                PostHelpActivity.this.finish();
+                if (draftId != null) {
+                    Intent data = new Intent();
+                    data.putExtra("id", draftId);
+                    setResult(DraftActivity.RESULT_DRAFT_SUBMITTED, data);
+                }
+                saveCache = false;
+                finish();
             }
 
             @Override
@@ -380,4 +410,38 @@ public class PostHelpActivity extends BaseActivity {
         selectTag(FROM_IMG_BTN);
     }
 
+    public void saveToDraft() {
+        String content = mContent.getText().toString();
+        String title = mTitle.getText().toString();
+        if (content.isEmpty() && title.isEmpty()) return;
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("title", title);
+        jsonObject.addProperty("description", content);
+        jsonObject.addProperty("kind", kind);
+        String json = jsonObject.toString();
+        String base64Json = Base64.encodeToString(json.getBytes(), Base64.DEFAULT);
+        ToastsKt.toast(this, "您未提交的内容将提交至草稿箱");
+        User user = BaseAPP.getUser(this);
+        if (draftId != null) {
+            RequestManager.INSTANCE.refreshDraft(new SimpleObserver<>(BaseAPP.getContext(), new SubscriberListener<Unit>(QAErrorHandler.INSTANCE) {
+                @Override
+                public boolean onError(Throwable e) {
+                    return true;
+                }
+            }), user.stuNum, user.idNum, base64Json, draftId);
+        } else {
+            RequestManager.INSTANCE.addDraft(new SimpleObserver<>(BaseAPP.getContext(), new SubscriberListener<Unit>(QAErrorHandler.INSTANCE) {
+                @Override
+                public boolean onError(Throwable e) {
+                    return true;
+                }
+            }), user.stuNum, user.idNum, Draft.TYPE_QUESTION, base64Json, "");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (saveCache) saveToDraft();
+    }
 }

@@ -20,7 +20,9 @@ import org.jetbrains.anko.DimensionsKt;
  * 1. 可设置阴影颜色及大小
  * 2. 可隐藏部分边阴影
  * 3. 可设置内凹圆角
- * <p>
+ *
+ * 注意：控件的实际大小=内容大小+阴影大小
+ *
  * Created By jay68 on 2018/05/30.
  */
 public class JCardView extends FrameLayout {

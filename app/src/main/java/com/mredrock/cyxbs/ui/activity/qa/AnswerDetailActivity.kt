@@ -13,6 +13,7 @@ import android.widget.PopupWindow
 import com.mredrock.cyxbs.BaseAPP
 import com.mredrock.cyxbs.R
 import com.mredrock.cyxbs.model.qa.Answer
+import com.mredrock.cyxbs.model.qa.Draft
 import com.mredrock.cyxbs.network.RequestManager
 import com.mredrock.cyxbs.network.error.QAErrorHandler
 import com.mredrock.cyxbs.subscriber.SimpleObserver
@@ -26,6 +27,7 @@ import com.mredrock.cyxbs.util.extensions.visible
 import kotlinx.android.synthetic.main.activity_comment_detail.*
 import kotlinx.android.synthetic.main.dialog_answer_detail.view.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -250,5 +252,23 @@ class AnswerDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListene
     private fun PopupWindow.show() {
         showAtLocation(toolbar, Gravity.END or Gravity.TOP, 0, toolbar.height)
         frame.visible()
+    }
+
+    private fun saveToDraft() {
+        val str = AnswerDetailActivity.draft
+        if (str.isBlank()) return
+        toast("您未提交的内容将提交至草稿箱")
+        val user = BaseAPP.getUser(this)
+        RequestManager.INSTANCE.addDraft(SimpleObserver(BaseAPP.getContext(), object : SubscriberListener<Unit>(QAErrorHandler) {
+            override fun onError(e: Throwable?): Boolean {
+                BaseAPP.getContext().longToast("保存至草稿箱失败，请在app退出前重新尝试或直接提交, app退出后记录将丢失")
+                return true
+            }
+        }), user.stuNum, user.idNum, Draft.TYPE_COMMENT, str, answer.id)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        saveToDraft()
     }
 }

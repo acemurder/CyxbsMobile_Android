@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import com.mredrock.cyxbs.BaseAPP
 import com.mredrock.cyxbs.R
 import com.mredrock.cyxbs.component.multi_image_selector.MultiImageSelectorActivity
+import com.mredrock.cyxbs.model.qa.Draft
 import com.mredrock.cyxbs.model.social.Image
 import com.mredrock.cyxbs.network.RequestManager
 import com.mredrock.cyxbs.network.error.QAErrorHandler
@@ -17,15 +18,17 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener
 import com.mredrock.cyxbs.ui.activity.BaseActivity
 import com.mredrock.cyxbs.util.extensions.doPermissionAction
 import kotlinx.android.synthetic.main.activity_answer_question.*
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import java.io.File
 
 class AnswerQuestionActivity : BaseActivity() {
     private lateinit var qid: String
-    private var saveCache: Boolean = true
+    private var saveCache = true
     private var maxLength: Int = 0
     private var imageList: MutableList<Image> = mutableListOf(Image(ADD_IMAGE_PATH, Image.TYPE_ADD))
+    private var draftId: String? = null
 
     companion object {
         @JvmStatic
@@ -40,6 +43,15 @@ class AnswerQuestionActivity : BaseActivity() {
         fun start(context: Activity, questionId: String) {
             context.startActivityForResult<AnswerQuestionActivity>(ANSWER, "questionId" to questionId)
         }
+
+        @JvmStatic
+        fun startFromDraft(context: Activity, questionId: String, draftId: String, text: String) {
+            context.startActivityForResult<AnswerQuestionActivity>(ANSWER,
+                    "questionId" to questionId,
+                    "draftId" to draftId,
+                    "text" to text
+            )
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +63,8 @@ class AnswerQuestionActivity : BaseActivity() {
 
     private fun initData() {
         qid = intent.getStringExtra("questionId")
+        cache = intent.getStringExtra("text") ?: ""
+        draftId = intent.getStringExtra("draftId")
         maxLength = resources.getInteger(R.integer.answer_max_length)
     }
 
@@ -108,10 +122,41 @@ class AnswerQuestionActivity : BaseActivity() {
             override fun onNext(t: Unit?) {
                 super.onNext(t)
                 toast("发布成功")
-                setResult(Activity.RESULT_OK)
+                saveCache = false
+
+                if (draftId != null) {
+                    val data = Intent()
+                    data.putExtra("id", draftId)
+                    setResult(DraftActivity.RESULT_DRAFT_SUBMITTED, data)
+                } else {
+                    setResult(Activity.RESULT_OK)
+                }
                 finish()
             }
         }), user.stuNum, user.idNum, qid, content.text.toString(), files)
+    }
+
+    private fun saveToDraft() {
+        val str = content.text.toString()
+        if (str.isBlank() || cache == str) return
+        cache = str
+        toast("您未提交的内容将提交至草稿箱")
+        val user = BaseAPP.getUser(this)
+        if (draftId != null) {
+            RequestManager.INSTANCE.refreshDraft(SimpleObserver(BaseAPP.getContext(), object : SubscriberListener<Unit>(QAErrorHandler) {
+                override fun onError(e: Throwable?): Boolean {
+                    BaseAPP.getContext().longToast("更新草稿失败，请在app退出前重新尝试或直接提交, app退出后记录将丢失")
+                    return true
+                }
+            }), user.stuNum, user.idNum, str, draftId)
+        } else {
+            RequestManager.INSTANCE.addDraft(SimpleObserver(BaseAPP.getContext(), object : SubscriberListener<Unit>(QAErrorHandler) {
+                override fun onError(e: Throwable?): Boolean {
+                    BaseAPP.getContext().longToast("保存至草稿箱失败，请在app退出前重新尝试或直接提交, app退出后记录将丢失")
+                    return true
+                }
+            }), user.stuNum, user.idNum, Draft.TYPE_ANSWER, str, qid)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -129,8 +174,11 @@ class AnswerQuestionActivity : BaseActivity() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        cache = if (saveCache) content.text.toString() else ""
+    override fun onDestroy() {
+        super.onDestroy()
+        if (saveCache) {
+            setResult(DraftActivity.RESULT_DRAFT_REFRESHED)
+            saveToDraft()
+        }
     }
 }

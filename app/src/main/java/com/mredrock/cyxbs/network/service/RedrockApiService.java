@@ -20,7 +20,6 @@ import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.model.User;
-import com.mredrock.cyxbs.model.VolunteerTime;
 import com.mredrock.cyxbs.model.help.MyQuestion;
 import com.mredrock.cyxbs.model.help.Question;
 import com.mredrock.cyxbs.model.help.QuestionId;
@@ -38,7 +37,6 @@ import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.model.social.UploadImgResponse;
 import com.mredrock.cyxbs.network.setting.annotation.XmlApi;
 
-import java.io.File;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -374,7 +372,7 @@ public interface RedrockApiService {
                                                               @Field("disappear_time") String disappear_time);
 
     @Multipart
-    @POST(Const.API_UPLOAD_QUESTION_PITURE)
+    @POST(Const.API_UPLOAD_QUESTION_PICTURE)
     Observable<RedrockApiWrapper<List<String>>> uploadHelpImg(@Part("stuNum") RequestBody stuNum,
                                                 @Part("idNum") RequestBody idNum,
                                                 @Part("question_id") RequestBody question_id,

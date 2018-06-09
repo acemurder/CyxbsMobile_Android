@@ -99,6 +99,8 @@ class QuestionDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListe
         if (hasAdoptedAnswer) {
             footer.gone()
             return
+        } else {
+            footer.visible()
         }
         if (isSelf) {
             leftFooterButtonTv.setCompoundDrawablesWithIntrinsicBounds(

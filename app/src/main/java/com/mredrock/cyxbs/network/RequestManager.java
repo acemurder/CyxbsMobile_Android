@@ -10,6 +10,7 @@ import com.mredrock.cyxbs.config.Const;
 import com.mredrock.cyxbs.event.AskLoginEvent;
 import com.mredrock.cyxbs.model.AboutMe;
 import com.mredrock.cyxbs.model.Affair;
+import com.mredrock.cyxbs.model.BaseRedrockApiWrapper;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.model.Empty;
@@ -79,6 +80,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -776,9 +778,9 @@ public enum RequestManager {
                     @Override
                     public QuestionDetail apply(RedrockApiWrapper<QuestionDetail> wrapper) throws Exception {
                         QuestionDetail data = super.apply(wrapper);
+                        data.setHasAdoptedAnswer(false);
                         if (data.hasAnswer()) {
                             List<Answer> answers = data.getAnswers();
-                            data.setHasAdoptedAnswer(true);
                             assert answers != null; //method hasAnswer() has ensure it's not null
                             for (Answer item : answers) {
                                 if (item.isAdopted()) {
@@ -834,7 +836,7 @@ public enum RequestManager {
         emitObservable(observable, observer);
     }
 
-    private Observable<RedrockApiWrapper<Unit>> uploadPic(String stuNum, String idNum, String aid, List<File> files) {
+    private Observable<BaseRedrockApiWrapper> uploadPic(String stuNum, String idNum, String aid, List<File> files) {
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("stuNum", stuNum)
@@ -876,7 +878,37 @@ public enum RequestManager {
 
     public void getDraftList(Observer<List<Draft>> observer, String stuNum, String idNum, int page) {
         Observable<List<Draft>> observable = qaService.getDraftList(stuNum, idNum, page, 6)
-                .map(new RedrockApiWrapperFunc<>());
+                .map(new RedrockApiWrapperFunc<List<Draft>>() {
+                    @Override
+                    public List<Draft> apply(RedrockApiWrapper<List<Draft>> wrapper) throws Exception {
+                        List<Draft> drafts = super.apply(wrapper);
+                        if (drafts == null) return Collections.emptyList();
+                        for (Draft draft : drafts) {
+                            if (draft.isQuestion()) {
+                                draft.parseQuestion();
+                            }
+                        }
+                        return drafts;
+                    }
+                });
+        emitObservable(observable, observer);
+    }
+
+    public void addDraft(Observer<Unit> observer, String stuNum, String idNum, String type, String content, String targetId) {
+        Observable<Unit> observable = qaService.addDraft(stuNum, idNum, type, content, targetId)
+                .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void refreshDraft(Observer<Unit> observer, String stuNum, String idNum, String content, String draftId) {
+        Observable<Unit> observable = qaService.refreshDraft(stuNum, idNum, content, draftId)
+                .map(new RedrockApiNoDataWrapperFunc());
+        emitObservable(observable, observer);
+    }
+
+    public void deleteDraft(Observer<Unit> observer, String stuNum, String idNum, String id) {
+        Observable<Unit> observable = qaService.deleteDraft(stuNum, idNum, id)
+                .map(new RedrockApiNoDataWrapperFunc());
         emitObservable(observable, observer);
     }
 

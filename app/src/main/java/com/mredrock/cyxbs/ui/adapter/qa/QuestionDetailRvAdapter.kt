@@ -42,8 +42,8 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
         itemView.divider.gone()
         emptyViewWrapper = AnswerDetailEmptyViewWrapper(itemView)
 
-        itemView = layoutInflater.inflate(R.layout.footer_question_detail, rv, false)
-        footerViewWrapper = QuestionDetailFooterViewWrapper(itemView)
+        itemView = layoutInflater.inflate(R.layout.footer_base_footer_view_wrapper, rv, false)
+        footerViewWrapper = BaseFooterViewWrapper(itemView)
     }
 
     override fun onCreateDataViewHolder(parent: ViewGroup): BaseViewHolder<Answer> = QuestionDetailViewWrapper(parent)
@@ -52,7 +52,7 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
         super.onItemClickListener(holder, position)
         val question = questionDetail ?: return
         AnswerDetailActivity.start(context, question.tags, question.id, question.title, question.hasAdoptedAnswer,
-                question.isSelf, question.shouldShowGenderIcon(), dataSet[position])
+                question.isSelf, question.shouldShowGenderIcon(), dataList[position])
     }
 
     fun refreshData(questionDetail: QuestionDetail) {
@@ -66,26 +66,26 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
 
     override fun onLoadMoreData(footer: BaseViewHolder<*>) {
         super.onLoadMoreData(footer)
-        if (footer !is QuestionDetailFooterViewWrapper) {
-            LogUtils.LOGW(javaClass.simpleName, "footer is not the subclass of QuestionDetailFooterViewWrapper")
+        if (footer !is BaseFooterViewWrapper) {
+            LogUtils.LOGW(javaClass.simpleName, "footer is not the subclass of BaseFooterViewWrapper")
             return
         }
-        footer.setData(QuestionDetailFooterViewWrapper.LOADING)
+        footer.setData(BaseFooterViewWrapper.LOADING)
         val user = BaseAPP.getUser(context)!!
         RequestManager.INSTANCE.loadMoreAnswer(SimpleObserver(context, object : SubscriberListener<List<Answer>>(QAErrorHandler) {
             override fun onNext(t: List<Answer>?) {
                 super.onNext(t)
                 if (t == null || t.isEmpty()) {
-                    footer.setData(QuestionDetailFooterViewWrapper.NO_MORE_DATA)
+                    footer.setData(BaseFooterViewWrapper.NO_MORE_DATA)
                     return
                 }
-                footer.setData(QuestionDetailFooterViewWrapper.LOAD_SUCCESS)
+                footer.setData(BaseFooterViewWrapper.LOAD_SUCCESS)
                 addData(t)
                 ++nextPage
             }
 
             override fun onError(e: Throwable?): Boolean {
-                footer.setData(QuestionDetailFooterViewWrapper.LOAD_FAIL)
+                footer.setData(BaseFooterViewWrapper.LOAD_FAIL)
                 return super.onError(e)
             }
         }), user.stuNum, user.idNum, questionDetail!!.id, nextPage)
@@ -106,14 +106,14 @@ class QuestionDetailRvAdapter(val context: Context, rv: RecyclerView) : BaseHead
     }
 
     private fun sortByDefault() {
-        val sortedList = dataSet.sortedWith(kotlin.Comparator { o1, o2 ->
+        val sortedList = dataList.sortedWith(kotlin.Comparator { o1, o2 ->
             compareValuesBy(o2, o1, Answer::isAdopted, Answer::hotValue, Answer::time)
         })
         refreshData(sortedList)
     }
 
     private fun sortByTime() {
-        val sortedList = dataSet.sortedByDescending(Answer::time)
+        val sortedList = dataList.sortedByDescending(Answer::time)
         refreshData(sortedList)
     }
 

@@ -1,6 +1,7 @@
 package com.mredrock.cyxbs.network.service
 
 import com.mredrock.cyxbs.config.Const
+import com.mredrock.cyxbs.model.BaseRedrockApiWrapper
 import com.mredrock.cyxbs.model.RedrockApiWrapper
 import com.mredrock.cyxbs.model.qa.*
 import io.reactivex.Observable
@@ -29,20 +30,20 @@ interface QAService {
     @POST(Const.PRAISE_ANSWER)
     fun praiseAnswer(@Field("stuNum") stuNum: String,
                      @Field("idNum") idNum: String,
-                     @Field("answer_id") aid: String): Observable<RedrockApiWrapper<Unit>>
+                     @Field("answer_id") aid: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.CANCEL_PRAISE_ANSWER)
     fun cancelPraiseAnswer(@Field("stuNum") stuNum: String,
                            @Field("idNum") idNum: String,
-                           @Field("answer_id") aid: String): Observable<RedrockApiWrapper<Unit>>
+                           @Field("answer_id") aid: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.CANCEL_PRAISE_ANSWER)
     fun acceptAnswer(@Field("stuNum") stuNum: String,
                      @Field("idNum") idNum: String,
                      @Field("answer_id") aid: String,
-                     @Field("question_id") qid: String): Observable<RedrockApiWrapper<Unit>>
+                     @Field("question_id") qid: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.ANSWER_QUESTION)
@@ -53,13 +54,13 @@ interface QAService {
 
     @Multipart
     @POST()
-    fun uploadAnswerPic(@Part parts: List<MultipartBody.Part>): Observable<RedrockApiWrapper<Unit>>
+    fun uploadAnswerPic(@Part parts: List<MultipartBody.Part>): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.CANCEL_QUESTION)
     fun cancelQuestion(@Field("stuNum") stuNum: String,
                        @Field("idNum") idNum: String,
-                       @Field("question_id") qid: String): Observable<RedrockApiWrapper<Unit>>
+                       @Field("question_id") qid: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.ANSWER_COMMENT_LIST)
@@ -72,7 +73,28 @@ interface QAService {
     fun commentAnswer(@Field("stuNum") stuNum: String,
                       @Field("idNum") idNum: String,
                       @Field("answer_id") aid: String,
-                      @Field("content") content: String): Observable<RedrockApiWrapper<Unit>>
+                      @Field("content") content: String): Observable<BaseRedrockApiWrapper>
+
+    @FormUrlEncoded
+    @POST(Const.ADD_DRAFT)
+    fun addDraft(@Field("stunum") stuNum: String,
+                 @Field("idnum") idNum: String,
+                 @Field("type") type: String,
+                 @Field("content") content: String,
+                 @Field("target_id") targetId: String): Observable<BaseRedrockApiWrapper>
+
+    @FormUrlEncoded
+    @POST(Const.REFRESH_DRAFT)
+    fun refreshDraft(@Field("stunum") stuNum: String,
+                     @Field("idnum") idNum: String,
+                     @Field("content") content: String,
+                     @Field("id") draftId: String): Observable<BaseRedrockApiWrapper>
+
+    @FormUrlEncoded
+    @POST(Const.DELETE_DRAFT)
+    fun deleteDraft(@Field("stunum") stuNum: String,
+                    @Field("idnum") idNum: String,
+                    @Field("id") id: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.DRAFT_LIST)
@@ -84,7 +106,7 @@ interface QAService {
     @FormUrlEncoded
     @POST(Const.CHECK_IN)
     fun checkIn(@Field("stunum") stuNum: String,
-                @Field("idnum") idNum: String): Observable<RedrockApiWrapper<Unit>>
+                @Field("idnum") idNum: String): Observable<BaseRedrockApiWrapper>
 
     @FormUrlEncoded
     @POST(Const.CHECK_IN_STATUS)
