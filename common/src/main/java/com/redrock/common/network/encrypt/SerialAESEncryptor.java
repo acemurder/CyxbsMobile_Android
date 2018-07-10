@@ -1,4 +1,4 @@
-package com.mredrock.cyxbs.network.encrypt;
+package com.redrock.common.network.encrypt;
 
 import android.os.Build;
 

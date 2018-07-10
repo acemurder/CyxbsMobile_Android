@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.network.RequestManager;
@@ -16,6 +16,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.electric.DormitorySettingActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricRemindActivity;
+import com.redrock.common.utils.SPUtils;
 
 /**
  * Created by ：AceMurder
@@ -30,21 +31,21 @@ public class ElectricRemindUtil {
 
     public static void check(Context context) {
 
-        long time = (long) SPUtils.get(BaseAPP.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
-        SPUtils.set(BaseAPP.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis());
+        long time = (long) SPUtils.get(MainApp.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
+        SPUtils.set(MainApp.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis());
         if (System.currentTimeMillis() - time < 60 * 60 * 1000 * 6) {
             Log.i(TAG, "check: " + (System.currentTimeMillis() - time));
             return;
         }
 
-        int buildingPosition = (int) SPUtils.get(BaseAPP.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
+        int buildingPosition = (int) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
         if (buildingPosition < 0)
             return;
-        String dormitoryNum = (String) SPUtils.get(BaseAPP.getContext(), DormitorySettingActivity.DORMITORY_KEY, "");
-        float money = (float) SPUtils.get(BaseAPP.getContext(), ElectricRemindActivity.ELECTRIC_REMIND_MONEY, -1.0f);
+        String dormitoryNum = (String) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.DORMITORY_KEY, "");
+        float money = (float) SPUtils.get(MainApp.getContext(), ElectricRemindActivity.ELECTRIC_REMIND_MONEY, -1.0f);
         if (money == -1)
             return;
-        String building = BaseAPP.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[buildingPosition];
+        String building = MainApp.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[buildingPosition];
         RequestManager.INSTANCE.queryElectricCharge(new SimpleObserver<>(context, new SubscriberListener<ElectricCharge>() {
             @Override
             public void onNext(ElectricCharge electricCharge) {

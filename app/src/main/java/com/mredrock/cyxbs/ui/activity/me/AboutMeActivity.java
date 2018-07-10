@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.AboutMe;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
@@ -54,7 +54,7 @@ public class AboutMeActivity extends BaseActivity implements
         init();
         mAboutMeAdapter.setOnItemClickListener(this);
 
-        mUser = BaseAPP.getUser(this);
+        mUser = MainApp.getUser(this);
 
         getCurrentData(false);
         showProgress();

@@ -18,10 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.model.social.PersonInfo;
@@ -78,7 +78,7 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         mUserId = getIntent().getStringExtra(PERSON_USER_ID);
         mHeaderViewWrapper = new HeaderViewWrapper(this, R.layout.list_person_info_header);
         ButterKnife.bind(this);
-        mUser = BaseAPP.getUser(this);
+        mUser = MainApp.getUser(this);
         init();
     }
 
@@ -93,8 +93,8 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         mHeaderViewRecyclerAdapter.addHeaderView(mHeaderViewWrapper.view);
 
         mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(BaseAPP.getContext(), R.color.colorAccent),
-                ContextCompat.getColor(BaseAPP.getContext(), R.color.colorPrimary));
+                ContextCompat.getColor(MainApp.getContext(), R.color.colorAccent),
+                ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mHeaderViewWrapper.setData(mUserAvatar, mNickName);
 
@@ -230,10 +230,10 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         public void setIntroduction(String introduction, String gender) {
             mTextIntroduction.setText(introduction);
             if (gender.trim().equals("男")) {
-                mTextGender.setTextColor(ContextCompat.getColor(BaseAPP.getContext(), R.color.colorPrimary));
+                mTextGender.setTextColor(ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary));
                 mTextGender.setText("♂");
             } else {
-                mTextGender.setTextColor(ContextCompat.getColor(BaseAPP.getContext(), R.color.pink));
+                mTextGender.setTextColor(ContextCompat.getColor(MainApp.getContext(), R.color.pink));
                 mTextGender.setText("♀");
             }
         }

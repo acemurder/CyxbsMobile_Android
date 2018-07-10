@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ScheduleView;
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.widget.CourseListAppWidget;

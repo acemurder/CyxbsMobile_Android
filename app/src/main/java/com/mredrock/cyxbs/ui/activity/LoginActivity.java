@@ -8,10 +8,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initUser() {
-        BaseAPP.setUser(this, null);
+        MainApp.setUser(this, null);
     }
 
     public void attemptLogin() {
@@ -97,7 +97,7 @@ public class LoginActivity extends BaseActivity {
                     public void onNext(User user) {
                         super.onNext(user);
                         if (user != null) {
-                            BaseAPP.setUser(LoginActivity.this, user);
+                            MainApp.setUser(LoginActivity.this, user);
                             MobclickAgent.onProfileSignIn(stuNum);
                         } else {
                             Utils.toast(LoginActivity.this, "登录失败, 返回了信息为空");
@@ -109,8 +109,8 @@ public class LoginActivity extends BaseActivity {
                         super.onComplete();
                         EventBus.getDefault().post(new LoginStateChangeEvent(true));
                         finish();
-                        if (!BaseAPP.hasNickName()) {
-                            EditNickNameActivity.start(BaseAPP.getContext());
+                        if (!MainApp.hasNickName()) {
+                            EditNickNameActivity.start(MainApp.getContext());
                         }
                     }
                 }), stuNum, idNum);

@@ -12,9 +12,9 @@ import android.widget.RemoteViewsService;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.config.Config;
+import com.redrock.common.config.Config;
 import com.mredrock.cyxbs.model.Affair;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.util.FileUtils;
@@ -188,7 +188,7 @@ public class CourseListRemoteViewsService extends RemoteViewsService {
         }
 
         private List<Course> getCourseList() {
-            String json = FileUtils.readStringFromFile(new File(BaseAPP.getContext().getFilesDir().getAbsolutePath() + "/" + Config.APP_WIDGET_CACHE_FILE_NAME));
+            String json = FileUtils.readStringFromFile(new File(MainApp.getContext().getFilesDir().getAbsolutePath() + "/" + Config.APP_WIDGET_CACHE_FILE_NAME));
             return new Gson().fromJson(json, new TypeToken<List<Course>>() {}.getType());
         }
 

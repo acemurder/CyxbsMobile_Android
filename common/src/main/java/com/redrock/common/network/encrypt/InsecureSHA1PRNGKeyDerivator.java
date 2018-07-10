@@ -16,7 +16,7 @@
  */
 
 
-package com.mredrock.cyxbs.network.encrypt;
+package com.redrock.common.network.encrypt;
 
 /**
  * Stripped-down version of the SHA1PRNG provided by the Crypto provider.

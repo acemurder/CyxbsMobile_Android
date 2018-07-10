@@ -1,15 +1,15 @@
-package com.mredrock.cyxbs.config;
+package com.redrock.common.config;
 
 /**
  * Created by cc on 16/3/19.
  */
 public class Const {
-    public static final int REDROCK_API_STATUS_SUCCESS = 200;
+    public static final int RED_ROCK_API_STATUS_SUCCESS = 200;
 
     public static final String APP_HOME = "https://wx.idsbllp.cn/cyxbsMobile";
 
-    public static final String END_POINT_REDROCK = "https://wx.idsbllp.cn";
-    public static final String REDROCK_PORTAL = "https://wx.idsbllp.cn/aboutus/";
+    public static final String END_POINT_RED_ROCK = "https://wx.idsbllp.cn";
+    public static final String RED_ROCK_PORTAL = "https://wx.idsbllp.cn/aboutus/";
     public static final String API_PERSON_SCHEDULE = "/redapi2/api/kebiao";
     public static final String APP_WEBSITE = "https://wx.idsbllp.cn/app/";
     public static final String API_VOLUNTEER = "https://wx.idsbllp.cn/servicerecord/";

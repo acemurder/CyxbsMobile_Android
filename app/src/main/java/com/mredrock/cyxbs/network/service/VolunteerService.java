@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.network.service;
 
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.VolunteerTime;
 
 import io.reactivex.Observable;

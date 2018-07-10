@@ -25,7 +25,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.config.Config;
+import com.redrock.common.config.Config;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

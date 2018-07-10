@@ -17,10 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.config.Const;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.config.Const;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.util.DialogUtil;
@@ -79,7 +79,7 @@ public class EditInfoActivity extends BaseActivity implements EasyPermissions.Pe
         setContentView(R.layout.activity_edit_info);
         ButterKnife.bind(this);
         initToolbar();
-        mUser = BaseAPP.getUser(this);
+        mUser = MainApp.getUser(this);
         initView();
     }
 

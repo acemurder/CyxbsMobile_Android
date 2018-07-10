@@ -1,4 +1,4 @@
-package com.mredrock.cyxbs.config;
+package com.redrock.common.config;
 
 /**
  * Created by david on 15/4/12.
@@ -21,18 +21,18 @@ public class Config {
     /**
      * SharedPreferences key for encrypt version of user
      *
-     * use by {@link com.mredrock.cyxbs.network.encrypt.UserInfoEncryption} for the current encrypt version,
+     * use by {@link com.redrock.common.network.encrypt.UserInfoEncryption} for the current encrypt version,
      * you can update the encrypt method in the future and keep compatibility
-     * @see com.mredrock.cyxbs.network.encrypt.UserInfoEncryption#onUpdate(int, int)
+     * @see com.redrock.common.network.encrypt.UserInfoEncryption#onUpdate(int, int)
      */
     public static final String SP_KEY_ENCRYPT_VERSION_USER = "encrypt_version_user";
 
     /**
      * SharedPreferences value for encrypt version of user
      *
-     * use by {@link com.mredrock.cyxbs.network.encrypt.UserInfoEncryption} for the current encrypt version,
+     * use by {@link com.redrock.common.network.encrypt.UserInfoEncryption} for the current encrypt version,
      * you can update the encrypt method in the future and keep compatibility
-     * @see com.mredrock.cyxbs.network.encrypt.UserInfoEncryption#onUpdate(int, int)
+     * @see com.redrock.common.network.encrypt.UserInfoEncryption#onUpdate(int, int)
      */
     public static final int USER_INFO_ENCRYPT_VERSION = 1;
 }

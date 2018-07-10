@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicHeaderAdapter;
 import com.ms.square.android.expandabletextview.ExpandableTextView;

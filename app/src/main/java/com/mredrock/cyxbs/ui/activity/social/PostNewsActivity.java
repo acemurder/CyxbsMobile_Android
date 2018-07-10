@@ -12,12 +12,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.multi_image_selector.MultiImageSelectorActivity;
 import com.mredrock.cyxbs.component.widget.TopicEditText;
 import com.mredrock.cyxbs.component.widget.ninelayout.NineGridlayout;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.Image;
@@ -109,7 +109,7 @@ public class PostNewsActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_news);
         ButterKnife.bind(this);
-        mUser = BaseAPP.getUser(this);
+        mUser = MainApp.getUser(this);
         init();
         initToolbar();
         Intent intent = getIntent();

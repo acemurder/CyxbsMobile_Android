@@ -1,13 +1,12 @@
-package com.mredrock.cyxbs.network.encrypt;
+package com.redrock.common.network.encrypt;
 
 import android.util.Base64;
 import android.util.Log;
 
-import com.mredrock.cyxbs.BaseAPP;
-import com.mredrock.cyxbs.config.Config;
-import com.mredrock.cyxbs.config.Const;
-import com.mredrock.cyxbs.util.LogUtils;
-import com.mredrock.cyxbs.util.SPUtils;
+import com.redrock.common.ContextProvider;
+import com.redrock.common.config.Config;
+import com.redrock.common.config.Const;
+import com.redrock.common.utils.SPUtils;
 
 import java.io.UnsupportedEncodingException;
 
@@ -29,7 +28,7 @@ public class UserInfoEncryption {
             isSupportEncrypt = false;
         }
         synchronized (UserInfoEncryption.class) {
-            int currentVersion = (int) SPUtils.get(BaseAPP.getContext(), Config.SP_KEY_ENCRYPT_VERSION_USER);
+            int currentVersion = (int) SPUtils.get(ContextProvider.getContext(), Config.SP_KEY_ENCRYPT_VERSION_USER);
             if (currentVersion < Config.USER_INFO_ENCRYPT_VERSION) {
                 onUpdate(currentVersion, Config.USER_INFO_ENCRYPT_VERSION);
             }
@@ -61,10 +60,10 @@ public class UserInfoEncryption {
         try {
             return new String(encryptor.decrypt(Base64.decode(base64Encrypted, Base64.DEFAULT)), "UTF-8");
         } catch (DecryptFailureException e) {
-            LogUtils.LOGE("CSET_UIE", "decrypt failure", e);
+            Log.e("CSET_UIE", "decrypt failure", e);
             return "";
         } catch (UnsupportedEncodingException e) {
-            LogUtils.LOGE("CSET_UIE", "decrypt failure", e);
+            Log.e("CSET_UIE", "decrypt failure", e);
             return "";
         }
     }
@@ -72,20 +71,20 @@ public class UserInfoEncryption {
     /**
      * if you update the encrypt method in the future, please update here for compatibility
      *
-     * @param i old version
+     * @param i  old version
      * @param ii new version
      */
     public void onUpdate(int i, int ii) {
         Log.d("CSET_UIE", "onUpdate: " + i + ", " + ii);
         if (i == 0 && ii == 1) {
-            String unEncryptedJson = (String) SPUtils.get(BaseAPP.getContext(), Const.SP_KEY_USER, "");
+            String unEncryptedJson = (String) SPUtils.get(ContextProvider.getContext(), Const.SP_KEY_USER, "");
             if (!"".equals(unEncryptedJson)) {
                 String encryptedJson = encrypt(unEncryptedJson);
-                SPUtils.set(BaseAPP.getContext(), Const.SP_KEY_USER, encryptedJson);
+                SPUtils.set(ContextProvider.getContext(), Const.SP_KEY_USER, encryptedJson);
             }
         }
 
-        SPUtils.set(BaseAPP.getContext(), Config.SP_KEY_ENCRYPT_VERSION_USER, ii);
+        SPUtils.set(ContextProvider.getContext(), Config.SP_KEY_ENCRYPT_VERSION_USER, ii);
     }
 
 

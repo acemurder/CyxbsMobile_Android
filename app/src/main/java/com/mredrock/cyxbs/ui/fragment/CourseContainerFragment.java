@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.ForceFetchCourseEvent;
 import com.mredrock.cyxbs.network.RequestManager;
@@ -23,7 +23,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.MainActivity;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
 import com.mredrock.cyxbs.util.LogUtils;
-import com.mredrock.cyxbs.util.SPUtils;
+import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -173,7 +173,7 @@ public class CourseContainerFragment extends BaseFragment {
     }
 
     private void remindFn(View view) {
-        if (BaseAPP.isLogin() && mIsFirstLaunch) {
+        if (MainApp.isLogin() && mIsFirstLaunch) {
             Snackbar.make(view, "点击标题栏可以打开隐藏关卡", Snackbar.LENGTH_LONG).setAction("试试看", v -> {
                 view.postDelayed(() -> mToolbarTitle.performClick(), 300);
                 saveInfoToSP();
@@ -210,7 +210,7 @@ public class CourseContainerFragment extends BaseFragment {
     }
 
     private void loadNowWeek() {
-        RequestManager.INSTANCE.getNowWeek(new SimpleObserver<>(BaseAPP.getContext(), new SubscriberListener<Integer>() {
+        RequestManager.INSTANCE.getNowWeek(new SimpleObserver<>(MainApp.getContext(), new SubscriberListener<Integer>() {
             @Override
             public void onNext(Integer i) {
                 int nowWeek = i;
@@ -226,7 +226,7 @@ public class CourseContainerFragment extends BaseFragment {
     private void updateFirstDay(int nowWeek) {
         Calendar now = Calendar.getInstance();
         now.add(Calendar.DATE, -((nowWeek - 1) * 7 + (now.get(Calendar.DAY_OF_WEEK) + 5) % 7));
-        SPUtils.set(BaseAPP.getContext(), "first_day", now.getTimeInMillis());
+        SPUtils.set(MainApp.getContext(), "first_day", now.getTimeInMillis());
         mNowWeek = new SchoolCalendar().getWeekOfTerm();
     }
 

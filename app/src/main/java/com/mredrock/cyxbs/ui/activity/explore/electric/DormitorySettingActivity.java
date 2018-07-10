@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
@@ -23,7 +23,7 @@ import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.ui.fragment.explore.eletric.DialogRemindFragment;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
 import com.mredrock.cyxbs.util.KeyboardUtils;
-import com.mredrock.cyxbs.util.SPUtils;
+import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.Utils;
 
 import butterknife.BindView;
@@ -92,7 +92,7 @@ public class DormitorySettingActivity extends BaseActivity {
             return;
         buildingNumberEdit.setText(sDormitoryBuildings[buildingPosition]);
         mBuildingPosition = buildingPosition;
-        String dormitory = (String) SPUtils.get(BaseAPP.getContext(),DORMITORY_KEY,"");
+        String dormitory = (String) SPUtils.get(MainApp.getContext(),DORMITORY_KEY,"");
         dormitoryNumberEdit.setText(dormitory);
 
     }
@@ -127,10 +127,10 @@ public class DormitorySettingActivity extends BaseActivity {
             dialogRemindFragment.setArguments(bundle);
             dialogRemindFragment.show(getFragmentManager(),"DialogRemindFragment");
         }else {
-            User user = BaseAPP.getUser(this);
-            SPUtils.set(BaseAPP.getContext(), BUILDING_KEY, mBuildingPosition);
-            SPUtils.set(BaseAPP.getContext(),DORMITORY_KEY,dormitoryNumberEdit.getText().toString()+"");
-            SPUtils.set(BaseAPP.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
+            User user = MainApp.getUser(this);
+            SPUtils.set(MainApp.getContext(), BUILDING_KEY, mBuildingPosition);
+            SPUtils.set(MainApp.getContext(),DORMITORY_KEY,dormitoryNumberEdit.getText().toString()+"");
+            SPUtils.set(MainApp.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
             SimpleObserver<Object> subscriber = new SimpleObserver<>(this, true, new SubscriberListener<Object>() {
                 @Override
                  public void onComplete() {

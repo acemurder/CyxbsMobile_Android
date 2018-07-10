@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.mredrock.cyxbs.config.Config;
+import com.redrock.common.config.Config;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.service.UpdateService;

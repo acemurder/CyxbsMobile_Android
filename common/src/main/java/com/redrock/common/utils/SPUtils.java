@@ -1,4 +1,4 @@
-package com.mredrock.cyxbs.util;
+package com.redrock.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

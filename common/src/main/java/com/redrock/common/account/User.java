@@ -1,9 +1,7 @@
-package com.mredrock.cyxbs.model;
+package com.redrock.common.account;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.mredrock.cyxbs.model.social.PersonInfo;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -119,36 +117,4 @@ public class User implements Parcelable {
                 ",id=" + id + "\'" +
                 '}';
     }
-
-    public static User cloneFromUserInfo(User userOrigin, User userCloned) {
-        if (userCloned != null) {
-            userOrigin.stu = userCloned.stu;
-            userOrigin.photo_thumbnail_src = userCloned.photo_thumbnail_src;
-            userOrigin.photo_src = userCloned.photo_src;
-            userOrigin.nickname = userCloned.nickname;
-            userOrigin.qq = userCloned.qq;
-            userOrigin.phone = userCloned.phone;
-            userOrigin.introduction = userCloned.introduction;
-            userOrigin.id = userCloned.id;
-        }
-        return userOrigin;
-    }
-
-    public static User cloneFromUserInfo(User userOrigin, PersonInfo userCloned) {
-        if (userCloned != null) {
-            userOrigin.stu = userCloned.stuNum;
-            userOrigin.photo_thumbnail_src = userCloned.photoThumbnail;
-            userOrigin.photo_src = userCloned.photo;
-            userOrigin.nickname = userCloned.nickName;
-            userOrigin.qq = userCloned.qq;
-            userOrigin.phone = userCloned.phone;
-            userOrigin.introduction = userCloned.introduction;
-            userOrigin.id = userCloned.id;
-        }
-        return userOrigin;
-    }
-
-    public static class UserWrapper extends RedrockApiWrapper<User> {
-    }
-
 }

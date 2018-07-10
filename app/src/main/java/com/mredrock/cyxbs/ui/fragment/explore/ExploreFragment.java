@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.RollerViewInfo;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
@@ -50,8 +50,8 @@ public class ExploreFragment extends BaseFragment {
     @OnClick(R.id.explore_portal_holder)
     void clickToPortal() {
         if (isAdded()) {
-            // WebViewUtils.showPortalWebView(getActivity(), Const.REDROCK_PORTAL);
-            Uri uri = Uri.parse(Const.REDROCK_PORTAL);
+            // WebViewUtils.showPortalWebView(getActivity(), Const.RED_ROCK_PORTAL);
+            Uri uri = Uri.parse(Const.RED_ROCK_PORTAL);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             getActivity().startActivity(intent);
         }

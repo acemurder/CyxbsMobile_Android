@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.network.service;
 
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.AboutMe;
 import com.mredrock.cyxbs.model.AffairApi;
 import com.mredrock.cyxbs.model.Course;
@@ -19,8 +19,7 @@ import com.mredrock.cyxbs.model.Shake;
 import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
-import com.mredrock.cyxbs.model.User;
-import com.mredrock.cyxbs.model.VolunteerTime;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -53,7 +52,7 @@ import io.reactivex.Observable;
 /**
  * Created by cc on 16/1/20.
  */
-public interface RedrockApiService {
+public interface RedRockApiService {
 
     @GET(Const.API_UPDATE_OLD)
     @XmlApi
@@ -64,7 +63,7 @@ public interface RedrockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_VERIFY)
-    Observable<User.UserWrapper> verify(@Field("stuNum") String stuNum, @Field("idNum") String idNum);
+    Observable<PersonInfo.UserWrapper> verify(@Field("stuNum") String stuNum, @Field("idNum") String idNum);
 
     @FormUrlEncoded
     @Headers("API_APP: android")
@@ -174,7 +173,7 @@ public interface RedrockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_GET_INFO)
-    Observable<User.UserWrapper> getPersonInfo(@Field("stuNum") String stuNum,
+    Observable<PersonInfo.UserWrapper> getPersonInfo(@Field("stuNum") String stuNum,
                                                @Field("idNum") String idNum);
 
     @FormUrlEncoded

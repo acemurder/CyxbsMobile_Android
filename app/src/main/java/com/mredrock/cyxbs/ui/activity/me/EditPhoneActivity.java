@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.ui.activity.me;
 
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.RedrockApiWrapper;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.umeng.analytics.MobclickAgent;

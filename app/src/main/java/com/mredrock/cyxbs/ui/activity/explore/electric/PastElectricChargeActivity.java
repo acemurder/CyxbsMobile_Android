@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.PastElectricChartView;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.model.PastElectric;
-import com.mredrock.cyxbs.model.User;
+import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
@@ -51,7 +51,7 @@ public class PastElectricChargeActivity extends BaseActivity {
         ButterKnife.bind(this);
         initView();
 
-        mUser = BaseAPP.getUser(this);
+        mUser = MainApp.getUser(this);
         RequestManager.INSTANCE.queryPastElectricCharge(mUser.stuNum, mUser.idNum,
                 new SimpleObserver<PastElectric.PastElectricResultWrapper>(this, true, new SubscriberListener<PastElectric.PastElectricResultWrapper>() {
                     @Override
@@ -61,7 +61,7 @@ public class PastElectricChargeActivity extends BaseActivity {
 
                         ElectricCharge electricCharge = pastElectricResultWrapper.getResult().getCurrent();
                         if (electricCharge == null)
-                            Toast.makeText(BaseAPP.getContext(),"没有获取到数据，请检查设置的寝室号",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainApp.getContext(),"没有获取到数据，请检查设置的寝室号",Toast.LENGTH_SHORT).show();
                         else {
                             for (int i = pastElectricResultWrapper.getResult().getTrend().size(); i > 0; i--) {
                                 electricSpends.add((double) pastElectricResultWrapper.getResult().getTrend().get(i - 1).getSpend());

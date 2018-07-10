@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.network.func;
 
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.network.exception.RedrockApiException;
 
@@ -18,7 +18,7 @@ public class ElectricQueryFunc implements Function<ElectricCharge.ElectricCharge
 
     @Override
     public ElectricCharge apply(ElectricCharge.ElectricChargeWrapper electricChargeWrapper) throws Exception {
-        if (electricChargeWrapper.getStatus() != Const.REDROCK_API_STATUS_SUCCESS || electricChargeWrapper.getElectricCharge() == null){
+        if (electricChargeWrapper.getStatus() != Const.RED_ROCK_API_STATUS_SUCCESS || electricChargeWrapper.getElectricCharge() == null){
             throw new RedrockApiException("some thing wrong");
         }
         return electricChargeWrapper.getElectricCharge();

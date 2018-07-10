@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.MalformedJsonException;
-import com.mredrock.cyxbs.BaseAPP;
+import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Position;
 import com.mredrock.cyxbs.event.AffairAddEvent;
@@ -546,9 +546,9 @@ public class EditAffairActivity extends BaseActivity {
         String title = mTitleEdit.getText().toString();
         String content = mContentEdit.getText().toString();
         if (title.trim().isEmpty()) {
-            Toast.makeText(BaseAPP.getContext(), "标题不能为空哦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainApp.getContext(), "标题不能为空哦", Toast.LENGTH_SHORT).show();
         } else if (weeks.size() == 0 || mPositions.size() == 0) {
-            Toast.makeText(BaseAPP.getContext(), "时间或周数不能为空哦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainApp.getContext(), "时间或周数不能为空哦", Toast.LENGTH_SHORT).show();
         } else {
             DBManager dbManager = DBManager.INSTANCE;
             Affair affair = new Affair();
@@ -580,7 +580,7 @@ public class EditAffairActivity extends BaseActivity {
                     @Override
                     public void onComplete() {
                         super.onComplete();
-                        dbManager.insert(true, x, BaseAPP.getUser(EditAffairActivity.this).stuNum, gson.toJson(affairItem))
+                        dbManager.insert(true, x, MainApp.getUser(EditAffairActivity.this).stuNum, gson.toJson(affairItem))
                                 .subscribeOn(Schedulers.io())
                                 .unsubscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -631,14 +631,14 @@ public class EditAffairActivity extends BaseActivity {
                     public void onStart() {
                         super.onStart();
                     }
-                }), BaseAPP.getUser(this).stuNum, BaseAPP.getUser(this).idNum, x, title, content, gson.toJson(affairItem.getDate()), affairItem.getTime());
+                }), MainApp.getUser(this).stuNum, MainApp.getUser(this).idNum, x, title, content, gson.toJson(affairItem.getDate()), affairItem.getTime());
             } else {
                 //  Log.e(TAG, "onSaveClick: isStartByCourse");
                 RequestManager.getInstance().editAffair(new SimpleObserver<Object>(this, true, false, new SubscriberListener<Object>() {
                     @Override
                     public void onComplete() {
                         super.onComplete();
-                        dbManager.insert(true, x, BaseAPP.getUser(EditAffairActivity.this).stuNum, gson.toJson(affairItem), true)
+                        dbManager.insert(true, x, MainApp.getUser(EditAffairActivity.this).stuNum, gson.toJson(affairItem), true)
                                 .subscribeOn(Schedulers.io())
                                 .unsubscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -689,7 +689,7 @@ public class EditAffairActivity extends BaseActivity {
                     public void onStart() {
                         super.onStart();
                     }
-                }), BaseAPP.getUser(this).stuNum, BaseAPP.getUser(this).idNum, x, title, content, gson.toJson(affairItem.getDate()), affairItem.getTime());
+                }), MainApp.getUser(this).stuNum, MainApp.getUser(this).idNum, x, title, content, gson.toJson(affairItem.getDate()), affairItem.getTime());
             }
         }
     }

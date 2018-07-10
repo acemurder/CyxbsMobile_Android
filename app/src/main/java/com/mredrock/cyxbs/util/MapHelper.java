@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Handler;
 
-import com.mredrock.cyxbs.config.Const;
+import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.util.cache.DiskCache;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class MapHelper {
     private static final int DEFAULT_READ_TIMEOUT_MILLIS = 20 * 1000; // 20s
     private static final int MAX_DISK_CACHE_BYTES = 1024 * 1024 * 10; // 10MB
     private static final String TAG = LogUtils.makeLogTag(MapHelper.class);
-    private static final String DEFAULT_MAP_KEY = Utils.md5Hex(Const.END_POINT_REDROCK);
+    private static final String DEFAULT_MAP_KEY = Utils.md5Hex(Const.END_POINT_RED_ROCK);
 
     private final Context mContext;
     private DiskCache mDiskCache;
