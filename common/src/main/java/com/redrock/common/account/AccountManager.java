@@ -16,7 +16,7 @@ public class AccountManager {
     private static boolean login;
     private static UserInfoEncryption userInfoEncryption;
 
-    public AccountManager() {
+    static {
         // Initialize UserInfoEncrypted
         userInfoEncryption = new UserInfoEncryption();
     }
