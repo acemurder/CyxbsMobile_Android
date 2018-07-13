@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Toolbar;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.RedrockApiWrapper;
 import com.redrock.common.account.User;
@@ -72,7 +72,7 @@ public abstract class EditCommonActivity extends BaseActivity implements TextWat
     }
 
     private void init() {
-        mUser = MainApp.getUser(this);
+        mUser = AccountManager.getUser();
         switch (getExtra()) {
             case Const.Extras.EDIT_QQ:
                 editCommonEt.setHint("客官，留个QQ呗～");

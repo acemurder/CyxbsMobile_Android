@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.mredrock.cyxbs.MainApp;
+import com.redrock.common.ContextProvider;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class Course implements Serializable, Parcelable {
         weekEnd = in.readInt();
         type = in.readString();
         week = new ArrayList<>(0);
-        in.readList(week, MainApp.getContext().getClassLoader());
+        in.readList(week, ContextProvider.getContext().getClassLoader());
         status = in.readString();
         period = in.readInt();
     }

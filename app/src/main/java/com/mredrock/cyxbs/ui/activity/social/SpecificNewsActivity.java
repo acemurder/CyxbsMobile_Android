@@ -16,10 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.AskLoginEvent;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.redrock.common.ContextProvider;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.CommentContent;
@@ -138,13 +139,13 @@ public class SpecificNewsActivity extends BaseActivity
         setContentView(R.layout.activity_specific_news);
         mRxPermissions = new RxPermissions(this);
         ButterKnife.bind(this);
-        //  mUser = MainApp.getUser(this);
+        //  mUser = AccountManager.getUser();
         mCommentDialog = new EditTextBottomSheetDialog(this);
         mCommentDialog.setOnClickListener(this);
 
         mRefresh.setColorSchemeColors(
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorAccent),
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary)
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorAccent),
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorPrimary)
         );
         mHeaderView = LayoutInflater.from(this).inflate(R.layout.list_news_item_header, null, false);
         mWrapView = new NewsAdapter.NewsViewHolder(mHeaderView);
@@ -361,7 +362,7 @@ public class SpecificNewsActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        mUser = MainApp.getUser(this);
+        mUser = AccountManager.getUser();
 
         MobclickAgent.onResume(this);
     }

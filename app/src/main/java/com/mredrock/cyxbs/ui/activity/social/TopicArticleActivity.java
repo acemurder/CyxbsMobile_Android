@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.redrock.common.account.User;
@@ -26,6 +25,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicArticleAdapter;
 import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.account.AccountManager;
 import com.umeng.socialize.UMShareAPI;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -144,7 +144,7 @@ public class TopicArticleActivity extends BaseActivity implements SwipeRefreshLa
     }
 
     private void loadArticle() {
-        User user = MainApp.getUser(this);
+        User user = AccountManager.getUser();
         RequestManager.getInstance().getTopicArticle(new SimpleObserver<>(this, new SubscriberListener<TopicArticle>() {
             @Override
              public void onComplete() {

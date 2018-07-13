@@ -24,7 +24,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$support_version"
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.2'
 
     /*---------------------retrofit---------------------*/
     api('com.squareup.retrofit2:converter-simplexml:2.1.0') {
@@ -49,7 +49,7 @@ dependencies {
     /*---------------------RxCache---------------------*/
 
     /*---------------------OkHttp---------------------*/
-    api 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
     api 'com.squareup.okhttp3:okhttp-urlconnection:3.4.2'
     api 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     /*---------------------OkHttp---------------------*/

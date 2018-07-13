@@ -7,6 +7,7 @@ import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.util.FileUtils;
 import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.ContextProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class CourseListProvider implements ObservableOnSubscribe<List<Course>> {
         this.idNum = idNum;
         this.preferRefresh = preferRefresh;
         this.forceFetch = forceFetch;
-        cacheFilePath = MainApp.getContext().getFilesDir().getAbsolutePath() + "/" + "UserCourse$" + stuNum + ".json";
+        cacheFilePath = ContextProvider.getContext().getFilesDir().getAbsolutePath() + "/" + "UserCourse$" + stuNum + ".json";
     }
 
     @Override

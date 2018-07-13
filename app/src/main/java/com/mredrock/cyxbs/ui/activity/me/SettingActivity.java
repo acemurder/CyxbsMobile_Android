@@ -22,13 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.AffairShowModeEvent;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
 import com.mredrock.cyxbs.network.func.AppWidgetCacheAndUpdateFunc;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.util.SaveImageUtils;
+import com.redrock.common.account.AccountManager;
 import com.suke.widget.SwitchButton;
 import com.umeng.analytics.MobclickAgent;
 
@@ -73,7 +73,7 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
         initToolbar();
-        if (!MainApp.isLogin()) {
+        if (!AccountManager.isLogin()) {
             settingExit.setVisibility(View.GONE);
         }
 
@@ -147,7 +147,7 @@ public class SettingActivity extends BaseActivity {
                     public void onPositive(MaterialDialog dialog) {
                         super.onPositive(dialog);
                         finish();
-                        MainApp.setUser(SettingActivity.this, null);
+                        AccountManager.setUser(null);
                         AppWidgetCacheAndUpdateFunc.deleteCache();
                         EventBus.getDefault().post(new LoginStateChangeEvent(false));
                     }

@@ -16,6 +16,7 @@ import com.mredrock.cyxbs.event.TimeChooseEvent;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.util.DensityUtils;
 import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.ContextProvider;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -96,7 +97,7 @@ public class TimeChooseActivity extends BaseActivity {
         ArrayList<Position> positions = new ArrayList<>();
         positions.addAll(timeChooseView.getPositions());
         if (positions.size() == 0){
-            Toast.makeText(MainApp.getContext(),"还没有选择时间哦",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ContextProvider.getContext(),"还没有选择时间哦",Toast.LENGTH_SHORT).show();
         }else {
             Collections.sort(positions);
             for (Position p : positions)

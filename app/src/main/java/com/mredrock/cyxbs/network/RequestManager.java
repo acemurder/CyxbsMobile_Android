@@ -2,9 +2,10 @@ package com.mredrock.cyxbs.network;
 
 import android.content.Context;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.component.remind_service.Reminder;
 import com.mredrock.cyxbs.component.remind_service.func.BaseRemindFunc;
+import com.redrock.common.ContextProvider;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.event.AskLoginEvent;
 import com.mredrock.cyxbs.model.AboutMe;
@@ -50,7 +51,6 @@ import com.mredrock.cyxbs.network.func.UpdateVerifyFunc;
 import com.mredrock.cyxbs.network.func.UserCourseFilterFunc;
 import com.mredrock.cyxbs.network.func.UserInfoVerifyFunc;
 import com.mredrock.cyxbs.network.service.RedRockApiService;
-import com.redrock.common.network.RequestProvider;
 import com.mredrock.cyxbs.network.observable.CourseListProvider;
 import com.mredrock.cyxbs.network.observable.EmptyRoomListProvider;
 import com.mredrock.cyxbs.network.service.LostApiService;
@@ -61,6 +61,7 @@ import com.mredrock.cyxbs.ui.fragment.social.TopicFragment;
 import com.mredrock.cyxbs.util.BitmapUtil;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.network.RequestProvider;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -97,12 +98,13 @@ public enum RequestManager {
     private CacheProviders cacheProviders;
 
     RequestManager() {
-        Retrofit retrofit = RequestProvider.INSTANCE.getRetrofit();
+        RequestProvider requestProvider = new RequestProvider();
+        Retrofit retrofit = requestProvider.getRetrofit();
         redRockApiService = retrofit.create(RedRockApiService.class);
         lostApiService = retrofit.create(LostApiService.class);
         volunteerService = retrofit.create(VolunteerService.class);
         cacheProviders = new RxCache.Builder()
-                .persistence(MainApp.getContext().getFilesDir(), new JacksonSpeaker())
+                .persistence(ContextProvider.getContext().getFilesDir(), new JacksonSpeaker())
                 .using(CacheProviders.class);
     }
 
@@ -122,7 +124,7 @@ public enum RequestManager {
         Observable<User> observable = redRockApiService.verify(stuNum, idNum)
                 .map(new RedrockApiWrapperFunc<>())
                 .zipWith(redRockApiService.getPersonInfo(stuNum, idNum)
-                        .map(new RedrockApiWrapperFunc<>()), User::cloneFromUserInfo);
+                        .map(new RedrockApiWrapperFunc<>()), PersonInfo::cloneFromUserInfo);
 
         emitObservable(observable, observer);
     }
@@ -169,7 +171,7 @@ public enum RequestManager {
     }
 
     public void getRemindableList(Observer<List<Reminder>> observer, Context context, BaseRemindFunc remindFunc) {
-        Observable<List<Reminder>> observable = CourseListProvider.start(MainApp.getUser(context).stuNum, MainApp.getUser(context).idNum, false, false)
+        Observable<List<Reminder>> observable = CourseListProvider.start(AccountManager.getUser().stuNum, AccountManager.getUser().idNum, false, false)
                 .map(new UserCourseFilterFunc(new SchoolCalendar()
                         .getWeekOfTerm()))
                 .map(remindFunc);
@@ -393,8 +395,8 @@ public enum RequestManager {
                 })
                 .map(hotNewses -> {
                     for (HotNews h : hotNewses) {
-                        h.data.nickName = MainApp.getUser(MainApp.getContext()).getNickname();
-                        h.data.userHead = MainApp.getUser(MainApp.getContext()).photo_thumbnail_src;
+                        h.data.nickName = AccountManager.getUser().getNickname();
+                        h.data.userHead = AccountManager.getUser().photo_thumbnail_src;
                     }
                     return hotNewses;
                 });
@@ -407,7 +409,7 @@ public enum RequestManager {
     public Observable<UploadImgResponse.Response> uploadNewsImg(String stuNum, String filePath) {
         File file = new File(filePath);
         try {
-            file = BitmapUtil.decodeBitmapFromRes(MainApp.getContext(), filePath);
+            file = BitmapUtil.decodeBitmapFromRes(ContextProvider.getContext(), filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -665,7 +667,7 @@ public enum RequestManager {
 
     public void createLost(Observer<LostStatus> observer, LostDetail detail, int theme) {
         if (!checkWithUserId("需要先登录才能发送失物招领信息哦")) return;
-        User user = MainApp.getUser(MainApp.getContext());
+        User user = AccountManager.getUser();
         String themeString;
         if (theme == LostActivity.THEME_LOST) {
             themeString = "寻物启事";
@@ -726,7 +728,7 @@ public enum RequestManager {
 
 
     public boolean checkWithUserId(String s) {
-        if (!MainApp.isLogin()) {
+        if (!AccountManager.isLogin()) {
             EventBus.getDefault().post(new AskLoginEvent(s));
             return false;
         } else {

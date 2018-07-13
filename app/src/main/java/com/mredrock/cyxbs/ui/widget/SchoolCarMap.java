@@ -23,9 +23,9 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.utils.overlay.SmoothMoveMarker;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.Interface.SchoolCarInterface;
+import com.redrock.common.account.AccountManager;
 
 /**
  * Created by glossimar on 2018/1/29.
@@ -58,7 +58,7 @@ public class SchoolCarMap {
         BitmapDescriptor descriptor;
         locationStyle = new MyLocationStyle();
 
-        if (MainApp.getUser(context).gender.equals("女")){
+        if (AccountManager.getUser().gender.equals("女")){
             descriptor = BitmapDescriptorFactory.fromResource(R.drawable.ic_school_car_search_girl);
         } else {
             descriptor = BitmapDescriptorFactory.fromResource(R.drawable.ic_school_car_search_boy);

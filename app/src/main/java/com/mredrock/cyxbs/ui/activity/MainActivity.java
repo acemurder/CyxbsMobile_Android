@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jude.swipbackhelper.SwipeBackHelper;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.CourseDialog;
 import com.mredrock.cyxbs.component.widget.ScheduleView;
@@ -44,6 +43,8 @@ import com.mredrock.cyxbs.ui.widget.BottomNavigationViewHelper;
 import com.mredrock.cyxbs.ui.widget.JToolbar;
 import com.mredrock.cyxbs.util.DensityUtils;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
+import com.redrock.common.ContextProvider;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 import com.mredrock.cyxbs.util.UpdateUtil;
@@ -152,7 +153,7 @@ public class MainActivity extends BaseActivity {
 
         mFragments = new ArrayList<>();
         //判断是否登陆
-        if (!MainApp.isLogin()) {
+        if (!AccountManager.isLogin()) {
             mFragments.add(unLoginFragment);
 //            unLoginFace();
         } else {
@@ -183,7 +184,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loginFace() {
-        ImageLoader.getInstance().loadAvatar(MainApp.getUser(this).photo_thumbnail_src, mMainToolbarFace);
+        ImageLoader.getInstance().loadAvatar(AccountManager.getUser().photo_thumbnail_src, mMainToolbarFace);
         mMainToolbarFace.setOnClickListener(view ->
                 startActivity(new Intent(this, EditInfoActivity.class)));
     }
@@ -193,13 +194,13 @@ public class MainActivity extends BaseActivity {
     public void onLoginStateChangeEvent(LoginStateChangeEvent event) {
         super.onLoginStateChangeEvent(event);
         boolean isLogin = event.getNewState();
-        Log.d(TAG, "onLoginStateChangeEvent: " + MainApp.isFresh());
+        Log.d(TAG, "onLoginStateChangeEvent: " + AccountManager.isFresh());
         if (!isLogin) {
             mFragments.remove(0);
             mFragments.add(0, new UnLoginFragment());
             mAdapter.notifyDataSetChanged();
-            SPUtils.set(MainApp.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
-            SPUtils.set(MainApp.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
+            SPUtils.set(ContextProvider.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
+            SPUtils.set(ContextProvider.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
 //            unLoginFace();
         } else {
             mFragments.remove(0);
@@ -244,9 +245,9 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_news:
-                if (MainApp.isLogin()) {
+                if (AccountManager.isLogin()) {
                     if (mViewPager.getCurrentItem() == 1) {
-                        if (MainApp.getUser(this).id == null || MainApp.getUser(this).id.equals("0")) {
+                        if (AccountManager.getUser().id == null || AccountManager.getUser().id.equals("0")) {
                             RequestManager.getInstance().checkWithUserId("还没有完善信息，不能发动态哟！");
                             mViewPager.setCurrentItem(3);
                             //mBottomBar.setCurrentView(3);
@@ -385,7 +386,7 @@ public class MainActivity extends BaseActivity {
                     mToolbar.setVisibility(View.VISIBLE);
 //                    mMainToolbarFace.setVisibility(View.GONE);
                     setTitle("我 的");
-                    if (!MainApp.isLogin()) {
+                    if (!AccountManager.isLogin()) {
                         EventBus.getDefault().post(new LoginEvent());
                     }
                     break;
@@ -435,7 +436,7 @@ public class MainActivity extends BaseActivity {
                     mToolbar.setVisibility(View.GONE);
 //                    mMainToolbarFace.setVisibility(View.GONE);
                     setCourseUnfold(false, mUnfold);
-                    if (!MainApp.isLogin()) {
+                    if (!AccountManager.isLogin()) {
                         EventBus.getDefault().post(new LoginEvent());
                     }
                     break;

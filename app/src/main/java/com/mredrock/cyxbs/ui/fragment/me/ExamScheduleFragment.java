@@ -13,7 +13,6 @@ import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Exam;
 import com.redrock.common.account.User;
@@ -24,6 +23,7 @@ import com.mredrock.cyxbs.ui.adapter.me.ExamScheduleAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 import com.mredrock.cyxbs.util.LogUtils;
 import com.mredrock.cyxbs.util.NetUtils;
+import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,7 +108,7 @@ public class ExamScheduleFragment extends BaseFragment {
                 (getContext(), R.color.colorAccent), ContextCompat.getColor(getContext(), R.color.colorPrimary));
 
 
-        mUser = MainApp.getUser(getActivity());
+        mUser = AccountManager.getUser();
         mUser.stu = mUser.stuNum;
         if (mUser != null) {
             if (NetUtils.isNetWorkAvailable(getActivity())) {

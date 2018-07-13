@@ -1,7 +1,7 @@
 package com.redrock.common.network.interceptor;
 
 
-import com.redrock.common.account.UserManager;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class StudentNumberInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         String url = chain.request().url().toString();
-        if (UserManager.isLogin() && (
+        if (AccountManager.isLogin() && (
                    url.equals(Const.END_POINT_RED_ROCK + Const.API_SOCIAL_HOT_LIST)
                 || url.equals(Const.END_POINT_RED_ROCK + Const.API_SOCIAL_BBDD_LIST)
                 || url.equals(Const.END_POINT_RED_ROCK + Const.API_GET_PERSON_LATEST)
@@ -48,8 +48,8 @@ public class StudentNumberInterceptor implements Interceptor {
                 newBuilder.addEncoded(((FormBody) originalFormBody).encodedName(i), ((FormBody) originalFormBody).encodedValue(i));
             }
             // Add optional idNum and stuNum
-            newBuilder.add("idNum", UserManager.getUser().idNum);
-            newBuilder.add("stuNum", UserManager.getUser().stuNum);
+            newBuilder.add("idNum", AccountManager.getUser().idNum);
+            newBuilder.add("stuNum", AccountManager.getUser().stuNum);
             builder.method(originalRequest.method(), newBuilder.build());
         }
         return chain.proceed(builder.build());

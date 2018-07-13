@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Grade;
 import com.redrock.common.account.User;
@@ -23,6 +22,7 @@ import com.mredrock.cyxbs.ui.adapter.me.GradeAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 import com.mredrock.cyxbs.util.LogUtils;
 import com.mredrock.cyxbs.util.NetUtils;
+import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class GradeFragment extends BaseFragment implements SwipeRefreshLayout.On
                 (getContext(), R.color.colorAccent), ContextCompat.getColor
                 (getContext(), R.color.black_lightly));
 
-        mUser = MainApp.getUser(getActivity());
+        mUser = AccountManager.getUser();
         if (mUser != null) {
             if (NetUtils.isNetWorkAvailable(getActivity())) {
                 showProgress();

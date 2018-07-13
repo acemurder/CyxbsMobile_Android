@@ -18,9 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.redrock.common.ContextProvider;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
@@ -33,6 +33,7 @@ import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.util.ImageLoader;
 import com.mredrock.cyxbs.util.ScreenTools;
+import com.redrock.common.account.AccountManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -78,7 +79,7 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         mUserId = getIntent().getStringExtra(PERSON_USER_ID);
         mHeaderViewWrapper = new HeaderViewWrapper(this, R.layout.list_person_info_header);
         ButterKnife.bind(this);
-        mUser = MainApp.getUser(this);
+        mUser = AccountManager.getUser();
         init();
     }
 
@@ -93,8 +94,8 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         mHeaderViewRecyclerAdapter.addHeaderView(mHeaderViewWrapper.view);
 
         mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorAccent),
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary));
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorAccent),
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorPrimary));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mHeaderViewWrapper.setData(mUserAvatar, mNickName);
 
@@ -230,10 +231,10 @@ public class PersonInfoActivity extends BaseActivity implements SwipeRefreshLayo
         public void setIntroduction(String introduction, String gender) {
             mTextIntroduction.setText(introduction);
             if (gender.trim().equals("男")) {
-                mTextGender.setTextColor(ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary));
+                mTextGender.setTextColor(ContextCompat.getColor(ContextProvider.getContext(), R.color.colorPrimary));
                 mTextGender.setText("♂");
             } else {
-                mTextGender.setTextColor(ContextCompat.getColor(MainApp.getContext(), R.color.pink));
+                mTextGender.setTextColor(ContextCompat.getColor(ContextProvider.getContext(), R.color.pink));
                 mTextGender.setText("♀");
             }
         }

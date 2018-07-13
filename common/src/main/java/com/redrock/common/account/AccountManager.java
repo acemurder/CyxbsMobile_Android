@@ -10,13 +10,13 @@ import com.redrock.common.utils.SPUtils;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class UserManager {
+public class AccountManager {
 
     private static User mUser;
     private static boolean login;
     private static UserInfoEncryption userInfoEncryption;
 
-    public UserManager() {
+    public AccountManager() {
         // Initialize UserInfoEncrypted
         userInfoEncryption = new UserInfoEncryption();
     }
@@ -25,11 +25,11 @@ public class UserManager {
         String userJson;
         mUser = user;
         if (user == null) {
-            UserManager.setLogin(false);
+            AccountManager.setLogin(false);
             userJson = "";
         } else {
             userJson = new Gson().toJson(user);
-            UserManager.setLogin(true);
+            AccountManager.setLogin(true);
         }
         String encryptedJson = userInfoEncryption.encrypt(userJson);
         SPUtils.set(ContextProvider.getContext(), Const.SP_KEY_USER, encryptedJson);
@@ -77,9 +77,8 @@ public class UserManager {
         return isLogin() && getUser().stuNum.substring(0, 4).equals("2017");
     }
 
-
     public static void setLogin(boolean login) {
-        UserManager.login = login;
+        AccountManager.login = login;
     }
 
     public static boolean hasSetInfo() {

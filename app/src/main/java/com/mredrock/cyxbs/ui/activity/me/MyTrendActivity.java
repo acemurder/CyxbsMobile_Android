@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.HotNews;
@@ -22,6 +21,7 @@ import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.util.ImageLoader;
 import com.orhanobut.logger.Logger;
+import com.redrock.common.account.AccountManager;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class MyTrendActivity extends BaseActivity
 
 
     private void init() {
-        mUser = MainApp.getUser(this);
+        mUser = AccountManager.getUser();
         myTrendRefreshLayout.setOnRefreshListener(this);
 
         myTrendRefreshLayout.setColorSchemeColors(

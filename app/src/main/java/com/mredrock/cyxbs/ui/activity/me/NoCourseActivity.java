@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.JsonSyntaxException;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Student;
 import com.redrock.common.account.User;
@@ -24,6 +23,7 @@ import com.mredrock.cyxbs.ui.adapter.me.NoCourseAdapter;
 import com.mredrock.cyxbs.ui.fragment.me.NoCourseItemFragment;
 import com.mredrock.cyxbs.util.DensityUtils;
 import com.mredrock.cyxbs.util.NetUtils;
+import com.redrock.common.account.AccountManager;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.Serializable;
@@ -89,8 +89,8 @@ public class NoCourseActivity extends BaseActivity
         mNoCourseAdapter = new NoCourseAdapter(this, nameList);
         mNoCourseAdapter.setOnItemButtonClickListener(this);
 
-        if (MainApp.isLogin()) {
-            mUser = MainApp.getUser(this);
+        if (AccountManager.isLogin()) {
+            mUser = AccountManager.getUser();
         }
         if (mUser != null) {
             addStudent(mUser.stuNum, mUser.name);

@@ -9,6 +9,7 @@ import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.model.Affair;
 import com.mredrock.cyxbs.model.AffairApi;
 import com.mredrock.cyxbs.model.Course;
+import com.redrock.common.ContextProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -187,6 +188,6 @@ public enum  DBManager {
 
     private void open(){
         if (db == null || !db.isOpen())
-            db = new AffairDatabaseHelper(MainApp.getContext()).getWritableDatabase();
+            db = new AffairDatabaseHelper(ContextProvider.getContext()).getWritableDatabase();
     }
 }

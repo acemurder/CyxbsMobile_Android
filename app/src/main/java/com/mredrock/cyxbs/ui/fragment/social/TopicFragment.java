@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.Topic;
@@ -24,6 +23,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicAdapter;
 import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +61,7 @@ public class TopicFragment extends Fragment implements RecyclerArrayAdapter.OnMo
     }
 
     public void getTopic() {
-        User user = MainApp.getUser(getContext());
+        User user = AccountManager.getUser();
         RequestManager.getInstance().getTopicList(new SimpleObserver<>(getContext(),
                 false, new SubscriberListener<List<Topic>>() {
             @Override

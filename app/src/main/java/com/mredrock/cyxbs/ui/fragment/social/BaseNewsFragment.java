@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
@@ -28,6 +27,8 @@ import com.mredrock.cyxbs.ui.activity.social.PostNewsActivity;
 import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseLazyFragment;
+import com.redrock.common.ContextProvider;
+import com.redrock.common.account.AccountManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -80,7 +81,7 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
         super.onViewCreated(view, savedInstanceState);
         init();
         mFabMain.setOnClickListener(view1 -> {
-            if (MainApp.getUser(getActivity()).id == null || MainApp.getUser(getActivity()).id.equals("0")) {
+            if (AccountManager.getUser().id == null || AccountManager.getUser().id.equals("0")) {
                 RequestManager.getInstance().checkWithUserId("还没有完善信息，不能发动态哟！");
             } else
                 PostNewsActivity.startActivity(getActivity());
@@ -89,8 +90,8 @@ public abstract class BaseNewsFragment extends BaseLazyFragment implements Swipe
 
     protected void init() {
         mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorAccent),
-                ContextCompat.getColor(MainApp.getContext(), R.color.colorPrimary)
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorAccent),
+                ContextCompat.getColor(ContextProvider.getContext(), R.color.colorPrimary)
         );
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mLinearLayoutManager = new LinearLayoutManager(getParentFragment().getActivity());

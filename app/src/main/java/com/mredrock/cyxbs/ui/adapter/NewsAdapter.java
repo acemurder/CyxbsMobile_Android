@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ExpandableTextView;
 import com.mredrock.cyxbs.component.widget.ninelayout.AutoNineGridlayout;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.mredrock.cyxbs.model.social.BBDDNews;
@@ -160,7 +160,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         @OnClick(R.id.list_news_btn_favorites)
         public void clickLikeAndDisLike() {
-            if (MainApp.isLogin())
+            if (AccountManager.isLogin())
                 mBtnFavor.setClickable(false);
             if (mHotNewsContent.isMyLike) {
                 NewsAdapter.NewsViewHolder.this.dislike(mBtnFavor);
@@ -217,8 +217,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                         }
                     }),
                     mHotNewsContent.articleId, mHotNewsContent.typeId,
-                    MainApp.getUser(textView.getContext()).stuNum,
-                    MainApp.getUser(textView.getContext()).idNum);
+                    AccountManager.getUser().stuNum,
+                    AccountManager.getUser().idNum);
         }
 
         public void dislike(TextView textView) {
@@ -251,8 +251,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                             mBtnFavor.setClickable(true);
                         }
                     }), mHotNewsContent.articleId, mHotNewsContent.typeId,
-                    MainApp.getUser(textView.getContext()).stuNum,
-                    MainApp.getUser(textView.getContext()).idNum);
+                    AccountManager.getUser().stuNum,
+                    AccountManager.getUser().idNum);
         }
 
         public void disLikeToSetDataAndView(TextView textView, String likeNumber) {

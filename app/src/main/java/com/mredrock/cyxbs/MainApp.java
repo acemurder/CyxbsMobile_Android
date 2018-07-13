@@ -2,7 +2,6 @@ package com.mredrock.cyxbs;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Looper;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDelegate;
@@ -10,16 +9,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.redrock.common.BaseApp;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.Course;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.redrock.common.network.encrypt.UserInfoEncryption;
 import com.mredrock.cyxbs.ui.activity.exception.ExceptionActivity;
 import com.mredrock.cyxbs.util.LogUtils;
 import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.Utils;
-import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
@@ -40,8 +38,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-import static com.redrock.common.account.UserManager.getUser;
-import static com.redrock.common.account.UserManager.isLogin;
+import static com.redrock.common.account.AccountManager.isLogin;
 
 
 /**
@@ -67,7 +64,6 @@ public class MainApp extends BaseApp {
         initShareKey();
         initThemeMode();
         //  FIR.init(this);
-        Logger.init("cyxbs_mobile");
         ExceptionActivity.install(getApplicationContext(), true);
         // Refresh Course List When Start
         reloadCourseList();
@@ -100,7 +96,7 @@ public class MainApp extends BaseApp {
 
     public void reloadCourseList() {
         if (isLogin()) {
-            User user = getUser();
+            User user = AccountManager.getUser();
             RequestManager.getInstance().getCourseList(new Observer<List<Course>>() {
                 @Override
                 public void onComplete() {
@@ -155,8 +151,8 @@ public class MainApp extends BaseApp {
     }
 
     private void initBugly() {
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getContext());
-        strategy.setAppVersion(Utils.getAppVersionName(getContext()));      //App的版本
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setAppVersion(Utils.getAppVersionName(context));      //App的版本
 
         String packageName = context.getPackageName();
         // 获取当前进程名

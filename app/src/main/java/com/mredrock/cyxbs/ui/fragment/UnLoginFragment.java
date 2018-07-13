@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.activity.LoginActivity;
+import com.redrock.common.account.AccountManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +28,7 @@ public class UnLoginFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_unlogin, null);
         ButterKnife.bind(this, view);
-        if (MainApp.isFresh()) {
+        if (AccountManager.isFresh()) {
             mTvLogin.setText("萌新泥壕，课表菌正在从教务处搬运你的课表哟，请耐心等待");
             mTvLogin.setTextColor(getResources().getColor(R.color.gray_edit));
         } else {

@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Position;
 import com.mredrock.cyxbs.component.widget.ScheduleView;
@@ -28,6 +27,7 @@ import com.mredrock.cyxbs.event.AffairShowModeEvent;
 import com.mredrock.cyxbs.event.ForceFetchCourseEvent;
 import com.mredrock.cyxbs.model.Affair;
 import com.mredrock.cyxbs.model.Course;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
@@ -221,8 +221,8 @@ public class CourseFragment extends BaseFragment {
     private void loadCourse(int week, boolean update, boolean forceFetch) {
         showNoCourseFrame(true);
 
-        if (MainApp.isLogin()) {
-            mUser = MainApp.getUser(getActivity());
+        if (AccountManager.isLogin()) {
+            mUser = AccountManager.getUser();
             if (mUser != null) {
                 //强制从教务在线抓取课表时，当前显示的周数与实际周数相同就展示ProgressDialog
                 RequestManager.getInstance()

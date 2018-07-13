@@ -11,11 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.AskLoginEvent;
 import com.mredrock.cyxbs.event.LoginEvent;
 import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.mredrock.cyxbs.model.social.PersonInfo;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
@@ -79,7 +80,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick({R.id.name, R.id.introduce, R.id.avatar})
     void clickToEdit() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), EditInfoActivity.class));
         } else {
             EventBus.getDefault().post(new LoginEvent());
@@ -88,7 +89,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick(R.id.relate)
     void clickToRelate() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), AboutMeActivity.class));
         } else {
             EventBus.getDefault().post(new AskLoginEvent("登录后才能查看与我相关哦"));
@@ -97,7 +98,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick(R.id.trend)
     void clickToLatest() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), MyTrendActivity.class));
         } else {
             EventBus.getDefault().post(new AskLoginEvent("登录后才能查看我的动态哦"));
@@ -106,7 +107,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick(R.id.no_course)
     void clickToNoCourse() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), NoCourseActivity.class));
         } else {
             EventBus.getDefault().post(new AskLoginEvent("登录后才能使用没课约哦"));
@@ -120,7 +121,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick(R.id.grade)
     void clickToGrade() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), ExamAndGradeActivity.class));
         } else {
             EventBus.getDefault().post(new AskLoginEvent("登录后才能查看考试成绩哦"));
@@ -141,7 +142,7 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
 
     @OnClick(R.id.remind)
     public void onClick() {
-        if (MainApp.isLogin()) {
+        if (AccountManager.isLogin()) {
             startActivity(new Intent(getActivity(), RemindActivity.class));
         } else {
             EventBus.getDefault().post(new AskLoginEvent("登录后才能使用课前提醒哟"));
@@ -225,14 +226,14 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
     }
 
     private void getPersonInfoData() {
-        if (!MainApp.isLogin()) {
+        if (!AccountManager.isLogin()) {
             myPageNickName.setText("点我登录");
             myPageAvatar.setImageResource(R.drawable.default_avatar);
             myPageIntroduce.setText("");
             //myPageGender.setText("");
             return;
         }
-        mUser = MainApp.getUser(getActivity());
+        mUser = AccountManager.getUser();
         if (mUser != null) {
             RequestManager.getInstance().getPersonInfo(new SimpleObserver<>(getActivity(),
                     new SubscriberListener<User>() {
@@ -240,8 +241,8 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
                         public void onNext(User user) {
                             super.onNext(user);
                             if (user != null) {
-                                mUser = User.cloneFromUserInfo(mUser, user);
-                                MainApp.setUser(getActivity(), mUser);
+                                mUser = PersonInfo.cloneFromUserInfo(mUser, user);
+                                AccountManager.setUser(mUser);
                                 refreshEditLayout();
                             }
                         }
@@ -251,8 +252,8 @@ public class UserFragment extends BaseFragment /*implements CompoundButton.OnChe
     }
 
     private void refreshEditLayout() {
-        if (MainApp.isLogin()) {
-            mUser = MainApp.getUser(getActivity());
+        if (AccountManager.isLogin()) {
+            mUser = AccountManager.getUser();
             ImageLoader.getInstance().loadAvatar(mUser.photo_thumbnail_src, myPageAvatar);
             myPageNickName.setText(StringUtils.isBlank(mUser.nickname) ? "点我完善个人信息" : mUser.nickname);
             myPageIntroduce.setText(mUser.introduction);

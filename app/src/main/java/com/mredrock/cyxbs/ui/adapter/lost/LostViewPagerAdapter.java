@@ -13,6 +13,7 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.fragment.lost.LostFragment;
 import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.ContextProvider;
 
 import java.lang.ref.WeakReference;
 
@@ -65,7 +66,7 @@ public class LostViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] getTitles() {
         if (titles == null) {
-            titles = MainApp.getContext().getResources().getStringArray(R.array.lost_category_list);
+            titles = ContextProvider.getContext().getResources().getStringArray(R.array.lost_category_list);
         }
         return titles;
     }

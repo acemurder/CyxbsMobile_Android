@@ -16,6 +16,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.electric.DormitorySettingActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricRemindActivity;
+import com.redrock.common.ContextProvider;
 import com.redrock.common.utils.SPUtils;
 
 /**
@@ -31,21 +32,21 @@ public class ElectricRemindUtil {
 
     public static void check(Context context) {
 
-        long time = (long) SPUtils.get(MainApp.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
-        SPUtils.set(MainApp.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis());
+        long time = (long) SPUtils.get(ContextProvider.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
+        SPUtils.set(ContextProvider.getContext(), SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis());
         if (System.currentTimeMillis() - time < 60 * 60 * 1000 * 6) {
             Log.i(TAG, "check: " + (System.currentTimeMillis() - time));
             return;
         }
 
-        int buildingPosition = (int) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
+        int buildingPosition = (int) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
         if (buildingPosition < 0)
             return;
-        String dormitoryNum = (String) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.DORMITORY_KEY, "");
-        float money = (float) SPUtils.get(MainApp.getContext(), ElectricRemindActivity.ELECTRIC_REMIND_MONEY, -1.0f);
+        String dormitoryNum = (String) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.DORMITORY_KEY, "");
+        float money = (float) SPUtils.get(ContextProvider.getContext(), ElectricRemindActivity.ELECTRIC_REMIND_MONEY, -1.0f);
         if (money == -1)
             return;
-        String building = MainApp.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[buildingPosition];
+        String building = ContextProvider.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[buildingPosition];
         RequestManager.INSTANCE.queryElectricCharge(new SimpleObserver<>(context, new SubscriberListener<ElectricCharge>() {
             @Override
             public void onNext(ElectricCharge electricCharge) {

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
+import com.redrock.common.ContextProvider;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class ExploreViewPagerAdapter extends PagerAdapter {
         mImageViews = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             for (int id : IMAGES) {
-                ImageView imageView = new ImageView(MainApp.getContext());
+                ImageView imageView = new ImageView(ContextProvider.getContext());
                 imageView.setImageResource(id);
                 ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

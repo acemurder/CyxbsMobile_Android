@@ -21,6 +21,7 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ContextProvider;
 import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.Utils;
 
@@ -85,8 +86,8 @@ public class ElectricChargeActivity extends BaseActivity {
     }
 
     private void initData() {
-        mBuildingPosition = (int) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
-        dormitoryNum = (String) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.DORMITORY_KEY, String.valueOf("null"));
+        mBuildingPosition = (int) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
+        dormitoryNum = (String) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.DORMITORY_KEY, String.valueOf("null"));
         noticeInfo = getResources().getString(R.string.electric_notice_info);
     }
 
@@ -95,7 +96,7 @@ public class ElectricChargeActivity extends BaseActivity {
             startActivityForResult(new Intent(this,DormitorySettingActivity.class),1);
             return;
         }
-        String building = MainApp.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[mBuildingPosition];
+        String building = ContextProvider.getContext().getResources().getStringArray(R.array.dormitory_buildings_api)[mBuildingPosition];
         RequestManager.INSTANCE.queryElectricCharge(new SimpleObserver<>(this, true, new SubscriberListener<ElectricCharge>() {
             @Override
             public void onNext(ElectricCharge electricCharge) {
@@ -140,8 +141,8 @@ public class ElectricChargeActivity extends BaseActivity {
             Log.i(TAG,"onActivityResult");
             if (resultCode == REQUEST_SET_CODE){
                 onActivityResult = true;
-                mBuildingPosition = (int) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
-                dormitoryNum = (String) SPUtils.get(MainApp.getContext(), DormitorySettingActivity.DORMITORY_KEY, String.valueOf("null"));
+                mBuildingPosition = (int) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.BUILDING_KEY, -1);
+                dormitoryNum = (String) SPUtils.get(ContextProvider.getContext(), DormitorySettingActivity.DORMITORY_KEY, String.valueOf("null"));
                 queryElectricCharge();
             }else
                 onActivityResult = false;

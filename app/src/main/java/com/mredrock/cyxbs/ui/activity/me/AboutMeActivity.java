@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.AboutMe;
 import com.redrock.common.account.User;
@@ -21,6 +20,7 @@ import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.BaseActivity;
 import com.mredrock.cyxbs.ui.activity.social.SpecificNewsActivity;
 import com.mredrock.cyxbs.ui.adapter.me.AboutMeAdapter;
+import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class AboutMeActivity extends BaseActivity implements
         init();
         mAboutMeAdapter.setOnItemClickListener(this);
 
-        mUser = MainApp.getUser(this);
+        mUser = AccountManager.getUser();
 
         getCurrentData(false);
         showProgress();

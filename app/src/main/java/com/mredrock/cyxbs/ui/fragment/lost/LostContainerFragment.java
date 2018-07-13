@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.PersonInfo;
@@ -17,6 +16,7 @@ import com.mredrock.cyxbs.subscriber.SimpleObserver;
 import com.mredrock.cyxbs.subscriber.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.lost.LostViewPagerAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
+import com.redrock.common.account.AccountManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,8 +81,8 @@ public class LostContainerFragment extends BaseFragment{
         return fragment;
     }
     private void getUserData() {
-        if (MainApp.isLogin()) {
-            mUser = MainApp.getUser(getContext());
+        if (AccountManager.isLogin()) {
+            mUser = AccountManager.getUser();
             if (mUser.id == null) getPersonInfoData();
             //else init();
         }else {
@@ -91,7 +91,7 @@ public class LostContainerFragment extends BaseFragment{
     }
 
     public void getPersonInfoData() {
-        if (!MainApp.isLogin()){
+        if (!AccountManager.isLogin()){
             return;
         }
         if (mUser != null){
@@ -100,8 +100,8 @@ public class LostContainerFragment extends BaseFragment{
                 public void onNext(PersonInfo personInfo) {
                     super.onNext(personInfo);
                     super.onNext(personInfo);
-                    mUser = User.cloneFromUserInfo(mUser, personInfo);
-                    MainApp.setUser(getActivity(), mUser);
+                    mUser = PersonInfo.cloneFromUserInfo(mUser, personInfo);
+                    AccountManager.setUser(mUser);
                 }
             }), mUser.stuNum, mUser.stuNum, mUser.idNum);
         }

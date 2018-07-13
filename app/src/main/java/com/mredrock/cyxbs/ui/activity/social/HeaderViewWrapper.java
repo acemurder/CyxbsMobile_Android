@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
+import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.Topic;
 import com.mredrock.cyxbs.network.RequestManager;
@@ -49,7 +49,7 @@ public class HeaderViewWrapper {
         TopicHeaderAdapter topicHeaderAdapter = new TopicHeaderAdapter(context);
         mRvTopicHeader.setAdapter(topicHeaderAdapter);
         topicHeaderAdapter.addFooter(new Header());
-        User user = MainApp.getUser(context);
+        User user = AccountManager.getUser();
         ArrayList<Topic> list = new ArrayList<>();
         RequestManager.getInstance().getTopicList(new SimpleObserver<>(context, new SubscriberListener<List<Topic>>() {
             @Override

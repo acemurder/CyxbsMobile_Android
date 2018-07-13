@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
+import com.redrock.common.ContextProvider;
 import com.redrock.common.utils.SPUtils;
 
 import butterknife.BindView;
@@ -36,7 +37,7 @@ public class ElectricRemindActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        float money = (float) SPUtils.get(MainApp.getContext(),ELECTRIC_REMIND_MONEY,-1.0f);
+        float money = (float) SPUtils.get(ContextProvider.getContext(),ELECTRIC_REMIND_MONEY,-1.0f);
         if (money != -1)
             mMoneyEdit.setText(money+"");
     }
@@ -49,11 +50,11 @@ public class ElectricRemindActivity extends AppCompatActivity {
     @OnClick(R.id.iv_electric_remind_confirm)
     public void onConfirmClick(){
         if (mMoneyEdit.getText().toString().isEmpty()){
-            Toast.makeText(MainApp.getContext(),"要设置电费提醒额度哦",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ContextProvider.getContext(),"要设置电费提醒额度哦",Toast.LENGTH_SHORT).show();
             return;
         }
-        SPUtils.set(MainApp.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
-        SPUtils.set(MainApp.getContext(),ELECTRIC_REMIND_MONEY,Float.parseFloat(mMoneyEdit.getText().toString()));
+        SPUtils.set(ContextProvider.getContext(), ElectricRemindUtil.SP_KEY_ELECTRIC_REMIND_TIME, System.currentTimeMillis() / 2);
+        SPUtils.set(ContextProvider.getContext(),ELECTRIC_REMIND_MONEY,Float.parseFloat(mMoneyEdit.getText().toString()));
         onBackClick();
     }
 }
