@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.fragment.BaseLazyFragment;
+import com.redrock.common.ui.BaseLazyFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

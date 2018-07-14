@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.redrock.common.BuildConfig;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import java.net.ConnectException;

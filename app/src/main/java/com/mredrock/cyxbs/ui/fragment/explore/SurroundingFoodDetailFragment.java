@@ -34,9 +34,9 @@ import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.FoodCommentsAdapter;
 import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.widget.EditTextBottomSheetDialog;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.permission.AfterPermissionGranted;
-import com.mredrock.cyxbs.util.permission.EasyPermissions;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.permission.AfterPermissionGranted;
+import com.redrock.common.util.permission.EasyPermissions;
 
 import java.util.ArrayList;
 import java.util.List;

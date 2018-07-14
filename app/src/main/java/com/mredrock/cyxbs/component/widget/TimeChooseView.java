@@ -10,8 +10,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.mredrock.cyxbs.util.DensityUtils;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.DensityUtils;
+import com.redrock.common.util.LogUtils;
+import com.redrock.schedule.model.Position;
 
 import java.util.ArrayList;
 import java.util.List;

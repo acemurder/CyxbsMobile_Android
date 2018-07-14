@@ -6,11 +6,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
 import com.redrock.common.ContextProvider;
-import com.redrock.common.utils.SPUtils;
+import com.redrock.common.util.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

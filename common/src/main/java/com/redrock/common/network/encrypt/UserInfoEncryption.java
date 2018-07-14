@@ -6,7 +6,7 @@ import android.util.Log;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.config.Config;
 import com.redrock.common.config.Const;
-import com.redrock.common.utils.SPUtils;
+import com.redrock.common.util.SPUtils;
 
 import java.io.UnsupportedEncodingException;
 

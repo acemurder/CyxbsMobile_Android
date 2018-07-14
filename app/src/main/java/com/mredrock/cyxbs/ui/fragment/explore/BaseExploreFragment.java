@@ -12,9 +12,9 @@ import android.view.ViewTreeObserver;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.RevealBackgroundView;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
+import com.redrock.common.ui.BaseFragment;
 import com.mredrock.cyxbs.util.GlideHelper;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;

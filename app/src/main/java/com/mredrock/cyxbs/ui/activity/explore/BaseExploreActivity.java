@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
 import com.redrock.common.ui.BaseActivity;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import java.util.List;
 

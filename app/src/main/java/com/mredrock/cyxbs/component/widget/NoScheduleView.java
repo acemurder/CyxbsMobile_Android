@@ -19,7 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.NoCourse;
 import com.mredrock.cyxbs.ui.adapter.me.NoCourseDialogAdapter;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
 import com.redrock.common.ui.BaseActivity;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 public class RollerViewActivity extends BaseActivity {
     private static final String TAG = LogUtils.makeLogTag(RollerViewActivity.class);

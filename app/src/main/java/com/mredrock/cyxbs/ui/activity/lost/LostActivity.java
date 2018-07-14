@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.lost.LostViewPagerAdapter;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

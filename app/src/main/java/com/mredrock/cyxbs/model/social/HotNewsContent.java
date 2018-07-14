@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import org.apache.commons.lang3.StringUtils;
 

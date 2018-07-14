@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.redrock.common.network.RedRockApiWrapper;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import java.util.List;
 

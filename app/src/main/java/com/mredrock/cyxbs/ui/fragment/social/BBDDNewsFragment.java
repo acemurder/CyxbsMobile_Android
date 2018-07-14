@@ -5,7 +5,7 @@ import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
-import com.mredrock.cyxbs.util.RxBus;
+import com.redrock.common.util.RxBus;
 
 import java.util.List;
 

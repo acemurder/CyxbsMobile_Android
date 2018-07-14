@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.account.AccountManager;
+import com.redrock.common.ui.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

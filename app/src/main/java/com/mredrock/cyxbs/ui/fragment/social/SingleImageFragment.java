@@ -19,10 +19,10 @@ import android.widget.Toast;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.fragment.BaseLazyFragment;
+import com.redrock.common.ui.BaseLazyFragment;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.SaveImageUtils;
-import com.mredrock.cyxbs.util.permission.EasyPermissions;
+import com.redrock.common.util.SaveImageUtils;
+import com.redrock.common.util.permission.EasyPermissions;
 
 import java.util.List;
 

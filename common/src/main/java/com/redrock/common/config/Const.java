@@ -140,4 +140,6 @@ public class Const {
         public static final String SCHEME = "cyxbsmobile";
         public static final String HOST_TOPIC = "topic";
     }
+
+    public static final String SHOW_MODE = "showMode";
 }

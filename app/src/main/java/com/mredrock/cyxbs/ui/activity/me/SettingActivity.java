@@ -23,11 +23,11 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.event.AffairShowModeEvent;
+import com.redrock.schedule.event.AffairShowModeEvent;
 import com.redrock.common.account.LoginStateChangeEvent;
-import com.mredrock.cyxbs.network.func.AppWidgetCacheAndUpdateFunc;
+import com.redrock.schedule.network.AppWidgetCacheAndUpdateFunc;
 import com.redrock.common.ui.BaseActivity;
-import com.mredrock.cyxbs.util.SaveImageUtils;
+import com.redrock.common.util.SaveImageUtils;
 import com.redrock.common.account.AccountManager;
 import com.suke.widget.SwitchButton;
 import com.umeng.analytics.MobclickAgent;
@@ -43,7 +43,6 @@ import io.reactivex.schedulers.Schedulers;
 public class SettingActivity extends BaseActivity {
 
     public static final String SHOW_MODE = "showMode";
-
 
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
@@ -76,9 +75,7 @@ public class SettingActivity extends BaseActivity {
         if (!AccountManager.isLogin()) {
             settingExit.setVisibility(View.GONE);
         }
-
         initSwitchCompat();
-
     }
 
     private void initSwitchCompat() {

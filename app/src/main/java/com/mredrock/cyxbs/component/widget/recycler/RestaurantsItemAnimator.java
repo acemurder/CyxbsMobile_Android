@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.animation.DecelerateInterpolator;
 
 import com.mredrock.cyxbs.ui.adapter.FoodListAdapter;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 /**
  * Created by Stormouble on 16/4/24.

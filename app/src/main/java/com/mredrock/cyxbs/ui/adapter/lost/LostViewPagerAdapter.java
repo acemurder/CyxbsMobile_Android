@@ -11,7 +11,7 @@ import android.view.View;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.fragment.lost.LostFragment;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 import com.redrock.common.ContextProvider;
 
 import java.lang.ref.WeakReference;

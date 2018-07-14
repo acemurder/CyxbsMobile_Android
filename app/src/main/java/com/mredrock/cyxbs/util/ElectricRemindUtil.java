@@ -16,7 +16,7 @@ import com.mredrock.cyxbs.ui.activity.explore.electric.DormitorySettingActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricRemindActivity;
 import com.redrock.common.ContextProvider;
-import com.redrock.common.utils.SPUtils;
+import com.redrock.common.util.SPUtils;
 
 /**
  * Created by ：AceMurder

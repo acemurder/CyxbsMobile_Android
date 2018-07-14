@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 /**
  * Created by Stormouble on 16/5/5.

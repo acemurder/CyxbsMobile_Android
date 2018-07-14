@@ -20,7 +20,7 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicHeaderAdapter;
 import com.mredrock.cyxbs.ui.fragment.social.TopicFragment;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

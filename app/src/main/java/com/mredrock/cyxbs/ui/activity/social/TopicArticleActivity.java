@@ -24,7 +24,7 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicArticleAdapter;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.redrock.common.account.AccountManager;
 import com.umeng.socialize.UMShareAPI;
 

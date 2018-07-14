@@ -26,7 +26,7 @@ import com.mredrock.cyxbs.ui.activity.social.HeaderViewWrapper;
 import com.mredrock.cyxbs.ui.activity.social.PostNewsActivity;
 import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseLazyFragment;
+import com.redrock.common.ui.BaseLazyFragment;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.account.AccountManager;
 

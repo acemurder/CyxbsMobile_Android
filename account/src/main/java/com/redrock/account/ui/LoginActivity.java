@@ -19,7 +19,7 @@ import com.redrock.common.account.User;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -120,14 +120,8 @@ public class LoginActivity extends BaseActivity {
                 }), stuNum, idNum);
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        /*if (EventBus.getDefault().hasSubscriberForEvent(ExitEvent.class)) {
-            EventBus.getDefault().postSticky(new ExitEvent());
-        }*/
-
-        // this.finish();
     }
 }

@@ -17,7 +17,7 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
+import com.redrock.common.ui.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

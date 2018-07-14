@@ -13,7 +13,7 @@ import com.mredrock.cyxbs.model.NoCourse;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
 import com.mredrock.cyxbs.ui.fragment.me.NoCourseItemFragment;
-import com.mredrock.cyxbs.util.SchoolCalendar;
+import com.redrock.common.util.SchoolCalendar;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;

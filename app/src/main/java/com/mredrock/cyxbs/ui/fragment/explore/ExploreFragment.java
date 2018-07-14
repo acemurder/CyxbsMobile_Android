@@ -22,9 +22,9 @@ import com.mredrock.cyxbs.ui.activity.explore.WhatToEatActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity;
 import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.adapter.ExploreRollerViewAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
+import com.redrock.common.ui.BaseFragment;
 import com.mredrock.cyxbs.ui.widget.RollerView;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import java.util.List;
 

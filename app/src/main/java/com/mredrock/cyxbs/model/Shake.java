@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.model;
 
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 /**
  * Result of Shaking

@@ -11,13 +11,14 @@ import android.util.Log;
 import com.redrock.common.BaseApp;
 import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
-import com.mredrock.cyxbs.model.Course;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.ui.activity.exception.ExceptionActivity;
-import com.redrock.common.utils.LogUtils;
-import com.redrock.common.utils.SPUtils;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.SPUtils;
+import com.redrock.common.util.Utils;
+import com.redrock.schedule.model.Course;
+import com.redrock.schedule.network.ScheduleRequestManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
@@ -97,7 +98,7 @@ public class MainApp extends BaseApp {
     public void reloadCourseList() {
         if (isLogin()) {
             User user = AccountManager.getUser();
-            RequestManager.getInstance().getCourseList(new Observer<List<Course>>() {
+            ScheduleRequestManager.INSTANCE.getCourseList(new Observer<List<Course>>() {
                 @Override
                 public void onComplete() {
                 }

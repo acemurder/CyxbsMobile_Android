@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 27
@@ -40,7 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
-    kapt "com.jakewharton:butterknife-compiler:$butter_knife_version"
+    annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
     implementation project(':common')
 }

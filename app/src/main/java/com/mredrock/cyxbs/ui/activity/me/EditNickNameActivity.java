@@ -12,7 +12,7 @@ import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.redrock.common.network.RedRockApiWrapper;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;

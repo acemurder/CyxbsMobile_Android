@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.model;
 
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import java.util.Arrays;
 import java.util.List;

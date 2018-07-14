@@ -27,9 +27,9 @@ import com.mredrock.cyxbs.ui.activity.social.ImageActivity;
 import com.mredrock.cyxbs.ui.activity.social.PersonInfoActivity;
 import com.mredrock.cyxbs.ui.activity.social.SpecificNewsActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.RxBus;
-import com.mredrock.cyxbs.util.TimeUtils;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.RxBus;
+import com.redrock.common.util.TimeUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

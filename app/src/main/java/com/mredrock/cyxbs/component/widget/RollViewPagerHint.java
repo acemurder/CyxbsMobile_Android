@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import com.jude.rollviewpager.HintView;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 
 public class RollViewPagerHint extends LinearLayout implements HintView {
 

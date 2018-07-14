@@ -1,6 +1,5 @@
 package com.redrock.common.ui;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ import com.redrock.common.R;
 import com.redrock.common.account.AskLoginEvent;
 import com.redrock.common.account.LoginEvent;
 import com.redrock.common.account.LoginStateChangeEvent;
-import com.redrock.common.utils.KeyboardUtils;
+import com.redrock.common.util.KeyboardUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 

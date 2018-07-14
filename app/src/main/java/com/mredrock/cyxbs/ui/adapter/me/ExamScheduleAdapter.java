@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Exam;
-import com.mredrock.cyxbs.util.SchoolCalendar;
+import com.redrock.common.util.SchoolCalendar;
 
 import java.util.List;
 

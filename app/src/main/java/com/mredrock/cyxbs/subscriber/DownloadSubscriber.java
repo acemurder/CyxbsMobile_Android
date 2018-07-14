@@ -3,7 +3,7 @@ package com.mredrock.cyxbs.subscriber;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.util.FileUtils;
+import com.redrock.common.util.FileUtils;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 

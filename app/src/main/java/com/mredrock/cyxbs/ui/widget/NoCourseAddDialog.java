@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ClearableEditText;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 
 /**
  * Created by Jay on 2017/7/21.

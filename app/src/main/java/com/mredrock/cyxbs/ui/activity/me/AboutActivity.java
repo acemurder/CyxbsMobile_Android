@@ -13,7 +13,7 @@ import com.mredrock.cyxbs.R;
 import com.redrock.common.config.Const;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.util.UpdateUtil;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;

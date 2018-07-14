@@ -12,7 +12,7 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.AboutMe;
 import com.mredrock.cyxbs.ui.adapter.BaseRecyclerViewAdapter;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.TimeUtils;
+import com.redrock.common.util.TimeUtils;
 import com.redrock.common.account.AccountManager;
 
 import java.util.List;

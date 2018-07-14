@@ -22,7 +22,7 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicAdapter;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;

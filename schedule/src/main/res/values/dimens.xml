@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="app_text_size_small">12sp</dimen>
+    <dimen name="app_text_size_large">18sp</dimen>
+    <dimen name="information_img_avatar">48dp</dimen>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="ts_app_widget_course_list_item_order">14sp</dimen>
+    <dimen name="toolbar_padding">0dp</dimen>
+</resources>

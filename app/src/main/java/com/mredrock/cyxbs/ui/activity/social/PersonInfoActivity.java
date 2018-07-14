@@ -32,7 +32,7 @@ import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.ScreenTools;
+import com.redrock.common.util.ScreenTools;
 import com.redrock.common.account.AccountManager;
 
 import org.greenrobot.eventbus.Subscribe;

@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.social.Image;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 
 /**
  * Created by Pan_ on 2015/2/2.

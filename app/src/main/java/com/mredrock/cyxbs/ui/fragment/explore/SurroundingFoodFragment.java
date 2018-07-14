@@ -14,8 +14,8 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.BaseExploreActivity;
 import com.mredrock.cyxbs.ui.adapter.FoodListAdapter;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.UIUtils;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;

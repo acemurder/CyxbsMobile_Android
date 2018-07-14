@@ -26,8 +26,8 @@ import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.BaseExploreActivity;
 import com.mredrock.cyxbs.ui.activity.explore.SurroundingFoodActivity;
 import com.mredrock.cyxbs.ui.activity.explore.WhatToEatActivity;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.UIUtils;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.UIUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -31,7 +31,7 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.widget.LostCircleButton;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

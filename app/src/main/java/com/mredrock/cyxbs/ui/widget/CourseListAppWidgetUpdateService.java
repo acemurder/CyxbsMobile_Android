@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.mredrock.cyxbs.model.Course;
-import com.mredrock.cyxbs.network.func.AppWidgetCacheAndUpdateFunc;
-import com.mredrock.cyxbs.network.observable.CourseListProvider;
+import com.redrock.schedule.model.Course;
+import com.redrock.schedule.network.AppWidgetCacheAndUpdateFunc;
+import com.redrock.schedule.network.CourseListProvider;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.SchoolCalendar;
-import com.mredrock.cyxbs.util.database.DBManager;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.SchoolCalendar;
+import com.redrock.schedule.DBManager;
 import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;

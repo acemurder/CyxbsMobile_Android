@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.config.Const;
 import com.redrock.common.network.encrypt.UserInfoEncryption;
-import com.redrock.common.utils.SPUtils;
+import com.redrock.common.util.SPUtils;
 
 import org.apache.commons.lang3.StringUtils;
 

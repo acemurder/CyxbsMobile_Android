@@ -11,7 +11,7 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.service.UpdateService;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 /**

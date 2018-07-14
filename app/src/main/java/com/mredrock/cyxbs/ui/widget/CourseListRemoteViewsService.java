@@ -12,13 +12,12 @@ import android.widget.RemoteViewsService;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.config.Config;
-import com.mredrock.cyxbs.model.Affair;
-import com.mredrock.cyxbs.model.Course;
-import com.mredrock.cyxbs.util.FileUtils;
+import com.redrock.schedule.model.Affair;
+import com.redrock.common.util.FileUtils;
+import com.redrock.schedule.model.Course;
 
 import java.io.File;
 import java.util.ArrayList;

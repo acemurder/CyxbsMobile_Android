@@ -8,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.component.widget.ScheduleView;
+import com.redrock.schedule.model.Course;
+import com.redrock.schedule.ui.ScheduleView;
 import com.redrock.common.config.Const;
-import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.widget.CourseListAppWidget;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import java.util.ArrayList;
 

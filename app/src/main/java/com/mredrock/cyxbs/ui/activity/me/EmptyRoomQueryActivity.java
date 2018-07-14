@@ -28,8 +28,8 @@ import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.me.EmptyRoomResultAdapter;
-import com.mredrock.cyxbs.util.DensityUtils;
-import com.mredrock.cyxbs.util.SchoolCalendar;
+import com.redrock.common.util.DensityUtils;
+import com.redrock.common.util.SchoolCalendar;
 
 import java.util.ArrayList;
 import java.util.List;

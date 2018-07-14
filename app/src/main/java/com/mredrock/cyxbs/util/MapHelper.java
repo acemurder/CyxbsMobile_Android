@@ -7,9 +7,9 @@ import android.os.AsyncTask;
 import android.os.Handler;
 
 import com.redrock.common.config.Const;
-import com.mredrock.cyxbs.util.cache.DiskCache;
-import com.redrock.common.utils.LogUtils;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.BitmapUtil;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.Utils;
 
 import java.io.File;
 import java.io.IOException;

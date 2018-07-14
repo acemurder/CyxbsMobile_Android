@@ -13,7 +13,7 @@ import android.util.Log;
 import com.coolerfall.daemon.Daemon;
 import com.mredrock.cyxbs.component.remind_service.Reminder;
 import com.mredrock.cyxbs.component.remind_service.receiver.RemindReceiver;
-import com.mredrock.cyxbs.util.TimeUtils;
+import com.redrock.common.util.TimeUtils;
 
 import java.util.ArrayList;
 

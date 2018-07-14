@@ -25,8 +25,8 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
-import com.mredrock.cyxbs.util.RxBus;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.RxBus;
+import com.redrock.common.util.Utils;
 import com.redrock.common.account.AccountManager;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 

@@ -1,10 +1,10 @@
 package com.mredrock.cyxbs.network.setting;
 
 import com.mredrock.cyxbs.model.AboutMe;
-import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.model.Exam;
 import com.mredrock.cyxbs.model.Grade;
 import com.mredrock.cyxbs.model.social.HotNews;
+import com.redrock.schedule.model.Course;
 
 import java.util.List;
 import io.reactivex.Observable;

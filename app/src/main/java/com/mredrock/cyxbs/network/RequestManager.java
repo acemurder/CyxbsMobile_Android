@@ -10,8 +10,6 @@ import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.redrock.common.account.AskLoginEvent;
 import com.mredrock.cyxbs.model.AboutMe;
-import com.mredrock.cyxbs.model.Affair;
-import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.model.Empty;
 import com.mredrock.cyxbs.model.EmptyRoom;
@@ -42,25 +40,22 @@ import com.mredrock.cyxbs.model.social.PersonLatest;
 import com.mredrock.cyxbs.model.social.Topic;
 import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.model.social.UploadImgResponse;
-import com.redrock.common.network.RedrockApiException;
-import com.mredrock.cyxbs.network.func.AffairTransformFunc;
-import com.mredrock.cyxbs.network.func.AffairWeekFilterFunc;
 import com.mredrock.cyxbs.network.func.ElectricQueryFunc;
 import com.mredrock.cyxbs.network.func.StartPageFunc;
 import com.mredrock.cyxbs.network.func.UpdateVerifyFunc;
-import com.mredrock.cyxbs.network.func.UserCourseFilterFunc;
+import com.redrock.schedule.network.UserCourseFilterFunc;
 import com.mredrock.cyxbs.network.func.UserInfoVerifyFunc;
 import com.mredrock.cyxbs.network.service.RedRockApiService;
-import com.mredrock.cyxbs.network.observable.CourseListProvider;
+import com.redrock.schedule.network.CourseListProvider;
 import com.mredrock.cyxbs.network.observable.EmptyRoomListProvider;
 import com.mredrock.cyxbs.network.service.LostApiService;
 import com.mredrock.cyxbs.network.service.VolunteerService;
 import com.mredrock.cyxbs.network.setting.CacheProviders;
 import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.fragment.social.TopicFragment;
-import com.mredrock.cyxbs.util.BitmapUtil;
-import com.mredrock.cyxbs.util.SchoolCalendar;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.BitmapUtil;
+import com.redrock.common.util.SchoolCalendar;
+import com.redrock.common.util.Utils;
 import com.redrock.common.network.RequestProvider;
 
 import org.greenrobot.eventbus.EventBus;
@@ -128,17 +123,6 @@ public enum RequestManager {
         emitObservable(observable, observer);
     }
 
-    public void getNowWeek(Observer<Integer> observer, String stuNum, String idNum) {
-        Observable<Integer> observable = redRockApiService.getCourse(stuNum, idNum, "0")
-                .map(courseWrapper -> {
-                    if (courseWrapper.status != Const.RED_ROCK_API_STATUS_SUCCESS) {
-                        throw new RedrockApiException();
-                    }
-                    return Integer.parseInt(courseWrapper.nowWeek);
-                });
-         emitObservable(observable, observer);
-    }
-
     public void getVolunteer(Observer<VolunteerTime> subscriber, String account, String password) {
         Observable<VolunteerTime> observable = volunteerService.getVolunteerUseLogin(account, password);
         emitObservable(observable, subscriber);
@@ -155,35 +139,12 @@ public enum RequestManager {
         emitObservable(observable, subscriber);
     }
 
-    public void getCourseList(Observer<List<Course>> observer, String stuNum, String idNum, int week, boolean update) {
-//        Observable<List<Course>> observable = CourseListProvider.start(stuNum, idNum, update,false)
-//                .map(new UserCourseFilterFunc(week));
-
-        getCourseList(observer, stuNum, idNum, week, update, true);
-    }
-
-    public void getCourseList(Observer<List<Course>> observer, String stuNum, String idNum,
-                                             int week, boolean update, boolean forceFetch) {
-        Observable<List<Course>> observable = CourseListProvider.start(stuNum, idNum, update, forceFetch)
-                .map(new UserCourseFilterFunc(week));
-         emitObservable(observable, observer);
-    }
-
     public void getRemindableList(Observer<List<Reminder>> observer, Context context, BaseRemindFunc remindFunc) {
         Observable<List<Reminder>> observable = CourseListProvider.start(AccountManager.getUser().stuNum, AccountManager.getUser().idNum, false, false)
                 .map(new UserCourseFilterFunc(new SchoolCalendar()
                         .getWeekOfTerm()))
                 .map(remindFunc);
          emitObservable(observable, observer);
-    }
-
-    public Observable<List<Course>> getCourseList(String stuNum, String idNum) {
-        return redRockApiService.getCourse(stuNum, idNum, "0").map(new RedRockApiWrapperFunc<>());
-    }
-
-    public List<Course> getCourseListSync(String stuNum, String idNum, boolean forceFetch) throws IOException {
-        Response<Course.CourseWrapper> response = redRockApiService.getCourseCall(stuNum, idNum, "0", forceFetch).execute();
-        return response.body().data;
     }
 
 //    public CompositeDisposable getMapOverlayImageUrl(Observer<String> observer, String name, String path) {
@@ -252,9 +213,7 @@ public enum RequestManager {
                             .onErrorReturn(throwable -> new ArrayList<>())
                             .flatMap(Observable::fromIterable)
                             .toSortedList()
-                            .subscribe(foodCommentList -> {
-                                foodDetail.foodComments = foodCommentList;
-                            });
+                            .subscribe(foodCommentList -> foodDetail.foodComments = foodCommentList);
                     return Observable.just(foodDetail);
                 });
 
@@ -287,6 +246,8 @@ public enum RequestManager {
         return emitObservable(observable, observer);
     }
 
+
+
     public Disposable getFoodCommentList(DisposableObserver<List<FoodComment>> observer
             , String shopId, String page) {
         Observable<List<FoodComment>> observable =
@@ -299,15 +260,6 @@ public enum RequestManager {
 
         return emitObservable(observable, observer);
     }
-
-    public void getPublicCourse(Observer<List<Course>> observer,
-                                List<String> stuNumList, String week) {
-        Observable<List<Course>> observable = Observable.fromIterable(stuNumList)
-                .flatMap(s -> redRockApiService.getCourse(s, "", week))
-                .map(new RedRockApiWrapperFunc<>());
-        emitObservable(observable, observer);
-    }
-
 
     public void getStudent(Observer<List<com.mredrock.cyxbs.model.Student>> observer,
                            String stu) {
@@ -582,39 +534,6 @@ public enum RequestManager {
         emitObservable(observable, observer);
     }
 
-    public void getAffair(Observer<List<Affair>> observer, String stuNum, String idNum) {
-        Observable<List<Affair>> observable = redRockApiService.getAffair(stuNum, idNum)
-                .map(new AffairTransformFunc());
-        emitObservable(observable, observer);
-    }
-
-    public void getAffair(Observer<List<Affair>> observer, String stuNum, String idNum, int week) {
-        Observable<List<Affair>> observable = redRockApiService.getAffair(stuNum, idNum)
-                .map(new AffairTransformFunc())
-                .map(new AffairWeekFilterFunc(week));
-        emitObservable(observable, observer);
-    }
-
-    public void addAffair(Observer<Object> observer, String stuNum, String idNum, String uid, String title,
-                          String content, String date, int time) {
-        Observable<Object> observable = redRockApiService.addAffair(uid, stuNum, idNum, date, time, title, content)
-                .map(new RedRockApiWrapperFunc<>());
-        emitObservable(observable, observer);
-    }
-
-
-    public void editAffair(Observer<Object> observer, String stuNum, String idNum, String uid, String title,
-                           String content, String date, int time) {
-        Observable<Object> observable = redRockApiService.editAffair(uid, stuNum, idNum, date, time, title, content)
-                .map(new RedRockApiWrapperFunc<>());
-        emitObservable(observable, observer);
-    }
-
-    public void deleteAffair(Observer<Object> observer, String stuNum, String idNum, String uid) {
-        Observable<Object> observable = redRockApiService.deleteAffair(stuNum, idNum, uid)
-                .map(new RedRockApiWrapperFunc<>());
-        emitObservable(observable, observer);
-    }
 
     public void getStartPage(Observer<StartPage> observer) {
         Observable<StartPage> observable = redRockApiService.startPage()

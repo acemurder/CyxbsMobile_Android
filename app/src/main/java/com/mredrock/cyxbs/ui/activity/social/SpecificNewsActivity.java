@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.R;
+import com.mredrock.cyxbs.download.DownloadHelper;
+import com.mredrock.cyxbs.download.callback.OnDownloadListener;
 import com.redrock.common.account.AskLoginEvent;
 import com.redrock.common.account.LoginStateChangeEvent;
 import com.redrock.common.ContextProvider;
@@ -35,10 +37,8 @@ import com.mredrock.cyxbs.ui.adapter.HeaderViewRecyclerAdapter;
 import com.mredrock.cyxbs.ui.adapter.NewsAdapter;
 import com.mredrock.cyxbs.ui.adapter.SpecificNewsCommentAdapter;
 import com.mredrock.cyxbs.ui.widget.EditTextBottomSheetDialog;
-import com.mredrock.cyxbs.util.RxBus;
-import com.redrock.common.utils.Utils;
-import com.mredrock.cyxbs.util.download.DownloadHelper;
-import com.mredrock.cyxbs.util.download.callback.OnDownloadListener;
+import com.redrock.common.util.RxBus;
+import com.redrock.common.util.Utils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 

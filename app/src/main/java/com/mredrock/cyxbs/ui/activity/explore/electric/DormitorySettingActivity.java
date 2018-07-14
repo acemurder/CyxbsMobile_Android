@@ -23,9 +23,9 @@ import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.fragment.explore.eletric.DialogRemindFragment;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
-import com.redrock.common.utils.KeyboardUtils;
-import com.redrock.common.utils.SPUtils;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.KeyboardUtils;
+import com.redrock.common.util.SPUtils;
+import com.redrock.common.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

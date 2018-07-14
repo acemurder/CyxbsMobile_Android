@@ -1,1 +1,1 @@
-include ':app', ':push', ':common', ':account'
+include ':app', ':push', ':common', ':account', ':schedule'

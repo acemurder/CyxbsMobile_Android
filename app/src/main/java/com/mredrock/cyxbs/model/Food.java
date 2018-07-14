@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.model;
 
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 /**
  * Created by Stormouble on 16/4/7.

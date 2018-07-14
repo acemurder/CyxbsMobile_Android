@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

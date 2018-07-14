@@ -13,7 +13,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ninelayout.CustomImageView;
 import com.redrock.common.ContextProvider;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 /**
  * Created by MathiasLuo on 2016/3/1.

@@ -20,33 +20,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.component.widget.CourseDialog;
-import com.mredrock.cyxbs.component.widget.ScheduleView;
+import com.redrock.schedule.ui.CourseContainerFragment;
+import com.redrock.schedule.ui.CourseDialog;
+import com.redrock.schedule.ui.EditAffairActivity;
+import com.redrock.schedule.ui.ScheduleView;
 import com.redrock.common.account.LoginEvent;
 import com.redrock.common.account.LoginStateChangeEvent;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.ui.activity.affair.EditAffairActivity;
 import com.mredrock.cyxbs.ui.activity.explore.SurroundingFoodActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.DormitorySettingActivity;
 import com.mredrock.cyxbs.ui.activity.me.NewsRemindActivity;
 import com.mredrock.cyxbs.ui.activity.me.NoCourseActivity;
 import com.mredrock.cyxbs.ui.activity.social.PostNewsActivity;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
-import com.mredrock.cyxbs.ui.fragment.CourseContainerFragment;
+import com.redrock.common.ui.BaseFragment;
 import com.mredrock.cyxbs.ui.fragment.UnLoginFragment;
 import com.mredrock.cyxbs.ui.fragment.UserFragment;
 import com.mredrock.cyxbs.ui.fragment.explore.ExploreFragment;
 import com.mredrock.cyxbs.ui.fragment.social.SocialContainerFragment;
 import com.mredrock.cyxbs.ui.widget.BottomNavigationViewHelper;
 import com.mredrock.cyxbs.ui.widget.JToolbar;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.account.AccountManager;
 import com.redrock.common.ui.BaseActivity;
-import com.redrock.common.utils.SPUtils;
-import com.mredrock.cyxbs.util.SchoolCalendar;
+import com.redrock.common.util.SPUtils;
+import com.redrock.common.util.SchoolCalendar;
 import com.mredrock.cyxbs.util.UpdateUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -57,6 +57,7 @@ import java.util.ArrayList;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class MainActivity extends BaseActivity {
 
@@ -92,6 +93,7 @@ public class MainActivity extends BaseActivity {
     private boolean mUnfold;
 
     public static final String TAG = "MainActivity";
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +101,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
-        UpdateUtil.checkUpdate(this, false,new RxPermissions(this));
+        UpdateUtil.checkUpdate(this, false, new RxPermissions(this));
         ElectricRemindUtil.check(this);
         setCourseUnfold(true, false);
         // FIXME: 2016/10/23 won't be call when resume, such as start by press app widget after dismiss this activity by press HOME button, set launchMode to normal may fix it but will launch MainActivity many times.
@@ -108,6 +110,7 @@ public class MainActivity extends BaseActivity {
         BottomNavigationViewHelper btNavViewHelper = new BottomNavigationViewHelper(mMainBottomNavView);
         btNavViewHelper.enableBottomNavAnim(false);
         btNavViewHelper.setBottomNavTextSize(10);
+
     }
 
     /**
@@ -146,6 +149,13 @@ public class MainActivity extends BaseActivity {
         initToolbar();
         socialContainerFragment = new SocialContainerFragment();
         courseContainerFragment = new CourseContainerFragment();
+        compositeDisposable.add(CourseContainerFragment.toolbarTitle.subscribe(value -> {
+            if (getCurrentPosition() == 0) {
+                getToolbarTitle().setText(value);
+            }
+        }));
+        compositeDisposable.add(CourseContainerFragment
+                .courseUnfoldState.subscribe(value -> setCourseUnfold(value.first, value.second)));
         exploreFragment = new ExploreFragment();
         userFragment = new UserFragment();
         unLoginFragment = new UnLoginFragment();
@@ -265,43 +275,6 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-/*
-    public void showPopupWindow() {
-        Rect frame = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int xOffset = frame.top + mToolbar.getHeight() - 60;//减去阴影宽度，适配UI.
-        int yOffset = Utils.dip2px(this, 15f); //设置x方向offset为5dp
-        View parentView = getLayoutInflater().inflate(R.layout.activity_main, null);
-        View popView = getLayoutInflater().inflate(
-                R.layout.popup_window_add_remind, null);
-        PopupWindow popWind = new PopupWindow(popView,
-                WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);//popView即popupWindow的布局，ture设置focusAble.
-
-        //必须设置BackgroundDrawable后setOutsideTouchable(true)才会有效。这里在XML中定义背景，所以这里设置为null;
-        popWind.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
-        popWind.setOutsideTouchable(true); //点击外部关闭。
-        popWind.setAnimationStyle(R.style.PopupAnimation);    //设置一个动画。
-        //设置Gravity，让它显示在右上角。
-        if (popWind.getContentView() != null) {
-            popWind.getContentView().findViewById(R.id.tv_popup_window_add_affair).setOnClickListener((v -> {
-                EditAffairActivity.editAffairActivityStart(this, new SchoolCalendar().getWeekOfTerm());
-                popWind.dismiss();
-            }));
-            popWind.getContentView().findViewById(R.id.tv_popup_window_fetch_course).setOnClickListener((v -> {
-                if (courseContainerFragment != null) {
-                    ((CourseContainerFragment) courseContainerFragment).forceFetchCourse();
-                }
-                popWind.dismiss();
-
-            }));
-        }
-
-        popWind.showAtLocation(parentView, Gravity.RIGHT | Gravity.TOP,
-                yOffset, xOffset);
-    }
-*/
-
-
     private void hiddenMenu() {
         if (null != mMenu) {
             for (int i = 0; i < mMenu.size(); i++) {
@@ -325,7 +298,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        compositeDisposable.dispose();
     }
 
     public int getCurrentPosition() {
@@ -334,26 +307,8 @@ public class MainActivity extends BaseActivity {
 
     private class ViewPagerChangedListener implements ViewPager.OnPageChangeListener {
 
-        float preOffset = 0;
-
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            switch (position) {
-                case 0:
-                    break;
-                case 1:
-//                    if (positionOffset > preOffset) {
-//                        toolbarStepByStepClose(positionOffset, true);
-//                    } else {
-//                        toolbarStepByStepClose(positionOffset, false);
-//                    }
-//                    preOffset = positionOffset;
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-            }
         }
 
         @Override

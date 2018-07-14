@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Food;
 import com.mredrock.cyxbs.util.GlideHelper;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.LogUtils;
 
 import java.util.List;
 

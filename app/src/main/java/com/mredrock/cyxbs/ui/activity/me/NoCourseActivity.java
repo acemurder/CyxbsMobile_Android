@@ -21,8 +21,8 @@ import com.redrock.common.network.SubscriberListener;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.me.NoCourseAdapter;
 import com.mredrock.cyxbs.ui.fragment.me.NoCourseItemFragment;
-import com.mredrock.cyxbs.util.DensityUtils;
-import com.mredrock.cyxbs.util.NetUtils;
+import com.redrock.common.util.DensityUtils;
+import com.redrock.common.util.NetUtils;
 import com.redrock.common.account.AccountManager;
 import com.umeng.analytics.MobclickAgent;
 

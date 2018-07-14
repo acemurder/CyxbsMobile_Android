@@ -15,7 +15,7 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.lost.LostViewPagerAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
+import com.redrock.common.ui.BaseFragment;
 import com.redrock.common.account.AccountManager;
 
 import butterknife.BindView;

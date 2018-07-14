@@ -16,13 +16,14 @@ import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.NoScheduleView;
-import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.model.NoCourse;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
-import com.mredrock.cyxbs.util.SchoolCalendar;
+import com.redrock.common.ui.BaseFragment;
+import com.redrock.common.util.SchoolCalendar;
+import com.redrock.schedule.model.Course;
+import com.redrock.schedule.network.ScheduleRequestManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -168,10 +169,9 @@ public class NoCourseItemFragment extends BaseFragment {
         count = 0;
     }
 
-
     private void loadWeekNoCourse() {
         if (blocked) return;
-        RequestManager.getInstance().getPublicCourse(new
+        ScheduleRequestManager.INSTANCE.getPublicCourse(new
                 SimpleObserver<>(getActivity(), new SubscriberListener<List<Course>>() {
 
             @Override

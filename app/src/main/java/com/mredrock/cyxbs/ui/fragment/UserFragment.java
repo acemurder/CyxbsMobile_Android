@@ -32,7 +32,8 @@ import com.mredrock.cyxbs.ui.activity.me.SchoolCalendarActivity;
 import com.mredrock.cyxbs.ui.activity.me.SettingActivity;
 import com.mredrock.cyxbs.ui.activity.me.VolunteerTimeLoginActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.redrock.common.utils.SPUtils;
+import com.redrock.common.ui.BaseFragment;
+import com.redrock.common.util.SPUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.greenrobot.eventbus.EventBus;

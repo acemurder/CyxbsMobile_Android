@@ -217,9 +217,6 @@
     <string name="electric_notice_info_1">\t用电过程中，如需查询请致电：\t023-62487902</string>
     <string name="unLoginHint">点击登录,拯救课表菌！！！</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="empty_course">没课的日子总是充满对课堂的思恋</string>
-
     <string-array name="dormitory_buildings">
         <item>知行苑1舍(01栋)</item>
         <item>知行苑2舍(02栋)</item>

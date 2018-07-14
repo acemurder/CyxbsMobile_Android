@@ -214,10 +214,6 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.activity.affair.EditAffairActivity"
-            android:exported="false"
-            android:launchMode="singleTop" />
-        <activity
             android:name=".ui.activity.affair.TimeChooseActivity"
             android:launchMode="singleTop" />
 

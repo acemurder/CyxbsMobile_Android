@@ -25,8 +25,8 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.util.DialogUtil;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.permission.AfterPermissionGranted;
-import com.mredrock.cyxbs.util.permission.EasyPermissions;
+import com.redrock.common.util.permission.AfterPermissionGranted;
+import com.redrock.common.util.permission.EasyPermissions;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;

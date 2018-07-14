@@ -9,12 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.component.widget.Position;
+import com.redrock.schedule.model.Position;
 import com.mredrock.cyxbs.component.widget.TimeChooseView;
-import com.mredrock.cyxbs.event.TimeChooseEvent;
+import com.redrock.schedule.event.TimeChooseEvent;
 import com.redrock.common.ui.BaseActivity;
-import com.mredrock.cyxbs.util.DensityUtils;
-import com.redrock.common.utils.LogUtils;
+import com.redrock.common.util.DensityUtils;
+import com.redrock.common.util.LogUtils;
 import com.redrock.common.ContextProvider;
 
 import org.greenrobot.eventbus.EventBus;

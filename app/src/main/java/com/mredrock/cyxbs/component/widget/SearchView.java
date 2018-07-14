@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.mredrock.cyxbs.R;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 /**
  * Created by simonla on 2017/4/4.

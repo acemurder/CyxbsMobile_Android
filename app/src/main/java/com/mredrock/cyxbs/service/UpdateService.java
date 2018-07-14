@@ -13,7 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 
 import com.mredrock.cyxbs.R;
-import com.redrock.common.utils.Utils;
+import com.redrock.common.util.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;

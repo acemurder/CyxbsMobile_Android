@@ -20,8 +20,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.util.DensityUtils;
-import com.mredrock.cyxbs.util.ReflectUtil;
+import com.redrock.common.util.DensityUtils;
+import com.redrock.common.util.ReflectUtil;
 
 /**
  * Created by Jay on 2017/7/25.

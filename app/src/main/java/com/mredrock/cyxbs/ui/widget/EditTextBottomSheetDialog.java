@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.util.DensityUtils;
+import com.redrock.common.util.DensityUtils;
 
 /**
  * Created by Jay on 2017/8/2.

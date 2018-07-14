@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.util;
 
-import com.mredrock.cyxbs.model.Course;
+import com.redrock.schedule.model.Course;
 
 import java.util.Calendar;
 

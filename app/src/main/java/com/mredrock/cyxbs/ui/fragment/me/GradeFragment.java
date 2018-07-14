@@ -19,9 +19,9 @@ import com.mredrock.cyxbs.network.RequestManager;
 import com.redrock.common.network.SimpleObserver;
 import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.me.GradeAdapter;
-import com.mredrock.cyxbs.ui.fragment.BaseFragment;
-import com.redrock.common.utils.LogUtils;
-import com.mredrock.cyxbs.util.NetUtils;
+import com.redrock.common.ui.BaseFragment;
+import com.redrock.common.util.LogUtils;
+import com.redrock.common.util.NetUtils;
 import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;

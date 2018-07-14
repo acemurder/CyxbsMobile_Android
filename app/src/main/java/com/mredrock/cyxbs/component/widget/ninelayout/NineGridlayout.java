@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mredrock.cyxbs.model.social.Image;
-import com.mredrock.cyxbs.util.ScreenTools;
+import com.redrock.common.util.ScreenTools;
 
 import java.util.List;
 
