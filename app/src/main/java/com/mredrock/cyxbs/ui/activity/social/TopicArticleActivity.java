@@ -20,11 +20,11 @@ import com.mredrock.cyxbs.event.ItemChangedEvent;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.TopicArticle;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicArticleAdapter;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.Utils;
 import com.redrock.common.account.AccountManager;
 import com.umeng.socialize.UMShareAPI;
 

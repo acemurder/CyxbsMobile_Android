@@ -14,7 +14,7 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.RevealBackgroundView;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 import com.mredrock.cyxbs.util.GlideHelper;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;

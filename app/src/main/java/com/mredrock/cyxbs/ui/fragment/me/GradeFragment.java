@@ -16,11 +16,11 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Grade;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.me.GradeAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.NetUtils;
 import com.redrock.common.account.AccountManager;
 

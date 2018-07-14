@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mredrock.cyxbs">
 
-    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
@@ -158,7 +157,7 @@
         <activity android:name=".ui.activity.me.EditPhoneActivity" />
         <activity android:name=".ui.activity.social.PostNewsActivity" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name="com.redrock.account.ui.LoginActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".component.multi_image_selector.MultiImageSelectorActivity"

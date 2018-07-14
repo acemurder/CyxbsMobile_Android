@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.model;
 
+import com.redrock.common.network.RedRockApiWrapper;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Student implements Serializable {
     public String depart;
     public String grade;
 
-    public static class StudentWrapper extends RedrockApiWrapper<List<Student>> {
+    public static class StudentWrapper extends RedRockApiWrapper<List<Student>> {
         public int state;
     }
 }

@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.model;
 
+import com.redrock.common.network.RedRockApiWrapper;
+
 import java.util.List;
 
 /**
@@ -46,7 +48,7 @@ public class Exam implements Comparable<Exam>{
 
     }
 
-    public static class ExamWapper extends RedrockApiWrapper<List<Exam>> {
+    public static class ExamWapper extends RedRockApiWrapper<List<Exam>> {
 
     }
 }

@@ -1,25 +1,24 @@
 package com.mredrock.cyxbs.ui.activity.me;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Toolbar;
 import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.Utils;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import io.reactivex.Observer;
 
-
+@Route(path="/app/EditNickNameActivity")
 public class EditNickNameActivity extends EditCommonActivity {
 
     @BindView(R.id.edit_common_toolbar)
@@ -51,7 +50,7 @@ public class EditNickNameActivity extends EditCommonActivity {
     }
 
     @Override
-    protected void provideData(Observer<RedrockApiWrapper<Object>> observer, String stuNum, String idNum, String info) {
+    protected void provideData(Observer<RedRockApiWrapper<Object>> observer, String stuNum, String idNum, String info) {
         RequestManager.getInstance().setPersonNickName(observer, stuNum, idNum, info);
     }
 
@@ -84,11 +83,4 @@ public class EditNickNameActivity extends EditCommonActivity {
     protected String getExtra() {
         return Const.Extras.EDIT_NICK_NAME;
     }
-
-    public static void start(Context context) {
-        Intent starter = new Intent(context, EditNickNameActivity.class);
-        starter.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(starter);
-    }
-
 }

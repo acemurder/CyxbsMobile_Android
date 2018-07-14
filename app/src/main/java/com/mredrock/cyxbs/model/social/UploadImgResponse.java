@@ -1,12 +1,12 @@
 package com.mredrock.cyxbs.model.social;
 
 import com.google.gson.annotations.SerializedName;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 
 /**
  * Created by mathiasluo on 16-4-12.
  */
-public class UploadImgResponse extends RedrockApiWrapper<UploadImgResponse.Response> {
+public class UploadImgResponse extends RedRockApiWrapper<UploadImgResponse.Response> {
 
     public static class Response {
 

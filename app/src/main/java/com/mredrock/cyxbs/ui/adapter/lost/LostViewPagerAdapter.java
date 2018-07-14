@@ -8,11 +8,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.View;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.fragment.lost.LostFragment;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.redrock.common.ContextProvider;
 
 import java.lang.ref.WeakReference;

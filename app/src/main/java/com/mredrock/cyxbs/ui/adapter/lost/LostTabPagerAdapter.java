@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 
 import java.util.List;
 

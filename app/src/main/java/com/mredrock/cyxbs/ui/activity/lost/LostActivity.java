@@ -10,9 +10,9 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.lost.LostViewPagerAdapter;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

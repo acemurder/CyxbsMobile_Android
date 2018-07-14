@@ -6,10 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.SearchView;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
 import com.mredrock.cyxbs.ui.fragment.social.TopicFragment;
 
@@ -41,7 +40,6 @@ public class TopicActivity extends BaseActivity implements android.support.v7.wi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
         ButterKnife.bind(this);
-        SwipeBackHelper.getCurrentPage(this).setClosePercent(0.15f).setSwipeSensitivity(0.2f);
         mTlTopic.setupWithViewPager(mVpTopic);
         close();
         mSvTopic.addQueryListener(this);

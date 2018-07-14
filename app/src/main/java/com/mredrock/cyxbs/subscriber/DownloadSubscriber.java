@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.util.FileUtils;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 
 import java.io.File;
 

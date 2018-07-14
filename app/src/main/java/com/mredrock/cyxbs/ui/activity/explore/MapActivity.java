@@ -10,7 +10,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 
 public class MapActivity extends BaseExploreActivity {
@@ -24,7 +23,6 @@ public class MapActivity extends BaseExploreActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("加载中...");
         dialog.show();

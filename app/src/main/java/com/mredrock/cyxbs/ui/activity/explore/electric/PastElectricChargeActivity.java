@@ -12,9 +12,9 @@ import com.mredrock.cyxbs.model.PastElectric;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.ui.BaseActivity;
 import com.redrock.common.account.AccountManager;
 
 import java.util.ArrayList;

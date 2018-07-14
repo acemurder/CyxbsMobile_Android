@@ -1,7 +1,7 @@
 package com.mredrock.cyxbs.model.social;
 
 import com.google.gson.annotations.SerializedName;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 import com.redrock.common.account.User;
 
 /**
@@ -60,7 +60,7 @@ public class PersonInfo {
         return userOrigin;
     }
 
-    public static class UserWrapper extends RedrockApiWrapper<User> {
+    public static class UserWrapper extends RedRockApiWrapper<User> {
     }
 
 }

@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.event.ItemChangedEvent;
-import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.redrock.common.account.LoginStateChangeEvent;
 import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.subscriber.EndlessRecyclerOnScrollListener;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.social.FooterViewWrapper;
 import com.mredrock.cyxbs.ui.activity.social.HeaderViewWrapper;
 import com.mredrock.cyxbs.ui.activity.social.PostNewsActivity;

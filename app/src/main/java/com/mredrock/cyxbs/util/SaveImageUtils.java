@@ -6,11 +6,11 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.mredrock.cyxbs.MainApp;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.config.Config;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.utils.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,7 +57,7 @@ public class SaveImageUtils {
                         Log.e("TAG",Environment.getExternalStorageDirectory().toString());
 
                         try {
-                            String name = Environment.getExternalStorageDirectory() +Config.DIR_PHOTO+"/"+Utils.md5Hex(url)+ ".jpg";
+                            String name = Environment.getExternalStorageDirectory() +Config.DIR_PHOTO+"/"+ Utils.md5Hex(url)+ ".jpg";
                             File file = new File(name);
                             if (!file.exists()){
                                 try {

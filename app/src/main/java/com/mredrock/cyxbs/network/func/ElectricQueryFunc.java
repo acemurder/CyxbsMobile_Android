@@ -2,7 +2,7 @@ package com.mredrock.cyxbs.network.func;
 
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.ElectricCharge;
-import com.mredrock.cyxbs.network.exception.RedrockApiException;
+import com.redrock.common.network.RedrockApiException;
 
 import io.reactivex.functions.Function;
 

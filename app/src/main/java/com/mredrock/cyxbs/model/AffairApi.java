@@ -3,6 +3,7 @@ package com.mredrock.cyxbs.model;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.redrock.common.network.RedRockApiWrapper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +19,7 @@ import java.util.List;
  * Enjoy it !!!
  */
 
-public class AffairApi<T> extends RedrockApiWrapper<T> {
+public class AffairApi<T> extends RedRockApiWrapper<T> {
 
 
     public String term;

@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.redrock.common.utils.Utils;
+
 /**
  * Created by Stormouble on 16/4/26.
  */

@@ -3,8 +3,8 @@ package com.mredrock.cyxbs.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.mredrock.cyxbs.MainApp;
 import com.redrock.common.ContextProvider;
+import com.redrock.common.network.RedRockApiWrapper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class Course implements Serializable, Parcelable {
         return hash_lesson * 2 + 1;
     }
 
-    public static class CourseWrapper extends RedrockApiWrapper<List<Course>> {
+    public static class CourseWrapper extends RedRockApiWrapper<List<Course>> {
         public String term;
         public String stuNum;
         public String nowWeek;

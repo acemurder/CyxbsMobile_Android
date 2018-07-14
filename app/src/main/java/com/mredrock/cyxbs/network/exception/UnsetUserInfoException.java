@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.network.exception;
 
+import com.redrock.common.network.RedrockApiException;
+
 /**
  * Created by cc on 16/5/6.
  */

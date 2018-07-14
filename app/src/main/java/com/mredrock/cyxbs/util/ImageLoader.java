@@ -10,10 +10,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.ninelayout.CustomImageView;
 import com.redrock.common.ContextProvider;
+import com.redrock.common.utils.Utils;
 
 /**
  * Created by MathiasLuo on 2016/3/1.

@@ -11,9 +11,9 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.utils.Utils;
 import com.mredrock.cyxbs.util.download.callback.OnDownloadListener;
 import com.mredrock.cyxbs.util.download.progress.ProgressHelper;
 import com.mredrock.cyxbs.util.download.progress.UIProgressListener;

@@ -18,16 +18,15 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.selector.MultiSelector;
 import com.mredrock.cyxbs.component.widget.selector.StringAdapter;
 import com.mredrock.cyxbs.component.widget.selector.ViewInitializer;
 import com.mredrock.cyxbs.model.EmptyRoom;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.me.EmptyRoomResultAdapter;
 import com.mredrock.cyxbs.util.DensityUtils;
 import com.mredrock.cyxbs.util.SchoolCalendar;
@@ -89,7 +88,6 @@ public class EmptyRoomQueryActivity extends BaseActivity implements MultiSelecto
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_room_query);
         ButterKnife.bind(this);
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         init();
     }
 

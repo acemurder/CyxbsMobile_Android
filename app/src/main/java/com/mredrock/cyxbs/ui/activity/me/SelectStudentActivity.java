@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.Student;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.me.SelectStudentAdapter;
 import com.umeng.analytics.MobclickAgent;
 

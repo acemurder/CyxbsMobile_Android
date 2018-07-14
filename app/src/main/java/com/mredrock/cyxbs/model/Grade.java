@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.model;
 
+import com.redrock.common.network.RedRockApiWrapper;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ public class Grade {
     public String student;
     public String term;
 
-    public static class GradeWrapper extends RedrockApiWrapper<List<Grade>> {
+    public static class GradeWrapper extends RedRockApiWrapper<List<Grade>> {
 
     }
 }

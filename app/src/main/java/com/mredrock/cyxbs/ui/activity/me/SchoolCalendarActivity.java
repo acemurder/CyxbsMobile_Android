@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

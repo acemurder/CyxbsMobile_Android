@@ -1,12 +1,12 @@
 package com.mredrock.cyxbs.model.social;
 
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 
 import java.util.List;
 
 /**
  * Created by mathiasluo on 16-4-12.
  */
-public class Comment extends RedrockApiWrapper<List<CommentContent>> {
+public class Comment extends RedRockApiWrapper<List<CommentContent>> {
     public int state;
 }

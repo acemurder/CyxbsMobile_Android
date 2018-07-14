@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.fragment.me.RemindFragment;
 
 import butterknife.BindView;

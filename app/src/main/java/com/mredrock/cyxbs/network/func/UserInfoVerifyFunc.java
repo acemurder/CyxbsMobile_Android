@@ -1,9 +1,7 @@
 package com.mredrock.cyxbs.network.func;
 
-import com.mredrock.cyxbs.MainApp;
-import com.redrock.common.ContextProvider;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.redrock.common.account.User;
-import com.mredrock.cyxbs.ui.activity.me.EditNickNameActivity;
 
 import io.reactivex.functions.Function;
 
@@ -14,9 +12,9 @@ import io.reactivex.functions.Function;
 public class UserInfoVerifyFunc implements Function<User, User> {
 
     @Override
-    public User apply(User user) throws Exception {
+    public User apply(User user) {
         if (user == null) {
-            EditNickNameActivity.start(ContextProvider.getContext());
+            ARouter.getInstance().build("/app/EditNickNameActivity").navigation();
         }
         return user;
     }

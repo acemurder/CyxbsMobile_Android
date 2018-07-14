@@ -19,12 +19,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.CourseDialog;
 import com.mredrock.cyxbs.component.widget.ScheduleView;
-import com.mredrock.cyxbs.event.LoginEvent;
-import com.mredrock.cyxbs.event.LoginStateChangeEvent;
+import com.redrock.common.account.LoginEvent;
+import com.redrock.common.account.LoginStateChangeEvent;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.ui.activity.affair.EditAffairActivity;
 import com.mredrock.cyxbs.ui.activity.explore.SurroundingFoodActivity;
@@ -45,6 +44,7 @@ import com.mredrock.cyxbs.util.DensityUtils;
 import com.mredrock.cyxbs.util.ElectricRemindUtil;
 import com.redrock.common.ContextProvider;
 import com.redrock.common.account.AccountManager;
+import com.redrock.common.ui.BaseActivity;
 import com.redrock.common.utils.SPUtils;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 import com.mredrock.cyxbs.util.UpdateUtil;
@@ -97,7 +97,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
         initView();
         UpdateUtil.checkUpdate(this, false,new RxPermissions(this));

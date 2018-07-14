@@ -1,6 +1,6 @@
 package com.mredrock.cyxbs.model.social;
 
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * 22:50
  */
 
-public class TopicArticle extends RedrockApiWrapper<TopicArticle> {
+public class TopicArticle extends RedRockApiWrapper<TopicArticle> {
 
 
     /**

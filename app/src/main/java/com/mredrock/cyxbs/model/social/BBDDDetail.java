@@ -1,7 +1,7 @@
 package com.mredrock.cyxbs.model.social;
 
 import com.google.gson.annotations.SerializedName;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class BBDDDetail {
     @SerializedName("nickname")
     public String nickName;
 
-    public static class BBDDDetailWrapper extends RedrockApiWrapper<List<BBDDDetail>> {
+    public static class BBDDDetailWrapper extends RedRockApiWrapper<List<BBDDDetail>> {
 
     }
 }

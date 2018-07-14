@@ -7,12 +7,11 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.ElectricCharge;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.electric.DormitorySettingActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricChargeActivity;
 import com.mredrock.cyxbs.ui.activity.explore.electric.ElectricRemindActivity;

@@ -2,11 +2,10 @@ package com.mredrock.cyxbs.network.observable;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mredrock.cyxbs.MainApp;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.util.FileUtils;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.redrock.common.ContextProvider;
 
 import java.io.File;

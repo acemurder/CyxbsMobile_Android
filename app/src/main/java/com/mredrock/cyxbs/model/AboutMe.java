@@ -1,5 +1,7 @@
 package com.mredrock.cyxbs.model;
 
+import com.redrock.common.network.RedRockApiWrapper;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,6 +20,6 @@ public class AboutMe implements Serializable {
     public String nickname;
     public String photo_src;
 
-    public static class AboutMeWapper extends RedrockApiWrapper<List<AboutMe>> {
+    public static class AboutMeWapper extends RedRockApiWrapper<List<AboutMe>> {
     }
 }

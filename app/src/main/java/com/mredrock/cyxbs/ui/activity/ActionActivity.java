@@ -13,7 +13,7 @@ import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.ui.activity.social.TopicArticleActivity;
 import com.mredrock.cyxbs.ui.widget.CourseListAppWidget;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 
 import java.util.ArrayList;
 

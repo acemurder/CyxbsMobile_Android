@@ -30,13 +30,13 @@ import com.mredrock.cyxbs.model.Course;
 import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.affair.EditAffairActivity;
 import com.mredrock.cyxbs.ui.activity.me.SettingActivity;
 import com.mredrock.cyxbs.ui.widget.CourseListAppWidgetUpdateService;
 import com.mredrock.cyxbs.util.DensityUtils;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 import com.mredrock.cyxbs.util.database.DBManager;
 

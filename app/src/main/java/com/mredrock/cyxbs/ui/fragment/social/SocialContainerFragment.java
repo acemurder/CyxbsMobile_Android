@@ -14,8 +14,8 @@ import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.PersonInfo;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 

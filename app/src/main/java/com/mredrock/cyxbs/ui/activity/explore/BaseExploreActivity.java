@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.ui.BaseActivity;
+import com.redrock.common.utils.Utils;
 
 import java.util.List;
 

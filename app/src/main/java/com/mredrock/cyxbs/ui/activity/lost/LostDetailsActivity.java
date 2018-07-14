@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.lost.LostDetail;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
 
 import butterknife.BindView;

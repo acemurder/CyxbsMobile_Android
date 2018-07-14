@@ -12,14 +12,13 @@ import com.mredrock.cyxbs.model.FoodComment;
 import com.mredrock.cyxbs.model.FoodDetail;
 import com.mredrock.cyxbs.model.Grade;
 import com.mredrock.cyxbs.model.PastElectric;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 import com.mredrock.cyxbs.model.RollerViewInfo;
 import com.mredrock.cyxbs.model.SchoolCarLocation;
 import com.mredrock.cyxbs.model.Shake;
 import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.model.Student;
 import com.mredrock.cyxbs.model.UpdateInfo;
-import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.BBDDDetail;
 import com.mredrock.cyxbs.model.social.BBDDNews;
 import com.mredrock.cyxbs.model.social.Comment;
@@ -83,27 +82,27 @@ public interface RedRockApiService {
     //Explore start
     @FormUrlEncoded
     @POST(Const.API_MAP_PICTURE)
-    Observable<RedrockApiWrapper<List<String>>> getMapOverlayImageUrl(@Field("name") String name, @Field("path") String path);
+    Observable<RedRockApiWrapper<List<String>>> getMapOverlayImageUrl(@Field("name") String name, @Field("path") String path);
 
     @GET(Const.API_SHAKE)
-    Observable<RedrockApiWrapper<Shake>> getShake();
+    Observable<RedRockApiWrapper<Shake>> getShake();
 
     @FormUrlEncoded
     @POST(Const.API_FOOD_LIST)
-    Observable<RedrockApiWrapper<List<Food>>> getFoodList(@Field("pid") String page);
+    Observable<RedRockApiWrapper<List<Food>>> getFoodList(@Field("pid") String page);
 
     @FormUrlEncoded
     @POST(Const.API_FOOD_DETAIL)
-    Observable<RedrockApiWrapper<FoodDetail>> getFoodDetail(@Field("id") String id);
+    Observable<RedRockApiWrapper<FoodDetail>> getFoodDetail(@Field("id") String id);
 
     @FormUrlEncoded
     @POST(Const.API_FOOD_COMMENT_LIST)
-    Observable<RedrockApiWrapper<List<FoodComment>>> getFoodComments(@Field("shop_id") String id,
+    Observable<RedRockApiWrapper<List<FoodComment>>> getFoodComments(@Field("shop_id") String id,
                                                                      @Field("pid") String page);
 
     @FormUrlEncoded
     @POST(Const.API_SEND_FOOD_COMMENT)
-    Observable<RedrockApiWrapper<Object>> sendFoodComment(@Field("shop_id") String id,
+    Observable<RedRockApiWrapper<Object>> sendFoodComment(@Field("shop_id") String id,
                                                           @Field("user_number") String userNumber,
                                                           @Field("user_password") String userPassword,
                                                           @Field("comment_content") String commentContent,
@@ -142,32 +141,32 @@ public interface RedRockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_INFO)
-    Observable<RedrockApiWrapper> setPersonInfo(@Field("stuNum") String stuNum,
+    Observable<RedRockApiWrapper> setPersonInfo(@Field("stuNum") String stuNum,
                                                 @Field("idNum") String idNum,
                                                 @Field("photo_thumbnail_src") String photo_thumbnail_src,
                                                 @Field("photo_src") String photo_src);
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_INFO)
-    Observable<RedrockApiWrapper<Object>> setPersonNickName(@Field("stuNum") String stuNum,
+    Observable<RedRockApiWrapper<Object>> setPersonNickName(@Field("stuNum") String stuNum,
                                                             @Field("idNum") String idNum,
                                                             @Field("nickname") String nickname);
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_INFO)
-    Observable<RedrockApiWrapper<Object>> setPersonQQ(@Field("stuNum") String stuNum,
+    Observable<RedRockApiWrapper<Object>> setPersonQQ(@Field("stuNum") String stuNum,
                                                       @Field("idNum") String idNum,
                                                       @Field("qq") String qq);
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_INFO)
-    Observable<RedrockApiWrapper<Object>> setPersonPhone(@Field("stuNum") String stuNum,
+    Observable<RedRockApiWrapper<Object>> setPersonPhone(@Field("stuNum") String stuNum,
                                                          @Field("idNum") String idNum,
                                                          @Field("phone") String phone);
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_INFO)
-    Observable<RedrockApiWrapper<Object>> setPersonIntroduction(@Field("stuNum") String stuNum,
+    Observable<RedRockApiWrapper<Object>> setPersonIntroduction(@Field("stuNum") String stuNum,
                                                                 @Field("idNum") String idNum,
                                                                 @Field("introduction") String introduction);
 
@@ -262,13 +261,13 @@ public interface RedRockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_GET_PERSON_INFO)
-    Observable<RedrockApiWrapper<PersonInfo>> getPersonInfo(@Field("stunum_other") String otherStuNum,
+    Observable<RedRockApiWrapper<PersonInfo>> getPersonInfo(@Field("stunum_other") String otherStuNum,
                                                             @Field("stuNum") String stuNum,
                                                             @Field("idNum") String idNum);
 
     @FormUrlEncoded
     @POST(Const.API_GET_PERSON_LATEST)
-    Observable<RedrockApiWrapper<List<PersonLatest>>> getPersonLatestList(@Field("stunum_other") String otherStuNum);
+    Observable<RedRockApiWrapper<List<PersonLatest>>> getPersonLatestList(@Field("stunum_other") String otherStuNum);
 
     @FormUrlEncoded
     @POST(Const.API_GET_AFFAIR)
@@ -276,22 +275,22 @@ public interface RedRockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_ADD_AFFAIR)
-    Observable<RedrockApiWrapper<Object>> addAffair(@Field("id") String id, @Field("stuNum") String stuNum, @Field("idNum") String idNum,
+    Observable<RedRockApiWrapper<Object>> addAffair(@Field("id") String id, @Field("stuNum") String stuNum, @Field("idNum") String idNum,
                                                     @Field("date") String date, @Field("time") int time, @Field("title") String title,
                                                     @Field("content") String content);
 
     @FormUrlEncoded
     @POST(Const.API_EDIT_AFFAIR)
-    Observable<RedrockApiWrapper<Object>> editAffair(@Field("id") String id, @Field("stuNum") String stuNum, @Field("idNum") String idNum,
+    Observable<RedRockApiWrapper<Object>> editAffair(@Field("id") String id, @Field("stuNum") String stuNum, @Field("idNum") String idNum,
                                                      @Field("date") String date, @Field("time") int time, @Field("title") String title,
                                                      @Field("content") String content);
 
     @FormUrlEncoded
     @POST(Const.API_DELETE_AFFAIR)
-    Observable<RedrockApiWrapper<Object>> deleteAffair(@Field("stuNum") String stuNum, @Field("idNum") String idNum, @Field("id") String id);
+    Observable<RedRockApiWrapper<Object>> deleteAffair(@Field("stuNum") String stuNum, @Field("idNum") String idNum, @Field("id") String id);
 
     @POST(Const.API_START_PAGE)
-    Observable<RedrockApiWrapper<List<StartPage>>> startPage();
+    Observable<RedRockApiWrapper<List<StartPage>>> startPage();
 
     @FormUrlEncoded
     @POST(Const.API_ELECTRIC_CHARGE)
@@ -299,11 +298,11 @@ public interface RedRockApiService {
 
     @FormUrlEncoded
     @POST(Const.API_BIND_DORMITORY)
-    Observable<RedrockApiWrapper<Object>> bindDormitory(@Field("stuNum")String stuNum,@Field("idNum") String idNum,@Field("room") String room);
+    Observable<RedRockApiWrapper<Object>> bindDormitory(@Field("stuNum")String stuNum, @Field("idNum") String idNum, @Field("room") String room);
 
     @FormUrlEncoded
     @POST(Const.API_ELECTRIC_QUERY_STUNUM)
-    Observable<RedrockApiWrapper<PastElectric.PastElectricResultWrapper>> getPastElectricCharge(@Field("stuNum")String stuNum, @Field("idNum") String idNum);
+    Observable<RedRockApiWrapper<PastElectric.PastElectricResultWrapper>> getPastElectricCharge(@Field("stuNum")String stuNum, @Field("idNum") String idNum);
 
     @FormUrlEncoded
     @POST(Const.API_ALL_TOPIC_LIST)
@@ -347,5 +346,5 @@ public interface RedRockApiService {
                                                  @Field("official") boolean official);
     @FormUrlEncoded
     @POST(Const.API_ROLLER_VIEW)
-    Observable<RedrockApiWrapper<List<RollerViewInfo>>> getRollerViewInfo(@Field("pic_num") String pic_num);
+    Observable<RedRockApiWrapper<List<RollerViewInfo>>> getRollerViewInfo(@Field("pic_num") String pic_num);
 }

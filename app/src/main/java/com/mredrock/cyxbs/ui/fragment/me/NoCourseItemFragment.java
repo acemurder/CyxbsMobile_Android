@@ -19,8 +19,8 @@ import com.mredrock.cyxbs.component.widget.NoScheduleView;
 import com.mredrock.cyxbs.model.Course;
 import com.mredrock.cyxbs.model.NoCourse;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 import com.mredrock.cyxbs.util.SchoolCalendar;
 

@@ -19,11 +19,11 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Toolbar;
 import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 import com.redrock.common.account.User;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.ui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +47,7 @@ public abstract class EditCommonActivity extends BaseActivity implements TextWat
     protected User mUser;
     private String editTextContent;
 
-    protected abstract void provideData(Observer<RedrockApiWrapper<Object>> observer, String
+    protected abstract void provideData(Observer<RedRockApiWrapper<Object>> observer, String
             stuNum, String idNum, String info);
 
     protected abstract String getExtra();
@@ -114,7 +114,7 @@ public abstract class EditCommonActivity extends BaseActivity implements TextWat
 
     protected void setPersonInfo() {
         provideData(new SimpleObserver<>(this, true,
-                new SubscriberListener<RedrockApiWrapper<Object>>() {
+                new SubscriberListener<RedRockApiWrapper<Object>>() {
 
                     @Override
                      public void onComplete() {

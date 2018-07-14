@@ -3,15 +3,15 @@ package com.mredrock.cyxbs.model.social;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.network.RedRockApiWrapper;
+import com.redrock.common.utils.Utils;
 
 import java.util.List;
 
 /**
  * Created by mathiasluo on 16-4-5.
  */
-public class HotNews extends RedrockApiWrapper<HotNewsContent> implements Parcelable {
+public class HotNews extends RedRockApiWrapper<HotNewsContent> implements Parcelable {
 
     public String page;
 

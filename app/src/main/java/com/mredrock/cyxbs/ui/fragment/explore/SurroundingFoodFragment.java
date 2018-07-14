@@ -10,11 +10,11 @@ import com.mredrock.cyxbs.component.widget.recycler.EndlessRecyclerViewScrollLis
 import com.mredrock.cyxbs.component.widget.recycler.RestaurantsItemAnimator;
 import com.mredrock.cyxbs.model.Food;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.BaseExploreActivity;
 import com.mredrock.cyxbs.ui.adapter.FoodListAdapter;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.UIUtils;
 
 import java.util.ArrayList;

@@ -8,9 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.TabPagerAdapter;
 import com.mredrock.cyxbs.ui.fragment.me.ExamScheduleFragment;
 import com.mredrock.cyxbs.ui.fragment.me.GradeFragment;
@@ -54,7 +53,6 @@ public class ExamAndGradeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_and_grade);
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
         initToolbar();
         initViewPager();

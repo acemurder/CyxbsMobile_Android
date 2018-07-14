@@ -2,7 +2,7 @@ package com.mredrock.cyxbs.model;
 
 import android.support.annotation.NonNull;
 
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.Utils;
 
 /**
  * Created by Stormouble on 16/4/12.

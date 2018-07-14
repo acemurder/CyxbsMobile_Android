@@ -12,10 +12,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.ui.BaseActivity;
+import com.redrock.common.utils.LogUtils;
 
 public class RollerViewActivity extends BaseActivity {
     private static final String TAG = LogUtils.makeLogTag(RollerViewActivity.class);
@@ -48,7 +47,6 @@ public class RollerViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roller_view);
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
 
         initToolbar();
 

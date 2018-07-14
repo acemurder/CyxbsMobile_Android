@@ -31,11 +31,10 @@ import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.utils.overlay.SmoothMoveMarker;
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.SchoolCarLocation;
 import com.mredrock.cyxbs.ui.Interface.SchoolCarInterface;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.widget.ExploreSchoolCarDialog;
 import com.mredrock.cyxbs.ui.widget.SchoolCarMap;
 import com.mredrock.cyxbs.ui.widget.SchoolcarsSmoothMove;
@@ -219,7 +218,6 @@ public class ExploreSchoolCarActivity extends BaseActivity {
         });
 
 //        Glide.with(this ).load( R.drawable.ic_school_car_search_load).asGif().into(loadImage) ;
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
 
         if (toolbar != null) {
             toolbar.setTitle("");

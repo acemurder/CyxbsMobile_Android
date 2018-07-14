@@ -22,7 +22,7 @@ import com.redrock.common.account.AccountManager;
 import com.redrock.common.config.Const;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.util.DialogUtil;
 import com.mredrock.cyxbs.util.ImageLoader;
 import com.mredrock.cyxbs.util.permission.AfterPermissionGranted;

@@ -19,7 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.VolunteerTime;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.widget.VolunteerTimeSP;
 
 import butterknife.BindView;

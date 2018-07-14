@@ -12,8 +12,8 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.remind_service.RemindManager;
 import com.mredrock.cyxbs.model.StartPage;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.Timer;
@@ -65,7 +65,7 @@ public class SplashActivity extends Activity {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 SplashActivity.this.finish();
             }
-        }, 1000);
+        }, 300);
 
         RemindManager.getInstance().pushAll(this);
 

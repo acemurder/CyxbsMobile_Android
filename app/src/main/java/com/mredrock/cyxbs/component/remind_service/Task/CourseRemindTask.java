@@ -7,8 +7,8 @@ import android.preference.PreferenceManager;
 import com.mredrock.cyxbs.component.remind_service.Reminder;
 import com.mredrock.cyxbs.component.remind_service.func.CourseRemindConvertFunc;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 
 import java.util.ArrayList;
 import java.util.List;

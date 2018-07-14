@@ -15,11 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.VolunteerTime;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.adapter.me.VolunteerFragmentAdapter;
 import com.mredrock.cyxbs.ui.fragment.me.AllVolunteerFragment;
 import com.mredrock.cyxbs.ui.fragment.me.FirstVolunteerTimeFragment;
@@ -83,7 +82,6 @@ public class VolunteerTimeActivity extends BaseActivity implements TabLayout.OnT
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_time);
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
         initToolbar();
         initData();

@@ -9,8 +9,9 @@ import com.redrock.common.config.Config;
 import com.mredrock.cyxbs.model.UpdateInfo;
 import com.mredrock.cyxbs.network.RequestManager;
 import com.mredrock.cyxbs.service.UpdateService;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.utils.Utils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 /**

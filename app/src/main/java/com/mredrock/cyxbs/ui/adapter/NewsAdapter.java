@@ -21,13 +21,13 @@ import com.mredrock.cyxbs.model.social.HotNews;
 import com.mredrock.cyxbs.model.social.HotNewsContent;
 import com.mredrock.cyxbs.model.social.Image;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.social.ImageActivity;
 import com.mredrock.cyxbs.ui.activity.social.PersonInfoActivity;
 import com.mredrock.cyxbs.ui.activity.social.SpecificNewsActivity;
 import com.mredrock.cyxbs.util.ImageLoader;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.RxBus;
 import com.mredrock.cyxbs.util.TimeUtils;
 

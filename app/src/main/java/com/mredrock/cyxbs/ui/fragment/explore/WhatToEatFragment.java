@@ -21,12 +21,12 @@ import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.FoodDetail;
 import com.mredrock.cyxbs.model.Shake;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.BaseExploreActivity;
 import com.mredrock.cyxbs.ui.activity.explore.SurroundingFoodActivity;
 import com.mredrock.cyxbs.ui.activity.explore.WhatToEatActivity;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.UIUtils;
 
 import butterknife.BindView;

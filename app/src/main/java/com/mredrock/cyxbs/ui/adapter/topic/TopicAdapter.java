@@ -11,7 +11,7 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.model.social.Topic;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.Utils;
 
 /**
  * Created by simonla on 2017/4/2.

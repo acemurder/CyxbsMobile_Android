@@ -4,7 +4,7 @@ import android.util.SparseArray;
 
 import com.mredrock.cyxbs.model.EmptyRoom;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.network.exception.RedrockApiException;
+import com.redrock.common.network.RedrockApiException;
 import com.mredrock.cyxbs.util.EmptyConverter;
 
 import java.io.IOException;

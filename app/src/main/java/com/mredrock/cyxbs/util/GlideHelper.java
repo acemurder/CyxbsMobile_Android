@@ -15,6 +15,7 @@ import com.bumptech.glide.load.model.stream.BaseGlideUrlLoader;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestListener;
 import com.mredrock.cyxbs.R;
+import com.redrock.common.utils.LogUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

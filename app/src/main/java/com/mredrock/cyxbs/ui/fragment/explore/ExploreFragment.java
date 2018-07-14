@@ -13,8 +13,8 @@ import com.mredrock.cyxbs.R;
 import com.redrock.common.config.Const;
 import com.mredrock.cyxbs.model.RollerViewInfo;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.activity.explore.ExploreSchoolCarActivity;
 import com.mredrock.cyxbs.ui.activity.explore.MapActivity;
 import com.mredrock.cyxbs.ui.activity.explore.SurroundingFoodActivity;
@@ -24,7 +24,7 @@ import com.mredrock.cyxbs.ui.activity.lost.LostActivity;
 import com.mredrock.cyxbs.ui.adapter.ExploreRollerViewAdapter;
 import com.mredrock.cyxbs.ui.fragment.BaseFragment;
 import com.mredrock.cyxbs.ui.widget.RollerView;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 
 import java.util.List;
 

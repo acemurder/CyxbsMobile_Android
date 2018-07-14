@@ -13,12 +13,12 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.component.widget.Toolbar;
-import com.mredrock.cyxbs.model.RedrockApiWrapper;
+import com.redrock.common.network.RedRockApiWrapper;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
-import com.mredrock.cyxbs.ui.activity.BaseActivity;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
+import com.redrock.common.ui.BaseActivity;
 import com.mredrock.cyxbs.ui.widget.EditTextBottomSheetDialog;
 import com.redrock.common.account.AccountManager;
 import com.umeng.analytics.MobclickAgent;
@@ -89,7 +89,7 @@ public class EditIntroduceActivity extends BaseActivity implements TextWatcher {
         }
         RequestManager.getInstance()
                 .setPersonIntroduction(new SimpleObserver<>(
-                                EditIntroduceActivity.this, true, new SubscriberListener<RedrockApiWrapper<Object>>() {
+                                EditIntroduceActivity.this, true, new SubscriberListener<RedRockApiWrapper<Object>>() {
 
                             @Override
                              public void onComplete() {

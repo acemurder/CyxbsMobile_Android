@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.mredrock.cyxbs.R;
 import com.mredrock.cyxbs.ui.fragment.explore.WhatToEatFragment;
-import com.mredrock.cyxbs.util.LogUtils;
+import com.redrock.common.utils.LogUtils;
 import com.mredrock.cyxbs.util.UIUtils;
 import com.umeng.analytics.MobclickAgent;
 

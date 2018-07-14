@@ -1,8 +1,8 @@
 package com.mredrock.cyxbs.util.cache;
 
 import com.jakewharton.disklrucache.DiskLruCache;
-import com.mredrock.cyxbs.util.LogUtils;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.LogUtils;
+import com.redrock.common.utils.Utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

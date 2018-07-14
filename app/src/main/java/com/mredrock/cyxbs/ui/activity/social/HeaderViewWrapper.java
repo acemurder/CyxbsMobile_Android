@@ -16,11 +16,11 @@ import com.redrock.common.account.AccountManager;
 import com.redrock.common.account.User;
 import com.mredrock.cyxbs.model.social.Topic;
 import com.mredrock.cyxbs.network.RequestManager;
-import com.mredrock.cyxbs.subscriber.SimpleObserver;
-import com.mredrock.cyxbs.subscriber.SubscriberListener;
+import com.redrock.common.network.SimpleObserver;
+import com.redrock.common.network.SubscriberListener;
 import com.mredrock.cyxbs.ui.adapter.topic.TopicHeaderAdapter;
 import com.mredrock.cyxbs.ui.fragment.social.TopicFragment;
-import com.mredrock.cyxbs.util.Utils;
+import com.redrock.common.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
