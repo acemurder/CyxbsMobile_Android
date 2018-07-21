@@ -16,3 +16,4 @@ javaCompileOptions {
 }
 annotationProcessor "com.alibaba:arouter-compiler:$arouter_compiler_version"
 ```
+3. 需要路由的组件，均需要在app module中依赖，否则会路由不到
