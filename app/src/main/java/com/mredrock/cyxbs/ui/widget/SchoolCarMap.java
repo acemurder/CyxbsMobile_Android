@@ -77,7 +77,7 @@ public class SchoolCarMap {
         if (aMap == null) {
             aMap = mapView.getMap();
             Log.d(TAG, "initAMap: .........");
-            if (mapView == null){
+            if (aMap == null){
             }
         }
         if (ifLocation) {

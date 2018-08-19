@@ -115,7 +115,7 @@ public class ExploreSchoolCarActivity extends BaseActivity {
         int hour = calendar.get(Calendar.HOUR);
         int AM_PM = calendar.get(Calendar.AM_PM);
 //        Log.d(TAG, "checkBeforeEnter: .....,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,," + String.valueOf(((AM_PM == Calendar.AM && hour < 11) || (AM_PM == Calendar.PM && ((hour > 1 && hour < 5) || (hour > 9))))));
-        if (((AM_PM == Calendar.AM && hour < 11) || (AM_PM == Calendar.PM && ((hour > 1 && hour < 5) || (hour > 9))))) {
+        if (!((AM_PM == Calendar.AM && hour < 11) || (AM_PM == Calendar.PM && ((hour > 1 && hour < 5) || (hour > 9))))) {
             dialog.show(this, TIME_OUT);
             return false;
         } else {
